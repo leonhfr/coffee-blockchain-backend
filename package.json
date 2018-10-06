@@ -1,0 +1,36 @@
+{
+  "name": "coffee-blockchain-backend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A Coffee Blockchain",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js",
+    "start": "node app.js",
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/leonhfr/coffee-blockchain-backend.git"
+  },
+  "engines": {
+    "node": "6.4.0",
+    "npm": "3.10.7"
+  },
+  "devDependencies": {
+    "eslint": "^5.6.0",
+    "eslint-plugin-json": "^1.2.1",
+    "mocha": "^5.2.0",
+    "nodemon": "^1.18.4"
+  },
+  "keywords": [
+    "coffee",
+    "blockchain"
+  ],
+  "author": "leonhfr",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/leonhfr/coffee-blockchain-backend/issues"
+  },
+  "homepage": "https://github.com/leonhfr/coffee-blockchain-backend#readme"
+}
