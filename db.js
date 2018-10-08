@@ -17,4 +17,9 @@ const sequelize = new Sequelize(
   }
 );
 
+sequelize
+  .sync()
+  .then(() => console.log('sequelize connected'))
+  .catch(e => console.error(e));
+
 module.exports = sequelize;
