@@ -4,7 +4,7 @@ const controller = require('./controllers/controller');
 
 router.get('/', controller.getAll);
 router.post('/createProducer', controller.createProducer);
-router.post('/createCoffe', controller.createCoffe);
+router.post('/createCoffee', controller.createCoffee);
 router.get('/test/:id', controller.test);
 
 module.exports = router;

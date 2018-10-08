@@ -10,8 +10,8 @@ exports.createProducer = async ctx => {
   ctx.status = 201;
 };
 
-exports.createCoffe = async ctx => {
-  await model.createCoffe(ctx.request.body);
+exports.createCoffee = async ctx => {
+  await model.createCoffee(ctx.request.body);
   ctx.status = 201;
 };
 

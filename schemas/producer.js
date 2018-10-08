@@ -2,7 +2,7 @@ const sequelize = require('../sequelize');
 const Sequelize = require('sequelize');
 const Coffee = require('./coffee');
 
-const Producer = sequelize.define('producer', {
+const Producer = sequelize.define('Producer', {
   id: {
     type: Sequelize.UUID,
     primaryKey: true,
@@ -21,7 +21,11 @@ const Producer = sequelize.define('producer', {
 });
 
 // testing
+
 Producer.hasMany(Coffee, {
   foreignKey: 'producerId',
-  sourceKey: 'id'
+  sourceKey: 'id',
+  onDelete: 'CASCADE'
 });
+
+module.exports = Producer;

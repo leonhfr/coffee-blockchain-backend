@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 const sequelize = require('../sequelize');
 const Producer = require('./producer');
 
-const Coffee = sequelize.define('coffee', {
+const Coffee = sequelize.define('Coffee', {
   id: {
     type: Sequelize.UUID,
     primaryKey: true,
@@ -16,12 +16,11 @@ const Coffee = sequelize.define('coffee', {
   description: {
     type: Sequelize.TEXT,
     allowNull: false
+  },
+  producerId: {
+    type: Sequelize.UUID,
+    defaultValue: null
   }
-});
-
-Coffee.belongsTo(Producer, {
-  foreignKey: 'producerId',
-  targetKey: 'id'
 });
 
 module.exports = Coffee;
