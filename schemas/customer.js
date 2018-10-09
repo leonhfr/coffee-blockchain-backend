@@ -2,6 +2,7 @@ const sequelize = require('../sequelize');
 const Sequelize = require('sequelize');
 
 const Transaction = require('./transaction');
+const Picture = require('./picture');
 
 const Customer = sequelize.define('Customer', {
   id: {
