@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../sequelize');
+const Transaction = require('./transaction');
 
 const Coffee = sequelize.define('Coffee', {
   id: {
@@ -12,14 +13,39 @@ const Coffee = sequelize.define('Coffee', {
     type: Sequelize.STRING,
     allowNull: false
   },
-  description: {
+  botanical_variety: {
     type: Sequelize.TEXT,
     allowNull: false
   },
-  producerId: {
-    type: Sequelize.UUID,
-    defaultValue: null
+  preparation: {
+    type: Sequelize.ENUM('wet', 'dry'),
+    allowNull: false
+  },
+  altitude: {
+    type: Sequelize.INTEGER,
+    allowNull: false
+  },
+  region: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  roast_appearance: {
+    type: Sequelize.TEXT,
+    allowNull: false
+  },
+  bean_density: {
+    type: Sequelize.FLOAT,
+    allowNull: false
+  },
+  details: {
+    type: Sequelize.TEXT
   }
+});
+
+Coffee.hasMany(Transaction, {
+  foreignKey: 'coffeId',
+  sourceKey: 'id',
+  onDelete: 'CASCADE'
 });
 
 module.exports = Coffee;

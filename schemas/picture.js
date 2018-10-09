@@ -1,15 +1,17 @@
 const sequelize = require('../sequelize');
 const Sequelize = require('sequelize');
 
-const Transaction = sequelize.define('Transaction', {
+const Picture = sequelize.define('Picture', {
   id: {
     type: Sequelize.UUID,
     primaryKey: true,
     defaultValue: Sequelize.UUIDV4,
     allowNull: false
   },
-  quantity: Sequelize.SMALLINT,
-  price: Sequelize.DECIMAL
+  url: {
+    type: Sequelize.STRING,
+    allowNull: false
+  }
 });
 
-module.exports = Transaction;
+module.exports = Picture;
