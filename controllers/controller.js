@@ -53,7 +53,7 @@ exports.getCoffee = async ctx => {
 };
 
 exports.updateCoffee = async ctx => {
-  let id = ctx.request.headers.id;
+  let id = ctx.request.header.id;
   ctx.body = await model.updateCoffee(id, ctx.request.body);
   ctx.status = 200;
 };

@@ -8,7 +8,7 @@ const Transaction = sequelize.define('Transaction', {
     defaultValue: Sequelize.UUIDV4,
     allowNull: false
   },
-  quantity: Sequelize.SMALLINT,
+  quantity: Sequelize.DECIMAL,
   price: Sequelize.DECIMAL
 });
 

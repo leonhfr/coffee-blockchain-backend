@@ -91,17 +91,25 @@ exports.getCoffee = async id => {
 exports.updateCoffee = async (id, info) => {
   let updateValue = {};
   if (info.name) updateValue.customer_name = info.customer_name;
-  if (info.country) updateValue.country = info.country;
-  if (info.description) updateValue.description = info.description;
-  await Customer.update(updateValue, {
+  if (info.botanical_variety)
+    updateValue.botanical_variety = info.botanical_variety;
+  if (info.preparation) updateValue.preparation = info.preparation;
+  if (info.altitude) updateValue.altitude = info.altitude;
+  if (info.region) updateValue.region = info.region;
+  if (info.roast_appearance)
+    updateValue.roast_appearance = info.roast_appearance;
+  if (info.bean_density) updateValue.bean_density = info.bean_density;
+  if (info.details) updateValue.details = info.details;
+  await Coffee.update(updateValue, {
     returning: true,
     plain: true,
     where: { id: id }
   });
-  let customer = await Customer.find({
+  let coffee = await Coffee.find({
     where: { id: id }
   });
-  return customer; 
+  return coffee;
+};
 
 // transactions //
 
