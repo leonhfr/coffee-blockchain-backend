@@ -44,7 +44,7 @@ exports.createProducer = async producer => {
 
 exports.getProducer = async id => {
   let producer = await Producer.findAll({
-    inclde: [Coffee],
+    include: [Coffee],
     where: { id: id }
   });
   return producer;
@@ -74,11 +74,23 @@ exports.createCoffee = async coffee => {
 };
 
 exports.getCoffee = async id => {
-  let coffe = await Coffee.findAll({
+  let coffee = await Coffee.findAll({
     //include: [Transaction], for later;
     where: { id: id }
   });
-  return coffe;
+  return coffee;
+};
+
+exports.updateCoffee = async (id, info) => {
+  // let producer = await Producer.findAll({
+  //   where: { id: id }
+  // });
+  // let updateValue = {};
+  // if (info.business_name) updateValue.business_name = info.business_name;
+  // if (info.country) updateValue.country = info.country;
+  // if (info.description) updateValue.description = info.description;
+  // let updated = await producer.update(updateValue);
+  // return updated;
 };
 
 // transactions //

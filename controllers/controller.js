@@ -36,16 +36,22 @@ exports.updateProducer = async ctx => {
   ctx.status = 200;
 };
 
-// coffe //
+// coffee //
 
 exports.createCoffee = async ctx => {
-  let coffe = { ...ctx.request.body, producerId: ctx.request.producerId };
-  ctx.body = await model.createCoffee(coffe);
+  let coffee = { ...ctx.request.body, producerId: ctx.request.params.producerId };
+  ctx.body = await model.createCoffee(coffee);
   ctx.status = 201;
 };
 
 exports.getCoffee = async ctx => {
-  ctx.body = await model.getCoffe(ctx.request.params.coffeId);
+  ctx.body = await model.getCoffe(ctx.request.params.coffeeId);
+  ctx.status = 200;
+};
+
+exports.updateCoffee = async ctx => {
+  let id = ctx.request.headers.ID;
+  ctx.body = await model.updateCoffee(id, ctx.request.body);
   ctx.status = 200;
 };
 
