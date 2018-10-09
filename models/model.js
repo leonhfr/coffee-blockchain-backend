@@ -89,8 +89,8 @@ exports.getCoffee = async id => {
 };
 
 exports.updateCoffee = async (id, info) => {
-  /*   let updateValue = {};
-  if (info.customer_name) updateValue.customer_name = info.customer_name;
+  let updateValue = {};
+  if (info.name) updateValue.customer_name = info.customer_name;
   if (info.country) updateValue.country = info.country;
   if (info.description) updateValue.description = info.description;
   await Customer.update(updateValue, {
@@ -101,8 +101,7 @@ exports.updateCoffee = async (id, info) => {
   let customer = await Customer.find({
     where: { id: id }
   });
-  return customer; */
-};
+  return customer; 
 
 // transactions //
 

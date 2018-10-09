@@ -12,6 +12,6 @@ router.put('/producer/', controller.updateProducer);
 
 router.post('/coffee/:producerId', controller.createCoffee);
 router.get('/coffee/:coffeeId', controller.getCoffee);
-router.put('/coffee/:coffeeId', controller.updateCoffee);
+router.put('/coffee/', controller.updateCoffee);
 
 module.exports = router;

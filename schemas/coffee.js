@@ -44,7 +44,7 @@ const Coffee = sequelize.define('Coffee', {
 });
 
 Coffee.hasMany(Transaction, {
-  foreignKey: 'coffeeId',
+  foreignKey: 'coffeenameId',
   sourceKey: 'id',
   onDelete: 'CASCADE'
 });
