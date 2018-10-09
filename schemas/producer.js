@@ -15,6 +15,7 @@ const Producer = sequelize.define('Producer', {
   country: {
     type: Sequelize.STRING
   },
+  email: Sequelize.STRING,
   description: Sequelize.TEXT,
   pictures: Sequelize.STRING,
   transactions: Sequelize.ENUM('id')

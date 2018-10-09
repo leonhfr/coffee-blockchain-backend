@@ -13,7 +13,7 @@ exports.createCustomer = async customer => {
 };
 
 exports.getCustomer = async id => {
-  let customer = await Customer.findAll({
+  let customer = await Customer.find({
     //include:[{Transaction, Picture}],  for later
     where: { id: id }
   });
@@ -21,16 +21,19 @@ exports.getCustomer = async id => {
 };
 
 exports.updateCustomer = async (id, info) => {
-  let customer = await Customer.findAll({
-    where: { id: id }
-  });
   let updateValue = {};
   if (info.customer_name) updateValue.customer_name = info.customer_name;
   if (info.country) updateValue.country = info.country;
   if (info.description) updateValue.description = info.description;
-
-  let updated = await customer.update(updateValue);
-  return updated;
+  await Customer.update(updateValue, {
+    returning: true,
+    plain: true,
+    where: { id: id }
+  });
+  let customer = await Customer.find({
+    where: { id: id }
+  });
+  return customer;
 };
 
 // producer //
@@ -43,7 +46,7 @@ exports.createProducer = async producer => {
 };
 
 exports.getProducer = async id => {
-  let producer = await Producer.findAll({
+  let producer = await Producer.find({
     include: [Coffee],
     where: { id: id }
   });
@@ -51,15 +54,19 @@ exports.getProducer = async id => {
 };
 
 exports.updateProducer = async (id, info) => {
-  let producer = await Producer.findAll({
-    where: { id: id }
-  });
   let updateValue = {};
-  if (info.business_name) updateValue.business_name = info.business_name;
+  if (info.producer_name) updateValue.producer_name = info.producer_name;
   if (info.country) updateValue.country = info.country;
   if (info.description) updateValue.description = info.description;
-  let updated = await producer.update(updateValue);
-  return updated;
+  await Producer.update(updateValue, {
+    returning: true,
+    plain: true,
+    where: { id: id }
+  });
+  let producer = await Producer.find({
+    where: { id: id }
+  });
+  return producer;
 };
 
 // coffee //
@@ -74,7 +81,7 @@ exports.createCoffee = async coffee => {
 };
 
 exports.getCoffee = async id => {
-  let coffee = await Coffee.findAll({
+  let coffee = await Coffee.find({
     //include: [Transaction], for later;
     where: { id: id }
   });
@@ -82,15 +89,19 @@ exports.getCoffee = async id => {
 };
 
 exports.updateCoffee = async (id, info) => {
-  // let producer = await Producer.findAll({
-  //   where: { id: id }
-  // });
-  // let updateValue = {};
-  // if (info.business_name) updateValue.business_name = info.business_name;
-  // if (info.country) updateValue.country = info.country;
-  // if (info.description) updateValue.description = info.description;
-  // let updated = await producer.update(updateValue);
-  // return updated;
+  /*   let updateValue = {};
+  if (info.customer_name) updateValue.customer_name = info.customer_name;
+  if (info.country) updateValue.country = info.country;
+  if (info.description) updateValue.description = info.description;
+  await Customer.update(updateValue, {
+    returning: true,
+    plain: true,
+    where: { id: id }
+  });
+  let customer = await Customer.find({
+    where: { id: id }
+  });
+  return customer; */
 };
 
 // transactions //

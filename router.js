@@ -8,7 +8,7 @@ router.put('/customer', controller.updateCustomer);
 
 router.post('/producer', controller.createProducer);
 router.get('/producer/:id', controller.getProducer);
-router.put('/producer/:id', controller.updateProducer);
+router.put('/producer/', controller.updateProducer);
 
 router.post('/coffee/:producerId', controller.createCoffee);
 router.get('/coffee/:coffeeId', controller.getCoffee);

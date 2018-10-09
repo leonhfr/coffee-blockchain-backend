@@ -11,39 +11,40 @@ const Coffee = sequelize.define('Coffee', {
   },
   name: {
     type: Sequelize.STRING,
-    allowNull: false
+    defaultValue: null
   },
   botanical_variety: {
     type: Sequelize.TEXT,
-    allowNull: false
+    defaultValue: null
   },
   preparation: {
     type: Sequelize.ENUM('wet', 'dry'),
-    allowNull: false
+    defaultValue: null
   },
   altitude: {
     type: Sequelize.INTEGER,
-    allowNull: false
+    defaultValue: null
   },
   region: {
     type: Sequelize.STRING,
-    allowNull: false
+    defaultValue: null
   },
   roast_appearance: {
     type: Sequelize.TEXT,
-    allowNull: false
+    defaultValue: null
   },
   bean_density: {
     type: Sequelize.FLOAT,
-    allowNull: false
+    defaultValue: null
   },
   details: {
-    type: Sequelize.TEXT
+    type: Sequelize.TEXT,
+    defaultValue: null
   }
 });
 
 Coffee.hasMany(Transaction, {
-  foreignKey: 'coffeId',
+  foreignKey: 'coffeeId',
   sourceKey: 'id',
   onDelete: 'CASCADE'
 });
