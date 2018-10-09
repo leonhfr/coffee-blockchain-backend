@@ -1,6 +1,5 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../sequelize');
-const Producer = require('./producer');
 
 const Coffee = sequelize.define('Coffee', {
   id: {
