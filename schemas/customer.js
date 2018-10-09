@@ -17,7 +17,8 @@ const Customer = sequelize.define('Customer', {
   country: {
     type: Sequelize.STRING
   },
-  description: Sequelize.TEXT
+  description: Sequelize.TEXT,
+  email: Sequelize.STRING
 });
 
 Customer.hasMany(Transaction, {

@@ -3,49 +3,91 @@ const Coffee = require('../schemas/coffee');
 const Customer = require('../schemas/customer');
 const Transaction = require('../schemas/transaction');
 
-exports.getAll = async () => {
-  return await Producer.findAll();
+// customer  //
+
+exports.createCustomer = async customer => {
+  let newCustomer = await Customer.create({
+    email: customer.email
+  });
+  return newCustomer;
 };
 
-exports.createProducer = producer => {
-  Producer.create({
-    business_name: producer.business_name,
-    country: producer.country,
-    description: producer.description
+exports.getCustomer = async id => {
+  let customer = await Customer.findAll({
+    //include:[{Transaction, Picture}],  for later
+    where: { id: id }
   });
+  return customer;
 };
+
+exports.updateCustomer = async (id, info) => {
+  let customer = await Customer.findAll({
+    where: { id: id }
+  });
+  let updateValue = {};
+  if (info.customer_name) updateValue.customer_name = info.customer_name;
+  if (info.country) updateValue.country = info.country;
+  if (info.description) updateValue.description = info.description;
+
+  let updated = await customer.update(updateValue);
+  return updated;
+};
+
+// producer //
+
+exports.createProducer = async producer => {
+  let newProducer = await Producer.create({
+    email: producer.email
+  });
+  return newProducer;
+};
+
+exports.getProducer = async id => {
+  let producer = await Producer.findAll({
+    inclde: [Coffee],
+    where: { id: id }
+  });
+  return producer;
+};
+
+exports.updateProducer = async (id, info) => {
+  let producer = await Producer.findAll({
+    where: { id: id }
+  });
+  let updateValue = {};
+  if (info.business_name) updateValue.business_name = info.business_name;
+  if (info.country) updateValue.country = info.country;
+  if (info.description) updateValue.description = info.description;
+  let updated = await producer.update(updateValue);
+  return updated;
+};
+
+// coffee //
 
 exports.createCoffee = async coffee => {
-  Coffee.create({
+  let newCoffee = await Coffee.create({
     name: coffee.name,
     description: coffee.description,
     producerId: coffee.producerId
   });
+  return newCoffee;
 };
 
-exports.createCustomer = async customer => {
-  let res = await Customer.create({
-    customer_name: customer.name,
-    country: customer.country,
-    description: customer.description
+exports.getCoffee = async id => {
+  let coffe = await Coffee.findAll({
+    //include: [Transaction], for later;
+    where: { id: id }
   });
-  return res;
+  return coffe;
 };
+
+// transactions //
 
 exports.createTransaction = async transaction => {
-  console.log('transaction incoming: ', transaction);
   let res = await Transaction.create({
     quantity: transaction.quantity,
     price: transaction.price,
     customerId: transaction.customerId
-  });
-  return res;
-};
-
-exports.test = async id => {
-  let res = await Producer.findAll({
-    include: [{ model: Coffee }],
-    where: { id: id }
   });
   return res;
 };
@@ -56,4 +98,18 @@ exports.getCustomerAndTransactions = async id => {
     where: { id: id }
   });
   return res;
+};
+
+// extra  //
+
+exports.test = async id => {
+  let res = await Producer.findAll({
+    include: [{ model: Coffee }],
+    where: { id: id }
+  });
+  return res;
+};
+
+exports.getAll = async () => {
+  return await Producer.findAll();
 };
