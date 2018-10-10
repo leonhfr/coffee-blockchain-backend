@@ -25,16 +25,16 @@ Two criteria matter when it comes to definition of an environment and a blockcha
 
 #### Features
 
-| Quadrant         | Top-left           | Top-right    | Bottom-left        | Bottom-right              |
-| ---------------- | ------------------ | ------------ | ------------------ | ------------------------- |
-| **Type**         | Public             | Public       | Public             | Private                   |
-| **Openness**     | Permissionless [1] | Permissioned | Permissionless [2] | Permissioned              |
-| **Consensus**    | PoW                | PoS          | FBA                | PBFT / Multisignature [3] |
-| **Anonymity**    | High               | High         | Moderate           | Low                       |
-| **Immutability** | High               | Moderate     | Moderate           | Low [4]                   |
-| **Scalability**  | Low                | Moderate     | Moderate           | High                      |
-| **Trust level**  | Very low [5]       | High [6]     | Low [7]            | High [8]                  |
-| **Examples**     | Bitcoin, Monero    | Bitshares    | Ripple, Stellar    | IBM Hyperledger           |
+| Quadrant         | Top-left           | Top-right      | Bottom-left        | Bottom-right              |
+| ---------------- | ------------------ | -------------- | ------------------ | ------------------------- |
+| **Type**         | Public             | Public         | Public             | Private                   |
+| **Openness**     | Permissionless [1] | Permissioned   | Permissionless [2] | Permissioned              |
+| **Consensus**    | PoW                | PoS            | FBA                | PBFT / Multisignature [3] |
+| **Anonymity**    | High               | High           | Moderate           | Low                       |
+| **Immutability** | High               | Moderate       | Moderate           | Low [4]                   |
+| **Scalability**  | Low                | Moderate       | Moderate           | High                      |
+| **Trust level**  | Very low [5]       | High [6]       | Low [7]            | High [8]                  |
+| **Examples**     | Bitcoin, Monero    | Bitshares, EOS | Ripple, Stellar    | IBM Hyperledger           |
 
 1. One doesn't need to be previously vetted in order to participate in the consensus process
 2. Under certain social agreement anybody who qualifies can become a validator
@@ -162,6 +162,8 @@ https://github.com/LiskHQ
 ## EOS
 
 https://eos.io/
+
+https://cryptobriefing.com/eos-ethereum-smart-contract-war-winner/
 
 ### Characteristics
 
