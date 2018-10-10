@@ -1432,37 +1432,337 @@ Expected response
 
 ### 1. Writing an `addressbook` counter contract
 
+Navigate to `/home/leonh/cw/projects/eos-tutos/contracts` if not already there, create a directory called `abcounter` and then create a `abcounter.cpp` file
+
+```shell
+cd /home/leonh/cw/projects/eos-tutos/contracts
+mkdir abcounter
+cd abcounter
+touch abcounter.cpp
+atom abcounter.cpp
+```
+
+Open and the `abcounter.cpp` file in your favorite editor and paste the following code into the file. This contract is very basic, and for the most part does not cover much that we haven't already covered up until this point. There is one exception, and it is covered in full below the provided code.
+
+```c++
+#include <eosiolib/eosio.hpp>
+
+using namespace eosio;
+
+class abcounter : public eosio::contract {
+  public:
+    using contract::contract;
+    abcounter(account_name self): contract(self) {}
+
+    [[eosio::action]]
+    void count(account_name user, std::string type){
+      require_auth( N(addressbook) );
+      count_index counts(_self, _self);
+      auto iterator = counts.find(user);
+      if(iterator == counts.end()){
+        counts.emplace(N(addressbook), [&]( auto& row ) {
+          row.key = user;
+          row.emplaced = (type == "emplace") ? 1 : 0;
+          row.modified = (type == "modify") ? 1 : 0;
+          row.erased = (type == "erase") ? 1 : 0;
+        });
+      }
+      else {
+        counts.modify(iterator, N(addressbook), [&]( auto& row ) {
+          if(type == "emplace") { row.emplaced += 1; }
+          if(type == "modify") { row.modified += 1; }
+          if(type == "erase") { row.erased += 1; }
+        });
+      }
+    }
+
+  private:
+    struct [[eosio::table]] counter {
+      account_name key;
+      uint64_t emplaced;
+      uint64_t modified;
+      uint64_t erased;
+      uint64_t primary_key() const { return key; }
+    };
+    using count_index = eosio::multi_index<N(counts), counter>;
+};
 
 
-### 2. Create account for `abcounter` contract
+EOSIO_ABI( abcounter, (count));
+```
 
+The only new concept in the code above, is that we are explicitly restricting calls to the one action to a **specific account** in this contract using [require_auth](https://developers.eos.io/eosio-home/docs/sending-an-inline-transaction-to-external-contract) to the `addressbook` contract, as seen below.
 
+```c++
+//Only the addressbook account/contract can authorize this command. 
+require_auth( N(addressbook) );
+```
 
-### 3. Compile and deploy
+Previously, a dynamic value was used with `require_auth`
 
+### 2. Create account for `abcounter` contract, compile and deploy
 
+Open your terminal and execute the following command to create the **abcounter** user.
 
-### 4. Modify `addressbook` contract to send inline-action to `abcounter`
+```shell
+cleos create account eosio abcounter EOS6njG7NDRDxifGNhgMWvk2wnicC3tY4einedypq7TUsioDB8w4n -p eosio@active
 
+# compile
+eosio-cpp -o abcounter.wasm abcounter.cpp --abigen
 
+# deploy
+cleos set contract abcounter /home/leonh/cw/projects/eos-tutos/contracts/abcounter
+```
 
-### 5. Recompile and redeploy the `addressbook` contract
+### 3. Modify `addressbook` contract to send inline-action to `abcounter`
 
+Open the `addressbook.cpp` file in your favorite editor if not already open.
 
+In the last part of this series, we went over inline actions to our own contract. This time, send an inline action to another contract, our new `abcounter` contract.
 
-### 6. Test it
+Create another helper called `increment_counter` in the `private` region of your contract.
 
+```c++
+void increment_counter(account_name user, std::string type){
+  action counter = action(
+    permission_level{get_self(),N(active)},
+    N(abcounter),
+    N(count),
+    std::make_tuple(user, type)
+  );
+  counter.send();
+}
+```
 
+- For the permission, `get_self()` returns the current `addressbook` contract. The `active`permission is used.
+- The `abcounter` contract account_name
+- The action to call
+- The data, `account_name user` and `string type`
 
-### 7. Extra credit: more verbose receipts
+Now, add the following calls to the helpers in their respective action scopes.
 
+```c++
+//Emplace
+increment_counter(user, "emplace");
+//Modify
+increment_counter(user, "modify");
+//Erase
+increment_counter(user, "erase");
+```
 
+Now your `addressbook.cpp` contract should look like this.
+
+```c++
+#include <eosiolib/eosio.hpp>
+#include <eosiolib/print.hpp>
+
+using namespace eosio;
+
+class addressbook : public eosio::contract {
+
+public:
+  using contract::contract;
+
+  addressbook(account_name self): contract(self) {}
+
+  [[eosio::action]]
+  void upsert(account_name user, std::string first_name, std::string last_name, std::string street, std::string city, std::string state) {
+    require_auth( user );
+    address_index addresses(_self, _self);
+    auto iterator = addresses.find( user );
+    if( iterator == addresses.end() )
+    {
+      addresses.emplace(user, [&]( auto& row ) {
+       row.key = user;
+       row.first_name = first_name;
+       row.last_name = last_name;
+       row.street = street;
+       row.city = city;
+       row.state = state;
+      });
+      send_summary(user, "successfully emplaced record to addressbook");
+      increment_counter(user, "emplace");
+    }
+    else {
+      std::string changes;
+      addresses.modify(iterator, user, [&]( auto& row ) {
+        row.first_name = first_name;
+        row.last_name = last_name;
+        row.street = street;
+        row.city = city;
+        row.state = state;
+      });
+      send_summary(user, "successfully modified record in addressbook.");
+      increment_counter(user, "modify");
+    }
+  }
+
+  [[eosio::action]]
+  void erase(account_name user){
+    require_auth(user);
+    address_index addresses(_self, _self);
+    auto iterator = addresses.find( user );
+    eosio_assert(iterator != addresses.end(), "Record does not exist");
+    addresses.erase(iterator);
+    send_summary(user, "successfully erased record from addressbook");
+    increment_counter(user, "erase");
+  }
+
+  [[eosio::action]]
+  void notify(account_name user, std::string msg) {
+    require_auth(get_self());
+    require_recipient(user);
+  }
+
+private:
+  struct [[eosio::table]] person {
+    account_name key;
+    std::string first_name;
+    std::string last_name;
+    std::string street;
+    std::string city;
+    std::string state;
+    uint64_t primary_key() const { return key; }
+  };
+  typedef eosio::multi_index<N(people), person> address_index;
+
+  void send_summary(account_name user, std::string message){
+    action(
+      permission_level{get_self(),N(active)},
+      get_self(),
+      N(notify),
+      std::make_tuple(user, name{user}.to_string() + " " + message)
+    ).send();
+  }
+
+  void increment_counter(account_name user, std::string type){
+    action(
+      permission_level{get_self(),N(active)},
+      N(abcounter),
+      N(count),
+      std::make_tuple(user, type)
+    ).send();
+  }
+
+};
+
+EOSIO_ABI( addressbook, (upsert)(notify)(erase) )
+```
+
+### 4. Recompile and redeploy the `addressbook` contract
+
+Recompile the `addressbook.cpp` contract, we don't need to regenerate the ABI, because none of our changes have affected the ABI.
+
+```shell
+eosio-cpp -o addressbook.wasm addressbook.cpp
+
+# redeploy
+cleos set contract addressbook /home/leonh/cw/projects/eos-tutos/contracts/addressbook
+```
+
+### 5. Test it
+
+Now that we have the `cbcounter` deployed and `addressbook` redeployed, we're ready for some testing.
+
+```shell
+cleos push action addressbook upsert '["alice", "alice", "liddell", "123 drink me way", "wonderland", "amsterdam"]' -p alice@active
+```
+
+Expected result
+
+```shell
+executed transaction: 18b94aa0f1511e7f409361ec3e9f6a698d921769838eb7ce5b7e063e668e66c2  152 bytes  1364 us
+#   addressbook <= addressbook::upsert          {"user":"alice","first_name":"alice","last_name":"liddell","street":"123 drink me way","city":"wonde...
+#   addressbook <= addressbook::notify          {"user":"alice","msg":"alice successfully modified record from addressbook"}
+#         alice <= addressbook::notify          {"user":"alice","msg":"alice successfully modified record from addressbook"}
+#     abcounter <= abcounter::count             {"user":"alice","type":"modify"}
+```
+
+As you can see, the counter was successfully notified. Let's check the table now.
+
+```shell
+cleos get table abcounter abcounter counts -k alice
+```
+
+Expected result
+
+```json
+{
+  "rows": [{
+      "key": "alice",
+      "emplaced": 1,
+      "modified": 0,
+      "erased": 0
+    }
+  ],
+  "more": false
+}
+```
+
+Now let's test the remaining actions, just in case, we know there's a row for alice already, so upsert will *modify* the record.
+
+```shell
+cleos push action addressbook upsert '["alice", "alice", "liddell", "1 there we go", "wonderland", "amsterdam"]' -p alice@active
+```
+
+Expected result
+
+```shell
+executed transaction: c819ffeade670e3b44a40f09cf4462384d6359b5e44dd211f4367ac6d3ccbc70  152 bytes  909 us
+#   addressbook <= addressbook::upsert          {"user":"alice","first_name":"alice","last_name":"liddell","street":"1 coming down","city":"normalla...
+#   addressbook <= addressbook::notify          {"user":"alice","msg":"alice successfully emplaced record to addressbook"}
+>> Notified
+#         alice <= addressbook::notify          {"user":"alice","msg":"alice successfully emplaced record to addressbook"}
+#     abcounter <= abcounter::count             {"user":"alice","type":"emplace"}
+warning: transaction executed locally, but may not be confirmed by the network yet    ]
+```
+
+To erase:
+
+```shell
+cleos push action addressbook upsert '["alice"]' -p alice@active
+```
+
+Next, we'll test if we can manipulate the data in `abcounter` contract by calling it directly.
+
+```shell
+cleos push action addressbook erase '["alice"]' -p alice@active
+```
+
+Expected result
+
+```shell
+executed transaction: 5e40cd5e94d02dcb63e405eea874cd7aef9028d4a613be4c50d15113ebae05fa  104 bytes  1471 us
+#   addressbook <= addressbook::erase           {"user":"alice"}
+#   addressbook <= addressbook::notify          {"user":"alice","msg":"alice successfully erased record from addressbook"}
+#         alice <= addressbook::notify          {"user":"alice","msg":"alice successfully erased record from addressbook"}
+#     abcounter <= abcounter::count             {"user":"alice","type":"erase"}
+```
+
+Checking the table in `abcounter` we'll see the following:
+
+```shell
+cleos get table abcounter abcounter counts -k alice
+```
+
+Expected result
+
+```shell
+{
+  "rows": [{
+      "key": "alice",
+      "emplaced": 1,
+      "modified": 1,
+      "erased": 1
+    }
+  ],
+  "more": false
+}
+```
+
+Wonderful! Since we `require_auth` for `N(addressbook)`, only `addressbook` contract can successfully execute this action, the call by alice to fudge the numbers had no affect on the table.
 
 ## Custom dispatchers
 
 https://developers.eos.io/eosio-home/docs/writing-a-custom-dispatcher
-
-
-
-
 
