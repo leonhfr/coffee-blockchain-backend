@@ -21,6 +21,8 @@ const Producer = sequelize.define('Producer', {
   transactions: Sequelize.ENUM('id')
 });
 
+sequelize.models.Coffee.belongsTo(Producer, { foreignKey: 'producerId' });
+
 Producer.hasMany(Coffee, {
   foreignKey: 'producerId',
   sourceKey: 'id',

@@ -83,6 +83,7 @@ exports.createCoffee = async coffee => {
 exports.getCoffee = async id => {
   let coffee = await Coffee.find({
     //include: [Transaction], for later;
+    include: [Producer],
     where: { id: id }
   });
   return coffee;
