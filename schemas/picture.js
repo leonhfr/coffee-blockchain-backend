@@ -3,10 +3,8 @@ const Sequelize = require('sequelize');
 
 const Picture = sequelize.define('Picture', {
   id: {
-    type: Sequelize.UUID,
-    primaryKey: true,
-    defaultValue: Sequelize.UUIDV4,
-    allowNull: false
+    type: Sequelize.STRING,
+    primaryKey: true
   },
   url: {
     type: Sequelize.STRING,

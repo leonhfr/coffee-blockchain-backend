@@ -3,22 +3,17 @@ const Sequelize = require('sequelize');
 
 const Route = sequelize.define('Route', {
   id: {
-    type: Sequelize.UUID,
-    primaryKey: true,
-    defaultValue: Sequelize.UUIDV4,
-    allowNull: false
+    type: Sequelize.STRING,
+    primaryKey: true
   },
   origin: {
-    type: Sequelize.GEOMETRY('point'),
-    allowNull: false
+    type: Sequelize.GEOMETRY('point')
   },
   destination: {
-    type: Sequelize.GEOMETRY('point'),
-    allowNull: false
+    type: Sequelize.GEOMETRY('point')
   },
   price: {
-    type: Sequelize.DECIMAL,
-    allowNull: false
+    type: Sequelize.DECIMAL
   }
 });
 

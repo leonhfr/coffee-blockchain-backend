@@ -4,10 +4,8 @@ const Coffee = require('./coffee');
 
 const Producer = sequelize.define('Producer', {
   id: {
-    type: Sequelize.UUID,
-    primaryKey: true,
-    defaultValue: Sequelize.UUIDV4,
-    allowNull: false
+    type: Sequelize.STRING,
+    primaryKey: true
   },
   business_name: {
     type: Sequelize.STRING

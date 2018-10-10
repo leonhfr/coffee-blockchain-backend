@@ -3,10 +3,8 @@ const Sequelize = require('sequelize');
 
 const Transaction = sequelize.define('Transaction', {
   id: {
-    type: Sequelize.UUID,
-    primaryKey: true,
-    defaultValue: Sequelize.UUIDV4,
-    allowNull: false
+    type: Sequelize.STRING,
+    primaryKey: true
   },
   quantity: Sequelize.DECIMAL,
   price: Sequelize.DECIMAL
