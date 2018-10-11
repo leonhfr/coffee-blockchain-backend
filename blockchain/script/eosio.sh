@@ -128,9 +128,6 @@ jq -c '.[]' mock.data.user.json | while read i; do
   username=$(jq -r '.username' <<< "$i")
   role=$(jq -r '.role' <<< "$i")
   hash=$(jq -r '.hash' <<< "$i")
-  echo $username
-  echo $role
-  echo $hash
   docker exec -t eosiocoffee /opt/eosio/bin/cleos \
     --url http://127.0.0.1:7777 \
     --wallet-url http://127.0.0.1:5555 \
