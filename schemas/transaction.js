@@ -1,6 +1,8 @@
 const sequelize = require('../sequelize');
 const Sequelize = require('sequelize');
 
+const Shipper = require('./shipper');
+
 const Transaction = sequelize.define('Transaction', {
   id: {
     type: Sequelize.STRING,
@@ -10,4 +12,6 @@ const Transaction = sequelize.define('Transaction', {
   price: Sequelize.DECIMAL
 });
 
+sequelize.models.Shipper.hasMany(Transaction, { foreignKey: 'shipperId' });
+Transaction.belongsTo(Shipper, { foreignKey: 'shipperId' });
 module.exports = Transaction;
