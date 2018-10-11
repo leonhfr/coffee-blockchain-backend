@@ -1,3 +1,6 @@
+# ignore blockchain's data directory
+blockchain/data/
+
 # Logs
 logs
 *.log
