@@ -16,8 +16,24 @@ if [ ! -x "$(command -v docker)" ] ||
 fi
 
 echo ""
-echo "TODO: MySQL Docker Component"
-# TODO: add mysql docker and set it up
+echo "+++ npm install for the backend app +++"
+echo ""
+npm install
+
+echo ""
+echo "+++ pull mysql image from docker hub +++"
+docker pull mysql
+
+echo ""
+echo "+++ setup/reset data for container coffeemysql +++"
+echo "Note: it is fine to see some errors here"
+# force remove the previous eosio container if it exists
+docker stop coffeemysql || true && docker rm --force coffeemysql || true
+
+echo ""
+echo "+++ starting database: docker container coffeemysql"
+cd "./blockchain/scripts"
+./mysql.sh
 
 echo ""
 echo "+++ pull eosio/eos image from docker hub +++"
@@ -30,21 +46,14 @@ echo "Note: it is fine to see some errors here"
 docker stop eosiocoffee || true && docker rm --force eosiocoffee || true
 
 echo ""
-echo "+++ starting Docker container eosiocoffee +++"
+echo "+++ starting blockchain: docker container eosiocoffee +++"
 
-cd "./blockchain/script"
 ./eosio.sh
 
 # switch to root folder
 cd "../.."
 echo ""
-echo "+++ npm install for the backend app +++"
-echo ""
-# npm install
-
-echo ""
-echo "+++ starting backend +++"
+echo "+++ starting backend API +++"
 echo "After this you should be able to interact with the blockchain and the backend with the frontend"
 echo ""
-# npm start
-# TODO: add a script to add some data to the DB
+npm start

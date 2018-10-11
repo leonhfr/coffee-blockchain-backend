@@ -4,7 +4,7 @@ set -o errexit
 # store the contracts directory absolute path to mount it in docker
 cd "../contracts"
 directory="$(pwd)"
-cd "../script"
+cd "../scripts"
 
 # forward ports 7777 and 5555 to the host (your) machine
 # alias a work volume on your local drive to the docker container
@@ -95,7 +95,7 @@ cleos wallet unlock -n beancoin --password $(cat ./beancoin_wallet_password.txt)
 # the contract is already compiled, we just need to deploy it using beancoin's active key
 cd ".."
 cleos set contract beancoin "$(pwd -P)/contracts/beancoin/" -p beancoin@active
-cd "./script"
+cd "./scripts"
 
 echo ""
 echo "+ downloading jq (json reader) to create mock data"

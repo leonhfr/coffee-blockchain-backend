@@ -21,15 +21,17 @@ cd coffee-blockchain-backend
 
 The above script will:
 * Check that you have Docker and Node.js installed
-* Pull a MySQL image, populate it with mock data and run it
-* Pull a eosio/eos image, configure it, populate it with mock data and run it
 * Install backend dependencies (`npm install`)
+* Pull a MySQL image, start it and populate it with mock data
+* Pull a eosio/eos image, configure it, start it and populate it with mock data
 * Start the backend API server (`npm start`)
 
 ### Troubleshooting
 You may need to make the scripts executable. Run this command from the `coffee-blockchain-backend` directory:
 ```sh
-chmod +x blockchain.sh && chmod +x ./blockchain/script/eosio.sh
+chmod +x blockchain.sh && \
+  chmod +x ./blockchain/scripts/mysql.sh && \
+  chmod +x ./blockchain/scripts/eosio.sh
 ```
 
 ### Stop the dApp
@@ -48,3 +50,5 @@ The backend and the frontend are already configured to interact with the blockch
 ```shell
 alias cleos='docker exec -it eosio /opt/eosio/bin/cleos --url http://127.0.0.1:7777 --wallet-url http://127.0.0.1:5555'
 ```
+
+Please note that the alias will only be valid within your current terminal. To add it permanently add it to your `~/.bash_profile`.
