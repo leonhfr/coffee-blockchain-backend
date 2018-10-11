@@ -1,0 +1,32 @@
+[
+  {
+    "username": "leonh",
+    "role": "consumer",
+    "hash": "leonh-hash"
+  },
+  {
+    "username": "adriapalleja",
+    "role": "consumer",
+    "hash": "adriapalleja-hash"
+  },
+  {
+    "username": "olgachinina",
+    "role": "consumer",
+    "hash": "olgachinina-hash"
+  },
+  {
+    "username": "marcogallizi",
+    "role": "seller",
+    "hash": "marcogallizi-hash"
+  },
+  {
+    "username": "nathaliarus",
+    "role": "seller",
+    "hash": "nathaliarus-hash"
+  },
+  {
+    "username": "arolvinolas",
+    "role": "seller",
+    "hash": "arolvinolas-hash"
+  }
+]
