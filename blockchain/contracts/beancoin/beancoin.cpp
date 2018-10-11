@@ -1,4 +1,4 @@
-#include "Beancoin.hpp"
+#include "beancoin.hpp"
 
 namespace CoffeeBlockchain {
 

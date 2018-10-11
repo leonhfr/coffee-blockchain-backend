@@ -44,7 +44,7 @@ echo ""
 
 echo ""
 echo "+++ starting backend +++"
-echo "After this you should be ablo to interact with the blockchain and the backend with the frontend"
+echo "After this you should be able to interact with the blockchain and the backend with the frontend"
 echo ""
 # npm start
 # TODO: add a script to add some data to the DB

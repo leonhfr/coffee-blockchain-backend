@@ -105,15 +105,36 @@ mkdir -p ~/bin && curl -sSL -o ~/bin/jq \
 
 echo ""
 echo "+ create mock accounts"
-jq -c --raw-output '.[]' mock.accounts.json | while read i; do
+jq -c '.[]' mock.accounts.json | while read i; do
   name=$(jq -r '.name' <<< "$i")
-  pub=$(jq -r '.publicKey' <<< "$i")
+  pubkey=$(jq -r '.publicKey' <<< "$i")
+  privkey=$(jq -r '.privateKey' <<< "$i")
+
   docker exec -t eosiocoffee /opt/eosio/bin/cleos \
     --url http://127.0.0.1:7777 \
     --wallet-url http://127.0.0.1:5555 \
-    create account eosio $name $pub $pub
+    create account eosio $name $pubkey $pubkey
+
+  docker exec -t eosiocoffee /opt/eosio/bin/cleos \
+    --url http://127.0.0.1:7777 \
+    --wallet-url http://127.0.0.1:5555 \
+    wallet import -n beancoin --private-key $privkey
 done
 
 echo ""
 echo "+ create mock data"
-# TODO: create mock data
+cleos wallet unlock -n beancoin --password $(cat ../data/beancoin_wallet_password.txt) || true
+jq -c '.[]' mock.data.user.json | while read i; do
+  username=$(jq -r '.username' <<< "$i")
+  role=$(jq -r '.role' <<< "$i")
+  hash=$(jq -r '.hash' <<< "$i")
+  echo $username
+  echo $role
+  echo $hash
+  docker exec -t eosiocoffee /opt/eosio/bin/cleos \
+    --url http://127.0.0.1:7777 \
+    --wallet-url http://127.0.0.1:5555 \
+    push action beancoin upsertuser \
+    "[ "\""$username"\"", "\""$role"\"", "\""$hash"\"" ]" \
+    -p $username@active
+done
