@@ -37,7 +37,6 @@ cd "./blockchain/script"
 
 # switch to root folder
 cd "../.."
-pwd
 echo ""
 echo "+++ npm install for the backend app +++"
 echo ""

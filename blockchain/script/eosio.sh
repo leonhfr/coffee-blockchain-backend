@@ -50,12 +50,12 @@ curl http://localhost:7777/v1/chain/get_info
 echo "+ the blockchain node is answering correctly!"
 
 echo ""
-echo "+++ ! The blockchain has started ! +++"
+echo "+++ /!\ The blockchain has started! /!\ +++"
 
 # aliasing cleos to shorten future command lines
 # cleos = eos cli
 shopt -s expand_aliases
-alias cleos="docker exec -it eosiocoffee /opt/eosio/bin/cleos --url http://127.0.0.1:7777 --wallet-url http://127.0.0.1:5555"
+alias cleos="docker exec -i eosiocoffee /opt/eosio/bin/cleos --url http://127.0.0.1:7777 --wallet-url http://127.0.0.1:5555"
 
 # create a clean data directory to store temporary data and set it as working directory
 cd ".."
@@ -89,10 +89,22 @@ cleos wallet unlock -n beancoin --password $(cat ./beancoin_wallet_password.txt)
 # the contract is already compiled, we just need to deploy it using beancoin's active key
 cd ".."
 cleos set contract beancoin "$(pwd -P)/contracts/beancoin/" -p beancoin@active
+cd "./script"
+
+echo ""
+echo "+ downloading jq (json reader) to create mock data"
+mkdir -p ~/bin && curl -sSL -o ~/bin/jq https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64 && chmod +x ~/bin/jq && export PATH=$PATH:~/bin
 
 echo ""
 echo "+ create mock accounts"
-# TODO: create mock accounts
+jq -c --raw-output '.[]' mock.accounts.json | while read i; do
+  name=$(jq -r '.name' <<< "$i")
+  pub=$(jq -r '.publicKey' <<< "$i")
+  docker exec -t eosiocoffee /opt/eosio/bin/cleos \
+    --url http://127.0.0.1:7777 \
+    --wallet-url http://127.0.0.1:5555 \
+    create account eosio $name $pub $pub
+done
 
 echo ""
 echo "+ create mock data"
