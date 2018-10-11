@@ -55,7 +55,8 @@ echo "+++ /!\ The blockchain has started! /!\ +++"
 # aliasing cleos to shorten future command lines
 # cleos = eos cli
 shopt -s expand_aliases
-alias cleos="docker exec -i eosiocoffee /opt/eosio/bin/cleos --url http://127.0.0.1:7777 --wallet-url http://127.0.0.1:5555"
+alias cleos="docker exec -i eosiocoffee /opt/eosio/bin/cleos \
+  --url http://127.0.0.1:7777 --wallet-url http://127.0.0.1:5555"
 
 # create a clean data directory to store temporary data and set it as working directory
 cd ".."
@@ -66,20 +67,25 @@ cd "./data"
 echo ""
 echo "+ setup wallet eosiomain"
 # create default wallet and save password to file
-cleos wallet create -n eosiomain --to-console | tail -1 | sed -e 's/^"//' -e 's/"$//' > eosiomain_wallet_password.txt
+cleos wallet create -n eosiomain --to-console | tail -1 | \
+  sed -e 's/^"//' -e 's/"$//' > eosiomain_wallet_password.txt
 # import the eos provided private key for eosio system account into default wallet
 cleos wallet import -n eosiomain --private-key 5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3
 
 echo ""
 echo "+ setup wallet beancoin"
 # wallet for beancoin and export the generated password to a file for unlocking wallet later
-cleos wallet create -n beancoin --to-console | tail -1 | sed -e 's/^"//' -e 's/"$//' > beancoin_wallet_password.txt
+cleos wallet create -n beancoin --to-console | tail -1 | \
+  sed -e 's/^"//' -e 's/"$//' > beancoin_wallet_password.txt
 # Owner key for blogwallet wallet
-cleos wallet import -n beancoin --private-key 5JpWT4ehouB2FF9aCfdfnZ5AwbQbTtHBAwebRXt94FmjyhXwL4K
+cleos wallet import -n beancoin \
+  --private-key 5JpWT4ehouB2FF9aCfdfnZ5AwbQbTtHBAwebRXt94FmjyhXwL4K
 # Active key for blogwallet wallet
-cleos wallet import -n beancoin --private-key 5JD9AGTuTeD5BXZwGQ5AtwBqHK21aHmYnTetHgk1B3pjj7krT8N
+cleos wallet import -n beancoin \
+  --private-key 5JD9AGTuTeD5BXZwGQ5AtwBqHK21aHmYnTetHgk1B3pjj7krT8N
 # create account for beancoin with above wallet's public keys
-cleos create account eosio beancoin EOS6PUh9rs7eddJNzqgqDx1QrspSHLRxLMcRdwHZZRL4tpbtvia5B EOS8BCgapgYA2L4LJfCzekzeSr3rzgSTUXRXwNi8bNRoz31D14en9
+cleos create account eosio beancoin EOS6PUh9rs7eddJNzqgqDx1QrspSHLRxLMcRdwHZZRL4tpbtvia5B \
+  EOS8BCgapgYA2L4LJfCzekzeSr3rzgSTUXRXwNi8bNRoz31D14en9
 
 echo ""
 echo "+ deploy the smart contract"
@@ -93,7 +99,9 @@ cd "./script"
 
 echo ""
 echo "+ downloading jq (json reader) to create mock data"
-mkdir -p ~/bin && curl -sSL -o ~/bin/jq https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64 && chmod +x ~/bin/jq && export PATH=$PATH:~/bin
+mkdir -p ~/bin && curl -sSL -o ~/bin/jq \
+  https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64 && \
+  chmod +x ~/bin/jq && export PATH=$PATH:~/bin
 
 echo ""
 echo "+ create mock accounts"
