@@ -2,6 +2,7 @@ const Producer = require('../schemas/producer');
 const Coffee = require('../schemas/coffee');
 const Customer = require('../schemas/customer');
 const Transaction = require('../schemas/transaction');
+const Shipper = require('../schemas/shipper');
 const SQL = require('sql-template-strings');
 const sequelize = require('../sequelize');
 
@@ -91,7 +92,7 @@ exports.createCustomer = async customer => {
 
 exports.getCustomer = async id => {
   let customer = await Customer.find({
-    //include:[{Transaction, Picture}],  for later
+    include: [Transaction],
     where: { id: id }
   });
   return customer;
@@ -109,7 +110,9 @@ exports.filterCustomers = async (filter, value) => {
 };
 
 exports.getCustomers = async () => {
-  let customers = await Customer.findAll();
+  let customers = await Customer.findAll({
+    include: [Transaction]
+  });
   return customers;
 };
 
@@ -144,7 +147,9 @@ exports.filterProducers = async (filter, value) => {
 };
 
 exports.getProducers = async () => {
-  let producers = await Producer.findAll();
+  let producers = await Producer.findAll({
+    include: [Coffee]
+  });
   return producers;
 };
 
@@ -162,8 +167,7 @@ exports.createCoffee = async coffee => {
 
 exports.getCoffee = async id => {
   let coffee = await Coffee.find({
-    //include: [Transaction], for later;
-    include: [Producer],
+    include: [Producer, Transaction],
     where: { id: id }
   });
   return coffee;
@@ -205,18 +209,23 @@ exports.filterCoffees = async (filter, value) => {
 };
 
 exports.getCoffees = async () => {
-  let coffees = await Coffee.findAll();
+  let coffees = await Coffee.findAll({
+    include: [Producer, Transaction]
+  });
   return coffees;
 };
 
 // transactions //
 
 exports.createTransaction = async transaction => {
+  console.log(transaction);
   let res = await Transaction.create({
     id: transaction.id,
     quantity: transaction.quantity,
     price: transaction.price,
-    customerId: transaction.customerId
+    customerId: transaction.customerId,
+    shipperId: transaction.shipperId,
+    coffeeId: transaction.coffeeId
   });
   return res;
 };
@@ -225,6 +234,25 @@ exports.getCustomerAndTransactions = async id => {
   let res = await Customer.findAll({
     include: [{ model: Transaction }],
     where: { id: id }
+  });
+  return res;
+};
+
+//shipper//
+
+exports.createShipper = async shipper => {
+  const res = await Shipper.create({
+    id: shipper.id,
+    shipper_name: shipper.shipper_name,
+    country: shipper.country,
+    description: shipper.description
+  });
+  return res;
+};
+
+exports.getShippers = async () => {
+  const res = await Shipper.findAll({
+    include: [Transaction]
   });
   return res;
 };

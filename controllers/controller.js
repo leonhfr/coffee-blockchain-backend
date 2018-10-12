@@ -125,6 +125,20 @@ exports.getTransaction = async ctx => {
   ctx.status = 404;
 };
 
+// shipper //
+
+exports.createShipper = async ctx => {
+  ctx.body = await model.createShipper(ctx.request.body);
+  if (ctx.body) return (ctx.status = 200);
+  ctx.status = 404;
+};
+
+exports.getShippers = async ctx => {
+  ctx.body = await model.getShippers();
+  if (ctx.body) return (ctx.status = 200);
+  ctx.status = 404;
+};
+
 // extra //
 
 exports.test = async ctx => {

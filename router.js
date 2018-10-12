@@ -21,4 +21,10 @@ router.get('/coffees', controller.getCoffees);
 router.get('/me', controller.getMe);
 router.put('/me', controller.updateMe);
 
+router.post('/transactions/', controller.createTransaction);
+router.get('/transactions/:id', controller.getTransaction);
+
+router.post('/shippers', controller.createShipper);
+router.get('/shippers', controller.getShippers);
+
 module.exports = router;

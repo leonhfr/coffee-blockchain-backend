@@ -7,10 +7,10 @@ const Route = sequelize.define('Route', {
     primaryKey: true
   },
   origin: {
-    type: Sequelize.GEOMETRY('point')
+    type: Sequelize.GEOMETRY('POINT')
   },
   destination: {
-    type: Sequelize.GEOMETRY('point')
+    type: Sequelize.GEOMETRY('POINT')
   },
   price: {
     type: Sequelize.DECIMAL

@@ -43,9 +43,11 @@ const Coffee = sequelize.define('Coffee', {
 });
 
 Coffee.hasMany(Transaction, {
-  foreignKey: 'coffeenameId',
+  foreignKey: 'coffeeId',
   sourceKey: 'id',
   onDelete: 'CASCADE'
 });
+
+sequelize.models.Transaction.belongsTo(Coffee, { foreignKey: 'coffeeId' });
 
 module.exports = Coffee;
