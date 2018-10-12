@@ -1,5 +1,4 @@
 const Sequelize = require('sequelize');
-const populate = require('./blockchain/scripts/populate-db.js');
 
 const sequelize = new Sequelize(
   process.env.DB_NAME,

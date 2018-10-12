@@ -8,7 +8,7 @@
     "dev": "nodemon app.js",
     "start": "node app.js",
     "test": "mocha",
-    "populateDB": "node ./blockchain/scripts/populate-db.js"
+    "populate": "node ./blockchain/scripts/populate.js"
   },
   "repository": {
     "type": "git",
