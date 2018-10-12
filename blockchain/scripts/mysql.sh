@@ -3,10 +3,10 @@ set -o errexit
 
 docker run --rm --name coffeemysql \
   --detach \
-  --publish 127.0.0.1:3306:3306 \
-  -e MYSQL_ROOT_PASSWORD=password \
-  mysql
+  --publish 127.0.0.1:$DB_PORT:$DB_PORT \
+  -e MYSQL_ROOT_PASSWORD=$DB_PASS \
+  -e MYSQL_DATABASE=$DB_NAME \
+  mysql:5
 
-echo "+ populate database"
-# TODO: add some data to the DB
-# npm run populateDB
+echo -e "\033[0;35m+ populate database\033[0m"
+npm run populateDB
