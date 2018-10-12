@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -o errexit
 
-docker run --rm --name coffeemysql \
+docker run --rm --name mysql_coffeechain \
   --detach \
   --publish 127.0.0.1:$DB_PORT:$DB_PORT \
   -e MYSQL_ROOT_PASSWORD=$DB_PASS \

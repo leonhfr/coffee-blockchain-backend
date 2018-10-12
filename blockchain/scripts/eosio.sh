@@ -10,7 +10,7 @@ directory="$(pwd -P)/blockchain/contracts"
 # keosd = wallet manager
 # nodeos = blockchain node
 # !!! CORS is enabled for * for developement purposes only
-docker run --rm --name eosiocoffee \
+docker run --rm --name eosio_coffeechain \
   --detach \
   --publish 7777:7777 \
   --publish 127.0.0.1:5555:5555 \
@@ -38,7 +38,7 @@ sleep 2s
 # checking block production
 echo ""
 echo "+ you should see some blocks produced:"
-docker logs --tail 3 eosiocoffee
+docker logs --tail 3 eosio_coffeechain
 echo -e "\033[0;35m+ nodeos is producing blocks!\033[0m"
 
 # checking that the server is running and answering
@@ -54,7 +54,7 @@ echo -e "\033[0;34m+++ /!\ The blockchain has started! /!\ +++\033[0m"
 # aliasing cleos to shorten future command lines
 # cleos = eos cli
 shopt -s expand_aliases
-alias cleos="docker exec -i eosiocoffee /opt/eosio/bin/cleos \
+alias cleos="docker exec -i eosio_coffeechain /opt/eosio/bin/cleos \
   --url http://127.0.0.1:7777 --wallet-url http://127.0.0.1:5555"
 
 # create a clean data directory to store temporary data and set it as working directory
@@ -109,12 +109,12 @@ jq -c '.[]' mock.data.user.json | while read i; do
   pubkey=$(jq -r '.publicKey' <<< "$i")
   privkey=$(jq -r '.privateKey' <<< "$i")
 
-  docker exec -t eosiocoffee /opt/eosio/bin/cleos \
+  docker exec -t eosio_coffeechain /opt/eosio/bin/cleos \
     --url http://127.0.0.1:7777 \
     --wallet-url http://127.0.0.1:5555 \
     create account eosio $name $pubkey $pubkey
 
-  docker exec -t eosiocoffee /opt/eosio/bin/cleos \
+  docker exec -t eosio_coffeechain /opt/eosio/bin/cleos \
     --url http://127.0.0.1:7777 \
     --wallet-url http://127.0.0.1:5555 \
     wallet import -n beancoin --private-key $privkey
@@ -127,7 +127,7 @@ jq -c '.[]' mock.data.user.json | while read i; do
   username=$(jq -r '.name' <<< "$i")
   role=$(jq -r '.role' <<< "$i")
   hash=$(jq -r '.hash' <<< "$i")
-  docker exec -t eosiocoffee /opt/eosio/bin/cleos \
+  docker exec -t eosio_coffeechain /opt/eosio/bin/cleos \
     --url http://127.0.0.1:7777 \
     --wallet-url http://127.0.0.1:5555 \
     push action beancoin upsertuser \
