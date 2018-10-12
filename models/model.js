@@ -3,8 +3,6 @@ const Coffee = require('../schemas/coffee');
 const Customer = require('../schemas/customer');
 const Transaction = require('../schemas/transaction');
 const Shipper = require('../schemas/shipper');
-const SQL = require('sql-template-strings');
-const sequelize = require('../sequelize');
 
 //  me  //
 
@@ -218,7 +216,7 @@ exports.getCoffees = async () => {
 // transactions //
 
 exports.createTransaction = async transaction => {
-  console.log(transaction);
+  console.log(transaction); //eslint-disable-line
   let res = await Transaction.create({
     id: transaction.id,
     quantity: transaction.quantity,

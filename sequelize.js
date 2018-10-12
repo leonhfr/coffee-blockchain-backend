@@ -22,8 +22,7 @@ const sequelize = new Sequelize(
 sequelize
   .sync()
   .then(() => {
-    console.log('sequelize connected'); //eslint-disable-line
-    populate(); // function to populate database with mock data
+    console.log('Sequelize connected to MySQL.'); //eslint-disable-line
   })
   .catch(e => console.error(e)); //eslint-disable-line
 
