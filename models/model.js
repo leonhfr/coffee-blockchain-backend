@@ -110,7 +110,9 @@ exports.filterCustomers = async (filter, value) => {
 };
 
 exports.getCustomers = async () => {
-  let customers = await Customer.findAll({});
+  let customers = await Customer.findAll({
+    include: [Transaction]
+  });
   return customers;
 };
 
