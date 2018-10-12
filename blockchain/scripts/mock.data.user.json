@@ -1,32 +1,68 @@
 [
   {
-    "username": "leonh",
+    "name": "leonh",
     "role": "consumer",
-    "hash": "leonh-hash"
+    "hash": "leonh-hash",
+    "id": "cac4eba3-a8cc-431b-8dd7-89558053000",
+    "country": "France",
+    "description": "I like blockchain. Not C++.",
+    "email": "leon@gmail.com",
+    "privateKey": "5K7mtrinTFrVTduSxizUc5hjXJEtTjVTsqSHeBHes1Viep86FP5",
+    "publicKey": "EOS6kYgMTCh1iqpq9XGNQbEi8Q6k5GujefN9DSs55dcjVyFAq7B6b"
   },
   {
-    "username": "adriapalleja",
+    "name": "adriapalleja",
     "role": "consumer",
-    "hash": "adriapalleja-hash"
+    "hash": "adriapalleja-hash",
+    "id": "cac4eba3-a8cc-431b-8dd7-89558053010",
+    "country": "Spain",
+    "description": "Human towers and stuff.",
+    "email": "adria@gmail.com",
+    "privateKey": "5KLqT1UFxVnKRWkjvhFur4sECrPhciuUqsYRihc1p9rxhXQMZBg",
+    "publicKey": "EOS78RuuHNgtmDv9jwAzhxZ9LmC6F295snyQ9eUDQ5YtVHJ1udE6p"
   },
   {
-    "username": "olgachinina",
+    "name": "olgachinina",
     "role": "consumer",
-    "hash": "olgachinina-hash"
+    "hash": "olgachinina-hash",
+    "id": "cac4eba3-a8cc-431b-8dd7-89558053020",
+    "country": "France",
+    "description": "I'm Russian. Statement.",
+    "email": "olga@gmail.com",
+    "privateKey": "5K2jun7wohStgiCDSDYjk3eteRH1KaxUQsZTEmTGPH4GS9vVFb7",
+    "publicKey": "EOS5yd9aufDv7MqMquGcQdD6Bfmv6umqSuh9ru3kheDBqbi6vtJ58"
   },
   {
-    "username": "marcogallizi",
-    "role": "seller",
-    "hash": "marcogallizi-hash"
+    "name": "marcogallizi",
+    "role": "producer",
+    "hash": "marcogallizi-hash",
+    "id": "cac4eba3-a8cc-431b-8dd7-89558053000",
+    "country": "Italy",
+    "description": "An amazing guy.",
+    "email": "marco@gmail.com",
+    "privateKey": "5KNm1BgaopP9n5NqJDo9rbr49zJFWJTMJheLoLM5b7gjdhqAwCx",
+    "publicKey": "EOS8LoJJUU3dhiFyJ5HmsMiAuNLGc6HMkxF4Etx6pxLRG7FU89x6X"
   },
   {
-    "username": "nathaliarus",
-    "role": "seller",
-    "hash": "nathaliarus-hash"
+    "name": "nathaliarus",
+    "role": "producer",
+    "hash": "nathaliarus-hash",
+    "id": "cac4eba3-a8cc-431b-8dd7-89558053001",
+    "country": "France",
+    "description": "An amazing guy.",
+    "email": "nathalia@gmail.com",
+    "privateKey": "5KE2UNPCZX5QepKcLpLXVCLdAw7dBfJFJnuCHhXUf61hPRMtUZg",
+    "publicKey": "EOS7XPiPuL3jbgpfS3FFmjtXK62Th9n2WZdvJb6XLygAghfx1W7Nb"
   },
   {
-    "username": "arolvinolas",
-    "role": "seller",
-    "hash": "arolvinolas-hash"
+    "name": "arolvinolas",
+    "role": "producer",
+    "hash": "arolvinolas-hash",
+    "id": "cac4eba3-a8cc-431b-8dd7-89558053002",
+    "country": "Spain",
+    "description": "An amazing guy.",
+    "email": "arol@gmail.com",
+    "privateKey": "5KaqYiQzKsXXXxVvrG8Q3ECZdQAj2hNcvCgGEubRvvq7CU3LySK",
+    "publicKey": "EOS5btzHW33f9zbhkwjJTYsoyRzXUNstx1Da9X2nTzk8BQztxoP3H"
   }
 ]

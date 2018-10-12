@@ -47,8 +47,6 @@ echo ""
 echo "\033[0;34m+++ starting blockchain: docker container eosiocoffee +++\033[0m"
 sh -ac '. ./.env; ./blockchain/scripts/eosio.sh'
 
-# switch to root folder
-cd "../.."
 echo ""
 echo "\033[0;34m+++ starting backend API +++\033[0m"
 echo "After this you should be able to interact with the blockchain and the backend with the frontend"

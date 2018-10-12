@@ -57,7 +57,7 @@ docker stop eosiocoffee && docker stop coffeemysql
 The backend and the frontend are already configured to interact with the blockchain. However, should you wish to interact with it directly, the easiest way is to alias the `docker exec` command to avoid having to enter the Docker's container bash every time:
 
 ```shell
-alias cleos='docker exec -it eosio /opt/eosio/bin/cleos --url http://127.0.0.1:7777 --wallet-url http://127.0.0.1:5555'
+alias cleos='docker exec -it eosiocoffee /opt/eosio/bin/cleos --url http://127.0.0.1:7777 --wallet-url http://127.0.0.1:5555'
 ```
 
 Please note that the alias will only be valid within your current terminal. To add it permanently add it to your `~/.bash_profile`.

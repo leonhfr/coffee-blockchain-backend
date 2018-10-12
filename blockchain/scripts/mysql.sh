@@ -7,6 +7,3 @@ docker run --rm --name coffeemysql \
   -e MYSQL_ROOT_PASSWORD=$DB_PASS \
   -e MYSQL_DATABASE=$DB_NAME \
   mysql:5
-
-echo -e "\033[0;35m+ populate database\033[0m"
-npm run populateDB

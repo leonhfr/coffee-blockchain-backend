@@ -1,4 +1,6 @@
 const Sequelize = require('sequelize');
+const populate = require('./blockchain/scripts/populate-db.js');
+
 const sequelize = new Sequelize(
   process.env.DB_NAME,
   process.env.DB_USER,
@@ -19,9 +21,10 @@ const sequelize = new Sequelize(
 
 sequelize
   .sync()
-  .then(() => console.log('sequelize connected'))
-  .catch(e => console.error(e));
+  .then(() => {
+    console.log('sequelize connected'); //eslint-disable-line
+    populate(); // function to populate database with mock data
+  })
+  .catch(e => console.error(e)); //eslint-disable-line
 
 module.exports = sequelize;
-
-// TODO: move sequelize to /models
