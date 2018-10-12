@@ -2,6 +2,7 @@
 
 ## Prerequisites
 
+* Either **Ubuntu 18.04** or **MacOS Darwin 10.12** or higher (other operating systems may work but are untested)
 * Docker
 * Node.js
 
@@ -11,12 +12,20 @@ The dApp, eosio and MySQL will occupy the ports 3306, 4000, 5555 and 7777. Make 
 
 ### Run the dApp
 
-Clone the repository and run the script `blockchain.sh`.
-
+First, clone the repository and create a `.env` file as shown in `.env.example`:
 ```shell
 git clone https://github.com/leonhfr/coffee-blockchain-backend
 cd coffee-blockchain-backend
-./blockchain.sh
+touch .env
+# Atom or your favorite editor:
+atom .env
+# Copy/paste from .env.example and adjust variables.
+# Save the file.
+```
+
+Finally run the script `blockchain.sh`.
+```shell
+sh blockchain.sh
 ```
 
 The above script will:
