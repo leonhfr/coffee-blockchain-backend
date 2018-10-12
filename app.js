@@ -8,7 +8,7 @@ const cors         = require('koa-cors');
 const logger       = require('koa-logger');
 const router       = require('./router');
 const demux        = require('./demux');
-const sequelize    = require('./sequelize');
+const sequelize    = require('./models/sequelize');
 const errorHandler = require('./middlewares/error-handler');
 
 const app = new Koa();

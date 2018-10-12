@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const sequelize = require('../sequelize');
+const sequelize = require('../models/sequelize');
 const Transaction = require('./transaction');
 const Producer = require('./producer');
 
