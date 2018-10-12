@@ -5,9 +5,9 @@ const sequelize = new Sequelize(
   process.env.DB_PASS,
   {
     host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
     dialect: 'mysql',
     operatorsAliases: false,
-
     pool: {
       max: 5,
       min: 0,
@@ -23,3 +23,5 @@ sequelize
   .catch(e => console.error(e));
 
 module.exports = sequelize;
+
+// TODO: move sequelize to /models
