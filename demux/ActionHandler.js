@@ -21,7 +21,7 @@ class ActionHandler extends AbstractActionHandler {
   async updateIndexState (state, block, isReplay) {
     const { blockHash, blockNumber } = block.blockInfo;
     try {
-      /*awai t redis.hmset(key, {
+      /*await redis.hmset(key, {
         blockNumber,
         blockHash,
         isReplay
