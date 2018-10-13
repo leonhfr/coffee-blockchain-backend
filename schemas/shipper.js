@@ -1,14 +1,12 @@
-const sequelize = require('../sequelize');
+const sequelize = require('../models/sequelize');
 const Sequelize = require('sequelize');
-
-const Transaction = require('./transaction');
+const Picture = require('./picture');
+const Route = require('./route');
 
 const Shipper = sequelize.define('Shipper', {
   id: {
-    type: Sequelize.UUID,
-    primaryKey: true,
-    defaultValue: Sequelize.UUIDV4,
-    allowNull: false
+    type: Sequelize.STRING,
+    primaryKey: true
   },
   shipper_name: {
     type: Sequelize.STRING
@@ -17,12 +15,6 @@ const Shipper = sequelize.define('Shipper', {
     type: Sequelize.STRING
   },
   description: Sequelize.TEXT
-});
-
-Shipper.hasMany(Transaction, {
-  foreignKey: 'shipperId',
-  sourceKey: 'id',
-  onDelete: 'CASCADE'
 });
 
 Shipper.hasMany(Picture, {

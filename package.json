@@ -7,7 +7,8 @@
   "scripts": {
     "dev": "nodemon app.js",
     "start": "node app.js",
-    "test": "mocha"
+    "test": "mocha",
+    "populate": "node ./blockchain/scripts/populate.js"
   },
   "repository": {
     "type": "git",
@@ -34,7 +35,10 @@
   },
   "homepage": "https://github.com/leonhfr/coffee-blockchain-backend#readme",
   "dependencies": {
+    "demux": "^2.0.0",
+    "demux-eos": "^2.0.0",
     "dotenv": "^6.0.0",
+    "ioredis": "^4.0.2",
     "koa": "^2.5.3",
     "koa-bodyparser": "^4.2.1",
     "koa-cors": "0.0.16",

@@ -1,24 +1,36 @@
 const Router = require('koa-router');
 const router = new Router();
-const controller = require('./controllers/controller');
 
-router.post('/customers', controller.createCustomer);
-router.get('/customers/:id', controller.getCustomer);
-router.get('/customers/:filter/:value', controller.filterCustomers);
-router.get('/customers', controller.getCustomers);
+const me = require('./controllers/meController');
+const customer = require('./controllers/customerController');
+const producer = require('./controllers/producerController');
+const coffee = require('./controllers/coffeeController');
+const transaction = require('./controllers/transactionController');
+const shipper = require('./controllers/shipperController');
 
-router.post('/producers', controller.createProducer);
-router.get('/producers/:id', controller.getProducer);
-router.get('/producers/:filter/:value', controller.filterProducers);
-router.get('/producers', controller.getProducers);
+router.post('/customers', customer.createCustomer);
+router.get('/customers/:id', customer.getCustomer);
+router.get('/customers/:filter/:value', customer.filterCustomers);
+router.get('/customers', customer.getCustomers);
 
-router.post('/coffees/:producerId', controller.createCoffee);
-router.get('/coffees/:coffeeId', controller.getCoffee);
-router.put('/coffees/', controller.updateCoffee);
-router.get('/coffees/:filter/:value', controller.filterCoffees);
-router.get('/coffees', controller.getCoffees);
+router.post('/producers', producer.createProducer);
+router.get('/producers/:id', producer.getProducer);
+router.get('/producers/:filter/:value', producer.filterProducers);
+router.get('/producers', producer.getProducers);
 
-router.get('/me', controller.getMe);
-router.put('/me', controller.updateMe);
+router.post('/coffees/:producerId', coffee.createCoffee);
+router.get('/coffees/:coffeeId', coffee.getCoffee);
+router.put('/coffees/', coffee.updateCoffee);
+router.get('/coffees/:filter/:value', coffee.filterCoffees);
+router.get('/coffees', coffee.getCoffees);
+
+router.get('/me', me.getMe);
+router.put('/me', me.updateMe);
+
+router.post('/transactions/', transaction.createTransaction);
+router.get('/transactions/:id', transaction.getTransaction);
+
+router.post('/shippers', shipper.createShipper);
+router.get('/shippers', shipper.getShippers);
 
 module.exports = router;
