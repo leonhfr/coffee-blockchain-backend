@@ -60,10 +60,9 @@ namespace CoffeeBlockchain {
     // THROW AN ERROR IF THE USER IS NOT REGISTERED
     eosio_assert(iterator != users.end(), "User does not exist.");
     auto queriedUser = users.get(user);
-    // TODO: user data
     string message = "User role: '" + queriedUser.role +
       "' | User hash: '" + queriedUser.hash + "'";
-    send_data(user, message);
+    send_data(_self, message);
   }
 
   // COFFEE
@@ -120,22 +119,31 @@ namespace CoffeeBlockchain {
     account_name owner,
     uint64_t uuid
   ) {
-    // TODO: delete coffee
-    print(
-      "Delete coffee | Owner: ", owner,
-      " | uuid: ", uuid
-    );
+    require_auth(owner);
+    coffee_index coffees(_self, _self);
+    auto iterator = coffees.find(uuid);
+    eosio_assert(iterator != coffees.end(), "Coffee does not exist.");
+    auto queriedCoffee = coffees.get(uuid);
+    if (queriedCoffee.owner == owner) {
+      coffees.erase(iterator);
+      print(
+        "Delete coffee | Owner: ", owner,
+        " | uuid: ", uuid
+      );
+    } else {
+      print("Unauthorized coffee upsert prevented.");
+    }
   }
 
   void Beancoin::getcoffee(
-    account_name owner,
     uint64_t uuid
   ) {
-    // TODO: get coffee hash
-    print(
-      "Get coffee | Owner: ", owner,
-      " | uuid: ", uuid
-    );
+    coffee_index coffees(_self, _self);
+    auto iterator = coffees.find(uuid);
+    eosio_assert(iterator != coffees.end(), "Coffee does not exist.");
+    auto queriedCoffee = coffees.get(uuid);
+    string message = "Coffee hash: ";
+    send_data(_self, message);
   }
 
   // SALE

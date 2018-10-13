@@ -41,7 +41,7 @@ cleos push action beancoin getuser \
 
 echo "\033[0;34m+ should be able to get some else's information\033[0m"
 cleos push action beancoin getuser \
-"[ \"testaccount\" ]" \
+"[ \"leonh\" ]" \
 -p testaccount@active
 
 ### UPDATING USER
@@ -68,3 +68,35 @@ cleos push action beancoin getuser \
 cleos push action beancoin upsertuser \
   "[ \"testaccount\", \"consumer\", \"testhash\" ]" \
   -p testaccount@active
+
+### TESTS: COFFEES ###
+
+### INSERTING COFFEE
+
+echo "\033[0;34m+ should be able to insert coffee\033[0m"
+cleos push action beancoin upsertcoffee \
+  "[ \"testaccount\", 1230787824460, \"test-coffee-hash\", 20, 50 ]" \
+  -p testaccount@active
+
+### GET COFFEE
+
+echo "\033[0;34m+ should be able to get coffee information\033[0m"
+cleos push action beancoin getcoffee \
+  "[ 1230787824460 ]" \
+  -p testaccount@active
+
+### UPDATING COFFEE
+
+echo "\033[0;34m+ should be able to update coffee\033[0m"
+cleos push action beancoin upsertcoffee \
+  "[ \"testaccount\", 1230787824460, \"test-coffee-hash-new\", 30, 10 ]" \
+  -p testaccount@active
+
+### DELETING COFFEE
+
+echo "\033[0;34m+ should be able to delete coffee\033[0m"
+cleos push action beancoin delcoffee \
+  "[ \"testaccount\", 1230787824460 ]" \
+  -p testaccount@active
+
+### TESTS: SALES ###

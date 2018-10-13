@@ -54,7 +54,6 @@ namespace CoffeeBlockchain {
 
       [[eosio::action]]
       void getcoffee(
-        account_name owner,
         uint64_t uuid
       );
 

@@ -1,5 +1,5 @@
 {
-    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT Sat Oct 13 16:02:15 2018",
+    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT Sat Oct 13 17:44:41 2018",
     "version": "eosio::abi/1.0",
     "structs": [
         {
@@ -66,10 +66,6 @@
             "name": "getcoffee",
             "base": "",
             "fields": [
-                {
-                    "name": "owner",
-                    "type": "name"
-                },
                 {
                     "name": "uuid",
                     "type": "uint64"
