@@ -31,7 +31,7 @@
     "altitude": 1090,
     "region": "Arabia",
     "roast_appearance": "light skin",
-    "bean_density": 0.987,
+    "bean_density": 0.8,
     "details": "some details",
     "producerId": "cac4eba3-a8cc-431b-8dd7-89558053001"
   },
@@ -43,7 +43,7 @@
     "altitude": 1090,
     "region": "Arabia",
     "roast_appearance": "dark skin",
-    "bean_density": 0.987,
+    "bean_density": 0.85,
     "details": "some details",
     "producerId": "cac4eba3-a8cc-431b-8dd7-89558053001"
   },
@@ -55,7 +55,7 @@
     "altitude": 1090,
     "region": "Arabia",
     "roast_appearance": "dark skin",
-    "bean_density": 0.987,
+    "bean_density": 0.92,
     "details": "some details",
     "producerId": "cac4eba3-a8cc-431b-8dd7-89558053002"
   },
@@ -67,7 +67,7 @@
     "altitude": 1090,
     "region": "Arabia",
     "roast_appearance": "dark skin",
-    "bean_density": 0.987,
+    "bean_density": 0.91,
     "details": "some details",
     "producerId": "cac4eba3-a8cc-431b-8dd7-89558053002"
   }
