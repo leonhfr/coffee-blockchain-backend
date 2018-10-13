@@ -78,14 +78,42 @@ namespace CoffeeBlockchain {
     require_auth(owner); // ONLY THE OWNER CAN ADD COFFEE TO SALE
     coffee_index coffees(_self, _self);
     auto iterator = coffees.find(uuid);
-    // TODO: update or insert coffee
-    print(
-      "Upsert coffee | Owner: ", owner,
-      " | uuid: ", uuid,
-      " | hash: ", hash.c_str(),
-      " | price: ", price,
-      " | quantity: ", quantity
-    );
+    if (iterator == coffees.end()) {
+      coffees.emplace(owner, [&](auto& row) {
+        row.uuid = uuid;
+        row.owner = owner;
+        row.hash = hash;
+        row.price = price;
+        row.quantity = quantity;
+      });
+      print(
+        "Inserted coffee | Owner: ", owner,
+        " | uuid: ", uuid,
+        " | hash: ", hash.c_str(),
+        " | price: ", price,
+        " | quantity: ", quantity
+      );
+    } else {
+      auto queriedCoffee = coffees.get(uuid);
+      if (queriedCoffee.owner == owner) {
+        coffees.modify(iterator, owner, [&](auto& row) {
+          row.uuid = uuid;
+          row.owner = owner;
+          row.hash = hash;
+          row.price = price;
+          row.quantity = quantity;
+        });
+        print(
+          "Updated coffee | Owner: ", owner,
+          " | uuid: ", uuid,
+          " | hash: ", hash.c_str(),
+          " | price: ", price,
+          " | quantity: ", quantity
+        );
+      } else {
+        print("Unauthorized coffee upsert prevented.");
+      }
+    }
   }
 
   void Beancoin::delcoffee(

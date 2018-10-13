@@ -96,21 +96,17 @@ namespace CoffeeBlockchain {
       typedef eosio::multi_index<N(user), user> user_index;
 
       struct [[eosio::table]] coffee {
-        uint64_t key;
-        account_name owner;
         uint64_t uuid;
+        account_name owner;
         string hash;
         uint64_t price;
         uint64_t quantity;
-        uint64_t primary_key() const { return key; }
-        uint64_t coffee_key() const { return uuid; }
-        EOSLIB_SERIALIZE(coffee, (key)(owner)(uuid)(hash)(price)(quantity))
+        uint64_t primary_key() const { return uuid; }
+        EOSLIB_SERIALIZE(coffee, (uuid)(owner)(hash)(price)(quantity))
       };
-      typedef eosio::multi_index<N(coffee), coffee,
-        indexed_by<N(byuuid), const_mem_fun<coffee, uint64_t, &coffee::coffee_key>>> coffee_index;
+      typedef eosio::multi_index<N(coffee), coffee> coffee_index;
 
       struct [[eosio::table]] sale {
-        uint64_t key;
         uint64_t uuid;
         string uuid_coffee;
         account_name seller;
@@ -121,12 +117,10 @@ namespace CoffeeBlockchain {
         // 0 = request
         // 1 = fulfilled (buyer paid)
         // 2 = rejected
-        uint64_t primary_key() const { return key; }
-        uint64_t sale_key() const { return uuid; }
-        EOSLIB_SERIALIZE(sale, (key)(uuid)(uuid_coffee)(seller)(buyer)(quantity)(status))
+        uint64_t primary_key() const { return uuid; }
+        EOSLIB_SERIALIZE(sale, (uuid)(uuid_coffee)(seller)(buyer)(quantity)(status))
       };
-      typedef eosio::multi_index<N(sale), sale,
-        indexed_by<N(byuuid), const_mem_fun<sale, uint64_t, &sale::sale_key>>> sale_index;
+      typedef eosio::multi_index<N(sale), sale> sale_index;
   };
 
   EOSIO_ABI(Beancoin, (notify)(upsertuser)(deluser)(getuser)(upsertcoffee)(delcoffee)(getcoffee)(requestsale)(getsale)(fulfillsale))
