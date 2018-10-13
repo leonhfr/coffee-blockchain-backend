@@ -1,5 +1,6 @@
 const Transaction = require('../schemas/transaction');
 const Producer = require('../schemas/producer');
+const Coffee = require('../schemas/coffee');
 
 exports.createCoffee = async coffee => {
   let newCoffee = await Coffee.create({

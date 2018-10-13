@@ -1,4 +1,4 @@
-const sequelize = require('../sequelize');
+const sequelize = require('../models/sequelize');
 const Sequelize = require('sequelize');
 
 const Shipper = require('./shipper');

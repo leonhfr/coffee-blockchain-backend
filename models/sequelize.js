@@ -1,5 +1,4 @@
 const Sequelize = require('sequelize');
-const populate = require('./blockchain/scripts/populate-db.js');
 
 const sequelize = new Sequelize(
   process.env.DB_NAME,
@@ -22,7 +21,7 @@ const sequelize = new Sequelize(
 sequelize
   .sync()
   .then(() => {
-    console.log('sequelize connected'); //eslint-disable-line
+    console.log('Sequelize connected to MySQL.'); //eslint-disable-line
   })
   .catch(e => console.error(e)); //eslint-disable-line
 

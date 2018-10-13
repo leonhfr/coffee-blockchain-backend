@@ -1,5 +1,5 @@
+const sequelize = require('../models/sequelize');
 const Sequelize = require('sequelize');
-const sequelize = require('../sequelize');
 
 const Picture = sequelize.define('Picture', {
   id: {

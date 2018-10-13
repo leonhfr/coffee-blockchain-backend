@@ -8,7 +8,7 @@
     "dev": "nodemon app.js",
     "start": "node app.js",
     "test": "mocha",
-    "populateDB": "node ./blockchain/scripts/populate-db.js"
+    "populate": "node ./blockchain/scripts/populate.js"
   },
   "repository": {
     "type": "git",
@@ -38,13 +38,13 @@
     "demux": "^2.0.0",
     "demux-eos": "^2.0.0",
     "dotenv": "^6.0.0",
+    "ioredis": "^4.0.2",
     "koa": "^2.5.3",
     "koa-bodyparser": "^4.2.1",
     "koa-cors": "0.0.16",
     "koa-logger": "^3.2.0",
     "koa-router": "^7.4.0",
     "mysql2": "^1.6.1",
-    "sequelize": "^4.39.0",
-    "sql-template-strings": "^2.2.2"
+    "sequelize": "^4.39.0"
   }
 }

@@ -1,8 +1,8 @@
 const coffee = require('./coffee');
-const producer = require('./coffee');
-const customer = require('./coffee');
-const me = require('./coffee');
-const shipper = require('./coffee');
-const transaction = require('./coffee');
+const producer = require('./producer');
+const customer = require('./customer');
+const me = require('./me');
+const shipper = require('./shipper');
+const transaction = require('./transaction');
 
 module.exports = { coffee, producer, customer, me, shipper, transaction };
