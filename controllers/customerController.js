@@ -1,6 +1,7 @@
 const models = require('../models');
 
 exports.createCustomer = async ctx => {
+  console.log(ctx.request.body);
   ctx.body = await models.customer.createCustomer(ctx.request.body);
   if (ctx.body) return (ctx.status = 201);
   ctx.status = 404;

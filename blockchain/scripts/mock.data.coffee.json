@@ -8,8 +8,13 @@
     "region": "Arabia",
     "roast_appearance": "dark skin",
     "bean_density": 0.987,
+    "bean_screen_size": 15.8,
     "details": "some details",
-    "producerId": "cac4eba3-a8cc-431b-8dd7-89558053000"
+    "producerId": "cac4eba3-a8cc-431b-8dd7-89558053000",
+    "geo_location": {
+      "type": "Point",
+      "coordinates": [125.61511111, 10.11511111]
+    }
   },
   {
     "id": "ecedd2e7-c913-4250-a331-932c219c8001",
@@ -20,8 +25,13 @@
     "region": "Arabia",
     "roast_appearance": "dark skin",
     "bean_density": 0.7,
+    "bean_screen_size": 15.8,
     "details": "some details",
-    "producerId": "cac4eba3-a8cc-431b-8dd7-89558053000"
+    "producerId": "cac4eba3-a8cc-431b-8dd7-89558053000",
+    "geo_location": {
+      "type": "Point",
+      "coordinates": [125.61511111, 10.11511111]
+    }
   },
   {
     "id": "ecedd2e7-c913-4250-a331-932c219c8002",
@@ -32,6 +42,7 @@
     "region": "Arabia",
     "roast_appearance": "light skin",
     "bean_density": 0.8,
+    "bean_screen_size": 15.8,
     "details": "some details",
     "producerId": "cac4eba3-a8cc-431b-8dd7-89558053001"
   },
@@ -44,8 +55,13 @@
     "region": "Arabia",
     "roast_appearance": "dark skin",
     "bean_density": 0.85,
+    "bean_screen_size": 15.8,
     "details": "some details",
-    "producerId": "cac4eba3-a8cc-431b-8dd7-89558053001"
+    "producerId": "cac4eba3-a8cc-431b-8dd7-89558053001",
+    "geo_location": {
+      "type": "Point",
+      "coordinates": [125.61511111, 10.11511111]
+    }
   },
   {
     "id": "ecedd2e7-c913-4250-a331-932c219c8004",
@@ -56,8 +72,13 @@
     "region": "Arabia",
     "roast_appearance": "dark skin",
     "bean_density": 0.92,
+    "bean_screen_size": 15.8,
     "details": "some details",
-    "producerId": "cac4eba3-a8cc-431b-8dd7-89558053002"
+    "producerId": "cac4eba3-a8cc-431b-8dd7-89558053002",
+    "geo_location": {
+      "type": "Point",
+      "coordinates": [125.61511111, 10.11511111]
+    }
   },
   {
     "id": "ecedd2e7-c913-4250-a331-932c219c8005",
@@ -68,7 +89,12 @@
     "region": "Arabia",
     "roast_appearance": "dark skin",
     "bean_density": 0.91,
+    "bean_screen_size": 15.8,
     "details": "some details",
-    "producerId": "cac4eba3-a8cc-431b-8dd7-89558053002"
+    "producerId": "cac4eba3-a8cc-431b-8dd7-89558053002",
+    "geo_location": {
+      "type": "Point",
+      "coordinates": [125.61511111, 10.11511111]
+    }
   }
 ]

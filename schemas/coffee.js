@@ -40,6 +40,14 @@ const Coffee = sequelize.define('Coffee', {
     type: Sequelize.TEXT,
     defaultValue: null
   },
+  price_kg: {
+    type: Sequelize.DECIMAL,
+    defaultValue: null
+  },
+  bean_screen_size: {
+    type: Sequelize.DECIMAL,
+    defaultValue: null
+  },
   geo_location: {
     type: Sequelize.GEOMETRY('POINT'),
     allowNull: true

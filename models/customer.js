@@ -2,9 +2,13 @@ const Customer = require('../schemas/customer');
 const Transaction = require('../schemas/transaction');
 
 exports.createCustomer = async customer => {
+  console.log(customer);
   let newCustomer = await Customer.create({
     email: customer.email,
-    id: customer.id
+    id: customer.id,
+    country: customer.country,
+    description: customer.description,
+    customer_name: customer.customer_name
   });
   return newCustomer;
 };

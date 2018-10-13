@@ -77,7 +77,7 @@ exports.getProducers = async ctx => {
 exports.createCoffee = async ctx => {
   let coffee = {
     ...ctx.request.body,
-    producerId: ctx.params.producerId
+    producerId: ctx.request.header.authorization.split(' ')[1]
   };
   ctx.body = await model.createCoffee(coffee);
   if (ctx.body) return (ctx.status = 201);
