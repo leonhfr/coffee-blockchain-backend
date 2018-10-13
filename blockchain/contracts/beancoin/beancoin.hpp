@@ -82,8 +82,6 @@ namespace CoffeeBlockchain {
         string data
       );
 
-      // TODO: define private methods to change sale and coffee state
-
       struct [[eosio::table]] user {
         account_name username;
         string role;
@@ -106,15 +104,11 @@ namespace CoffeeBlockchain {
 
       struct [[eosio::table]] sale {
         uint64_t uuid;
-        string uuid_coffee;
+        uint64_t uuid_coffee;
         account_name seller;
         account_name buyer;
         uint64_t quantity;
-        uint64_t status;
-        // STATUS CODES:
-        // 0 = request
-        // 1 = fulfilled (buyer paid)
-        // 2 = rejected
+        string status;
         uint64_t primary_key() const { return uuid; }
         EOSLIB_SERIALIZE(sale, (uuid)(uuid_coffee)(seller)(buyer)(quantity)(status))
       };
