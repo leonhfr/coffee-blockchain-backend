@@ -64,6 +64,7 @@ cd "$(pwd -P)/blockchain/data"
 
 echo ""
 echo -e "\033[0;35m+ setup wallet eosiomain\033[0m"
+echo -e "\033[0;35m+ this would not be needed to connect to the real EOS network, it is for test purposes only\033[0m"
 # create default wallet and save password to file
 cleos wallet create -n eosiomain --to-console | tail -1 | \
   sed -e 's/^"//' -e 's/"$//' > eosiomain_wallet_password.txt

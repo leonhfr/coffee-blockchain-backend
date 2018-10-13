@@ -61,8 +61,8 @@ namespace CoffeeBlockchain {
     eosio_assert(iterator != users.end(), "User does not exist.");
     auto queriedUser = users.get(user);
     // TODO: user data
-    string message = "User: " + user.c_str() + " | Role: " +
-      queriedUser.role.c_str() + " | Hash: '" + queriedUser.hash.c_str() + "'";
+    string message = "User role: '" + queriedUser.role + 
+      "' | User hash: '" + queriedUser.hash + "'";
     send_data(user, message);
   }
 
@@ -75,7 +75,7 @@ namespace CoffeeBlockchain {
     int64_t price,
     int64_t quantity
   ) {
-    // TODO: stuff
+    // TODO: update or insert coffee
     print(
       "Upsert coffee | Owner: ", owner,
       " | uuid: ", uuid.c_str(),
@@ -89,7 +89,7 @@ namespace CoffeeBlockchain {
     account_name owner,
     string uuid
   ) {
-    // TODO: stuff
+    // TODO: delete coffee
     print(
       "Delete coffee | Owner: ", owner,
       " | uuid: ", uuid.c_str()
@@ -100,7 +100,7 @@ namespace CoffeeBlockchain {
     account_name owner,
     string uuid
   ) {
-    // TODO: stuff
+    // TODO: get coffee hash
     print(
       "Get coffee | Owner: ", owner,
       " | uuid: ", uuid.c_str()
@@ -116,29 +116,21 @@ namespace CoffeeBlockchain {
     account_name buyer,
     uint64_t quantity
   ) {
-    // TODO stuff
+    // TODO request sale
     print("requestsale");
-  }
-
-  void Beancoin::approvesale(
-    string uuid,
-    account_name seller
-  ) {
-    // TODO: stuff
-    print("approvesale");
   }
 
   void Beancoin::getsale(
     string uuid
   ) {
-    // TODO: stuff
+    // TODO: get sale hash
     print("getsale");
   }
 
   void Beancoin::fulfillsale(
     string uuid
   ) {
-    // TODO: stuff
+    // TODO: fulfill sale
     print("fulfillsale");
   }
 

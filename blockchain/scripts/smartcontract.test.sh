@@ -58,7 +58,7 @@ cleos push action beancoin deluser \
   "[ \"leonh\" ]" \
   -p testaccount@active
 
-echo "\033[0;34m+ should be able to delete user's own data\033[0m"
+echo "\033[0;34m+ should be able to delete user's own data (one assertion error expected)\033[0m"
 cleos push action beancoin deluser \
   "[ \"testaccount\" ]" \
   -p testaccount@active

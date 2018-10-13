@@ -1,21 +1,7 @@
 {
-    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT Sat Oct 13 13:29:40 2018",
+    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT Sat Oct 13 15:07:49 2018",
     "version": "eosio::abi/1.0",
     "structs": [
-        {
-            "name": "approvesale",
-            "base": "",
-            "fields": [
-                {
-                    "name": "uuid",
-                    "type": "string"
-                },
-                {
-                    "name": "seller",
-                    "type": "name"
-                }
-            ]
-        },
         {
             "name": "coffee",
             "base": "",
@@ -253,11 +239,6 @@
     ],
     "types": [],
     "actions": [
-        {
-            "name": "approvesale",
-            "type": "approvesale",
-            "ricardian_contract": ""
-        },
         {
             "name": "delcoffee",
             "type": "delcoffee",
