@@ -40,7 +40,7 @@ namespace CoffeeBlockchain {
       [[eosio::action]]
       void upsertcoffee(
         account_name owner,
-        string uuid,
+        uint64_t uuid,
         string hash,
         int64_t price,
         int64_t quantity
@@ -49,19 +49,19 @@ namespace CoffeeBlockchain {
       [[eosio::action]]
       void delcoffee(
         account_name owner,
-        string uuid
+        uint64_t uuid
       );
 
       [[eosio::action]]
       void getcoffee(
         account_name owner,
-        string uuid
+        uint64_t uuid
       );
 
       [[eosio::action]]
       void requestsale(
-        string uuid,
-        string uuid_coffee,
+        uint64_t uuid,
+        uint64_t uuid_coffee,
         account_name seller,
         account_name buyer,
         uint64_t quantity
@@ -69,12 +69,12 @@ namespace CoffeeBlockchain {
 
       [[eosio::action]]
       void getsale(
-        string uuid
+        uint64_t uuid
       );
 
       [[eosio::action]]
       void fulfillsale(
-        string uuid
+        uint64_t uuid
       );
 
     private:
@@ -98,19 +98,19 @@ namespace CoffeeBlockchain {
       struct [[eosio::table]] coffee {
         uint64_t key;
         account_name owner;
-        string uuid;
+        uint64_t uuid;
         string hash;
         uint64_t price;
         uint64_t quantity;
         uint64_t primary_key() const { return key; }
-        // TODO: defined uuid as second key
+        uint64_t coffee_key() const { return uuid; }
         EOSLIB_SERIALIZE(coffee, (key)(owner)(uuid)(hash)(price)(quantity))
       };
       typedef eosio::multi_index<N(coffee), coffee> coffee_index;
 
       struct [[eosio::table]] sale {
         uint64_t key;
-        string uuid;
+        uint64_t uuid;
         string uuid_coffee;
         account_name seller;
         account_name buyer;
@@ -121,7 +121,7 @@ namespace CoffeeBlockchain {
         // 1 = fulfilled (buyer paid)
         // 2 = rejected
         uint64_t primary_key() const { return key; }
-        // TODO: defined uuid as second key
+        uint64_t sale_key() const { return uuid; }
         EOSLIB_SERIALIZE(sale, (key)(uuid)(uuid_coffee)(seller)(buyer)(quantity)(status))
       };
       typedef eosio::multi_index<N(sale), sale> sale_index;
