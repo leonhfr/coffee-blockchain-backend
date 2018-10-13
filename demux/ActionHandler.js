@@ -1,9 +1,8 @@
 const { AbstractActionHandler } = require('demux');
-const redis = require('../models/redis');
+//const redis = require('../models/redis');
 const key = `${process.env.REDIS_PREFIX_EOSIO}-index-state`;
 
 class ActionHandler extends AbstractActionHandler {
-
   constructor (updaters, effects) {
     super(updaters, effects);
   }
@@ -22,11 +21,11 @@ class ActionHandler extends AbstractActionHandler {
   async updateIndexState (state, block, isReplay) {
     const { blockHash, blockNumber } = block.blockInfo;
     try {
-      await redis.hmset(key, {
+      /*await redis.hmset(key, {
         blockNumber,
         blockHash,
         isReplay
-      });
+      }); */
     } catch (err) {
       // eslint-disable-next-line
       console.error(err);
@@ -35,7 +34,7 @@ class ActionHandler extends AbstractActionHandler {
 
   async loadIndexState () {
     try {
-      const indexState = await redis.hgetall(key);
+      // const indexState = await redis.hgetall(key);
       // would need to return redis index state in production
       return { blockNumber: 0, blockHash: '' };
     } catch (err) {
