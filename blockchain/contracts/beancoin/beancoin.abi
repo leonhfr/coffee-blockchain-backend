@@ -1,5 +1,5 @@
 {
-    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT Sat Oct 13 17:44:41 2018",
+    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT Sat Oct 13 18:00:57 2018",
     "version": "eosio::abi/1.0",
     "structs": [
         {
@@ -93,21 +93,7 @@
             ]
         },
         {
-            "name": "notify",
-            "base": "",
-            "fields": [
-                {
-                    "name": "user",
-                    "type": "name"
-                },
-                {
-                    "name": "message",
-                    "type": "string"
-                }
-            ]
-        },
-        {
-            "name": "requestsale",
+            "name": "initiatesale",
             "base": "",
             "fields": [
                 {
@@ -119,16 +105,26 @@
                     "type": "uint64"
                 },
                 {
-                    "name": "seller",
-                    "type": "name"
-                },
-                {
                     "name": "buyer",
                     "type": "name"
                 },
                 {
                     "name": "quantity",
                     "type": "uint64"
+                }
+            ]
+        },
+        {
+            "name": "notify",
+            "base": "",
+            "fields": [
+                {
+                    "name": "user",
+                    "type": "name"
+                },
+                {
+                    "name": "message",
+                    "type": "string"
                 }
             ]
         },
@@ -258,13 +254,13 @@
             "ricardian_contract": ""
         },
         {
-            "name": "notify",
-            "type": "notify",
+            "name": "initiatesale",
+            "type": "initiatesale",
             "ricardian_contract": ""
         },
         {
-            "name": "requestsale",
-            "type": "requestsale",
+            "name": "notify",
+            "type": "notify",
             "ricardian_contract": ""
         },
         {

@@ -142,27 +142,41 @@ namespace CoffeeBlockchain {
     auto iterator = coffees.find(uuid);
     eosio_assert(iterator != coffees.end(), "Coffee does not exist.");
     auto queriedCoffee = coffees.get(uuid);
-    string message = "Coffee hash: ";
+    string message = "Coffee hash: " + queriedCoffee.hash;
     send_data(_self, message);
   }
 
   // SALE
 
-  void Beancoin::requestsale(
+  void Beancoin::initiatesale(
     uint64_t uuid,
     uint64_t uuid_coffee,
-    account_name seller,
     account_name buyer,
     uint64_t quantity
   ) {
-    // TODO request sale
-    print("requestsale");
+    require_auth(buyer); // ONLY BUYERS CAN INITIATE TRANSACTIONS
+    coffee_index coffees(_self, _self);
+    sale_index sales(_self, _self);
+    auto iterator = coffees.find(uuid_coffee);
+    eosio_assert(iterator != coffees.end(), "Coffee does not exist.");
+    auto queriedCoffee = coffees.get(uuid);
+    if (queriedCoffee.quantity <= quantity) {
+      sales.emplace(buyer, [&](auto& row) {
+        row.uuid = uuid;
+        row.uuid_coffee = uuid_coffee;
+        row.seller = queriedCoffee.owner;
+        row.buyer = buyer;
+        row.quantity = quantity;
+      });
+    } else {
+      print("Not enough coffee stock to honor the sale.");
+    }
   }
 
   void Beancoin::getsale(
     uint64_t uuid
   ) {
-    // TODO: get sale hash
+    // TODO: return sale information
     print("getsale");
   }
 

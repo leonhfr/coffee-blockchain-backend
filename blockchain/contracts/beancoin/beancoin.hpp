@@ -58,10 +58,9 @@ namespace CoffeeBlockchain {
       );
 
       [[eosio::action]]
-      void requestsale(
+      void initiatesale(
         uint64_t uuid,
         uint64_t uuid_coffee,
-        account_name seller,
         account_name buyer,
         uint64_t quantity
       );
@@ -122,5 +121,5 @@ namespace CoffeeBlockchain {
       typedef eosio::multi_index<N(sale), sale> sale_index;
   };
 
-  EOSIO_ABI(Beancoin, (notify)(upsertuser)(deluser)(getuser)(upsertcoffee)(delcoffee)(getcoffee)(requestsale)(getsale)(fulfillsale))
+  EOSIO_ABI(Beancoin, (notify)(upsertuser)(deluser)(getuser)(upsertcoffee)(delcoffee)(getcoffee)(initiatesale)(getsale)(fulfillsale))
 }
