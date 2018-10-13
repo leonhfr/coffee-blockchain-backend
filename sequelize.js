@@ -23,7 +23,6 @@ sequelize
   .sync()
   .then(() => {
     console.log('sequelize connected'); //eslint-disable-line
-    populate(); // function to populate database with mock data
   })
   .catch(e => console.error(e)); //eslint-disable-line
 

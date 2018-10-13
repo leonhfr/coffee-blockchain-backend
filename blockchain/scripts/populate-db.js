@@ -1,4 +1,4 @@
-const model = require('../../models/model');
+const models = require('../../models');
 const users = require('./mock.data.user.json');
 const coffees = require('./mock.data.coffee.json');
 
@@ -10,9 +10,17 @@ async function processArray (array, handle, type) {
 }
 
 async function process () {
-  await processArray(users.filter(el => el.role === 'consumer'), model.createCustomer, 'users');
-  await processArray(users.filter(el => el.role === 'producer'), model.createProducer, 'producers');
-  await processArray(coffees, model.createCoffee, 'coffees');
+  await processArray(
+    users.filter(el => el.role === 'consumer'),
+    models.customer.createCustomer,
+    'users'
+  );
+  await processArray(
+    users.filter(el => el.role === 'producer'),
+    models.producer.createProducer,
+    'producers'
+  );
+  await processArray(coffees, coffeeModel.createCoffee, 'coffees');
   //eslint-disable-next-line
   console.log('Database populated with mock data!');
 }

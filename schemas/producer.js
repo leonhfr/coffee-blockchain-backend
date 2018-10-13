@@ -14,9 +14,7 @@ const Producer = sequelize.define('Producer', {
     type: Sequelize.STRING
   },
   email: Sequelize.STRING,
-  description: Sequelize.TEXT,
-  pictures: Sequelize.STRING,
-  transactions: Sequelize.ENUM('id')
+  description: Sequelize.TEXT
 });
 
 sequelize.models.Coffee.belongsTo(Producer, { foreignKey: 'producerId' });
