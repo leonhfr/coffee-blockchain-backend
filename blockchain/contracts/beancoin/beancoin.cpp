@@ -81,7 +81,7 @@ namespace CoffeeBlockchain {
     // TODO: update or insert coffee
     print(
       "Upsert coffee | Owner: ", owner,
-      " | uuid: ", uuid.c_str(),
+      " | uuid: ", uuid,
       " | hash: ", hash.c_str(),
       " | price: ", price,
       " | quantity: ", quantity
@@ -95,7 +95,7 @@ namespace CoffeeBlockchain {
     // TODO: delete coffee
     print(
       "Delete coffee | Owner: ", owner,
-      " | uuid: ", uuid.c_str()
+      " | uuid: ", uuid
     );
   }
 
@@ -106,7 +106,7 @@ namespace CoffeeBlockchain {
     // TODO: get coffee hash
     print(
       "Get coffee | Owner: ", owner,
-      " | uuid: ", uuid.c_str()
+      " | uuid: ", uuid
     );
   }
 

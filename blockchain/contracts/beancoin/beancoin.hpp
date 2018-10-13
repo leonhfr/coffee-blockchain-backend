@@ -106,7 +106,8 @@ namespace CoffeeBlockchain {
         uint64_t coffee_key() const { return uuid; }
         EOSLIB_SERIALIZE(coffee, (key)(owner)(uuid)(hash)(price)(quantity))
       };
-      typedef eosio::multi_index<N(coffee), coffee> coffee_index;
+      typedef eosio::multi_index<N(coffee), coffee,
+        indexed_by<N(byuuid), const_mem_fun<coffee, uint64_t, &coffee::coffee_key>>> coffee_index;
 
       struct [[eosio::table]] sale {
         uint64_t key;
@@ -124,7 +125,8 @@ namespace CoffeeBlockchain {
         uint64_t sale_key() const { return uuid; }
         EOSLIB_SERIALIZE(sale, (key)(uuid)(uuid_coffee)(seller)(buyer)(quantity)(status))
       };
-      typedef eosio::multi_index<N(sale), sale> sale_index;
+      typedef eosio::multi_index<N(sale), sale,
+        indexed_by<N(byuuid), const_mem_fun<sale, uint64_t, &sale::sale_key>>> sale_index;
   };
 
   EOSIO_ABI(Beancoin, (notify)(upsertuser)(deluser)(getuser)(upsertcoffee)(delcoffee)(getcoffee)(requestsale)(getsale)(fulfillsale))
