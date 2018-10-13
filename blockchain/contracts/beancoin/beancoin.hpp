@@ -124,9 +124,8 @@ namespace CoffeeBlockchain {
         uint64_t status;
         // STATUS CODES:
         // 0 = request
-        // 1 = approved
-        // 2 = fulfilled (buyer paid)
-        // 9 = rejected
+        // 1 = fulfilled (buyer paid)
+        // 2 = rejected
         uint64_t primary_key() const { return key; }
         // TODO: defined uuid as second key
         EOSLIB_SERIALIZE(sale, (key)(uuid)(uuid_coffee)(seller)(buyer)(quantity)(status))

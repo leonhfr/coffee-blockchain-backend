@@ -61,7 +61,9 @@ namespace CoffeeBlockchain {
     eosio_assert(iterator != users.end(), "User does not exist.");
     auto queriedUser = users.get(user);
     // TODO: user data
-    send_data(user, "here is your user");
+    string message = "User: " + user.c_str() + " | Role: " +
+      queriedUser.role.c_str() + " | Hash: '" + queriedUser.hash.c_str() + "'";
+    send_data(user, message);
   }
 
   // COFFEE
