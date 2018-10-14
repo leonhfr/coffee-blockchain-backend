@@ -104,7 +104,7 @@ mkdir -p ~/bin && curl -sSL -o ~/bin/jq \
   chmod +x ~/bin/jq && export PATH=$PATH:~/bin
 
 echo ""
-echo -e "\033[0;35m+ create mock accounts\033[0m"
+echo -e "\033[0;35m+ create mock accounts and register them\033[0m"
 jq -c '.[]' mock.data.user.json | while read i; do
   name=$(jq -r '.name' <<< "$i")
   pubkey=$(jq -r '.publicKey' <<< "$i")
@@ -130,5 +130,19 @@ jq -c '.[]' mock.data.user.json | while read i; do
     -p $name@active
 done
 
-# TODO: add some coffees
-# TODO: add some sales
+echo ""
+echo -e "\033[0;35m+ create mock coffees\033[0m"
+jq -c '.[]' mock.data.coffee.json | while read i; do
+  name=$(jq -r '.name' <<< "$i")
+  uuid=$(jq -r '.id' <<< "$i")
+  hash=$(jq -r '.hash' <<< "$i")
+  price=$(jq -r '.price' <<< "$i")
+  quantity=$(jq -r '.quantity' <<< "$i")
+
+  docker exec -t eosio_coffeechain /opt/eosio/bin/cleos \
+    --url http://127.0.0.1:7777 \
+    --wallet-url http://127.0.0.1:5555 \
+    push action beancoin upsertcoffee \
+    "[ "\""$name"\"", $uuid, "\""$hash"\"", $price, $quantity ]" \
+    -p $name@active
+done

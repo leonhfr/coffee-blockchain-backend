@@ -132,3 +132,13 @@ echo "\033[0;34m+ quantity of coffee should have been modified (40)\033[0m"
 cleos push action beancoin getcoffee \
   "[ 1230787824460 ]" \
   -p testaccount@active
+
+echo "\033[0;34m+ beancoin should be able to fulfill a sale\033[0m"
+cleos push action beancoin fulfillsale \
+  "[ 1230787824470 ]" \
+  -p beancoin@active
+
+echo "\033[0;34m+ should be able to get a sale\033[0m"
+cleos push action beancoin getsale \
+  "[ 1230787824470 ]" \
+  -p testaccount@active
