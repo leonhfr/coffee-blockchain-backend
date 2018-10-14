@@ -1,9 +1,10 @@
 const models = require('../models');
 
 exports.createCoffee = async ctx => {
+  console.log(ctx.request.body, ctx.request.header.authorization);
   let coffee = {
     ...ctx.request.body,
-    producerId: ctx.params.producerId
+    producerId: ctx.request.header.authorization.split(' ')[1]
   };
   ctx.body = await models.coffee.createCoffee(coffee);
   if (ctx.body) return (ctx.status = 201);
@@ -12,7 +13,7 @@ exports.createCoffee = async ctx => {
 
 exports.getCoffee = async ctx => {
   ctx.body = await models.coffee.getCoffee(ctx.params.coffeeId);
-  if (ctx.body) return (ctx.status = 201);
+  if (ctx.body) return (ctx.status = 200);
   ctx.status = 404;
 };
 

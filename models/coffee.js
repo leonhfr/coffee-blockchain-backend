@@ -11,8 +11,6 @@ exports.createCoffee = async coffee => {
     altitude: coffee.altitude,
     region: coffee.region,
     roast_appearance: coffee.roast_appearance,
-    bean_density: coffee.bean_density,
-    bean_screen_size: coffee.bean_screen_size,
     details: coffee.details,
     producerId: coffee.producerId,
     geo_location: coffee.geo_location,

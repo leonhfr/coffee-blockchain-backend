@@ -22,7 +22,7 @@ const Coffee = sequelize.define('Coffee', {
   },
   altitude: {
     type: Sequelize.INTEGER,
-    defaultValue: null
+    defaultValue: 0
   },
   region: {
     type: Sequelize.STRING,
@@ -32,21 +32,13 @@ const Coffee = sequelize.define('Coffee', {
     type: Sequelize.TEXT,
     defaultValue: null
   },
-  bean_density: {
-    type: Sequelize.FLOAT,
-    defaultValue: null
-  },
   details: {
     type: Sequelize.TEXT,
     defaultValue: null
   },
   price_kg: {
     type: Sequelize.DECIMAL,
-    defaultValue: null
-  },
-  bean_screen_size: {
-    type: Sequelize.DECIMAL,
-    defaultValue: null
+    defaultValue: 0
   },
   geo_location: {
     type: Sequelize.GEOMETRY('POINT'),
