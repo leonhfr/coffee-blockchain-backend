@@ -31,8 +31,12 @@ sh blockchain.sh
 The above script will:
 * Check that you have Docker and Node.js installed
 * Install backend dependencies (`npm install`)
-* Pull a MySQL image, start it and populate it with mock data
-* Pull a eosio/eos image, configure it, start it and populate it with mock data
+* Pull a redis image and start it
+* Pull a MySQL image and start it
+* Pull a eosio/eos image, configure it and start it
+* Start a private EOS blockchain and configure it
+* Deploy the `beancoin` smart contract
+* Populate the database and the blockchain with mock data
 * Start the backend API server (`npm start`)
 
 ### Troubleshooting
@@ -40,6 +44,7 @@ The above script will:
 * You may need to make the scripts executable. Run this command from the `coffee-blockchain-backend` directory:
 ```sh
 chmod +x blockchain.sh && \
+  chmod +x ./blockchain/scripts/redis.sh && \
   chmod +x ./blockchain/scripts/mysql.sh && \
   chmod +x ./blockchain/scripts/eosio.sh
 ```
@@ -50,7 +55,9 @@ In the terminal, press `ctrl+c` on your keyboard.
 
 Then execute:
 ```shell
-docker stop eosio_coffeechain && docker stop mysql_coffeechain
+docker stop eosio_coffeechain && \
+  docker stop redis_coffeechain && \
+  docker stop mysql_coffeechain
 ```
 
 ## Useful stuff
@@ -65,3 +72,21 @@ alias cleos='docker exec -it eosio_coffeechain /opt/eosio/bin/cleos --url http:/
 ```
 
 Please note that the alias will only be valid within your current terminal. To add it permanently add it to your `~/.bash_profile`.
+
+## Tech Stack
+
+* [EOS](https://eos.io/)
+* [Koa](https://koajs.com/)
+* [MySQL](https://www.mysql.com/)
+* [Sequelize](http://docs.sequelizejs.com/)
+* [Redis](https://redis.io/)
+* [Demux](https://github.com/EOSIO/demux-js)
+* [Stripe](https://stripe.com/)
+
+## Authors
+
+* Olga Chinina - [Github](https://github.com/chinins)
+* Marco Gallizi - [Github](https://github.com/Tezenn)
+* Leon Hollender - [Github](https://github.com/leonhfr)
+* Adria Palleja - [Github](https://github.com/adriapalleja)
+* Nathalia Rus - [Github](https://github.com/nathaliarus)
