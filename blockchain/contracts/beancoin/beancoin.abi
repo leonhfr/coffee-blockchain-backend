@@ -1,36 +1,18 @@
 {
-    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT Thu Oct 11 20:02:46 2018",
+    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT Sun Oct 14 16:08:01 2018",
     "version": "eosio::abi/1.0",
     "structs": [
-        {
-            "name": "approvesale",
-            "base": "",
-            "fields": [
-                {
-                    "name": "uuid",
-                    "type": "string"
-                },
-                {
-                    "name": "seller",
-                    "type": "name"
-                }
-            ]
-        },
         {
             "name": "coffee",
             "base": "",
             "fields": [
                 {
-                    "name": "key",
+                    "name": "uuid",
                     "type": "uint64"
                 },
                 {
                     "name": "owner",
                     "type": "name"
-                },
-                {
-                    "name": "uuid",
-                    "type": "string"
                 },
                 {
                     "name": "hash",
@@ -56,7 +38,7 @@
                 },
                 {
                     "name": "uuid",
-                    "type": "string"
+                    "type": "uint64"
                 }
             ]
         },
@@ -76,7 +58,7 @@
             "fields": [
                 {
                     "name": "uuid",
-                    "type": "string"
+                    "type": "uint64"
                 }
             ]
         },
@@ -85,12 +67,8 @@
             "base": "",
             "fields": [
                 {
-                    "name": "owner",
-                    "type": "name"
-                },
-                {
                     "name": "uuid",
-                    "type": "string"
+                    "type": "uint64"
                 }
             ]
         },
@@ -100,7 +78,7 @@
             "fields": [
                 {
                     "name": "uuid",
-                    "type": "string"
+                    "type": "uint64"
                 }
             ]
         },
@@ -111,6 +89,28 @@
                 {
                     "name": "user",
                     "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "initiatesale",
+            "base": "",
+            "fields": [
+                {
+                    "name": "uuid",
+                    "type": "uint64"
+                },
+                {
+                    "name": "uuid_coffee",
+                    "type": "uint64"
+                },
+                {
+                    "name": "buyer",
+                    "type": "name"
+                },
+                {
+                    "name": "quantity",
+                    "type": "uint64"
                 }
             ]
         },
@@ -129,46 +129,16 @@
             ]
         },
         {
-            "name": "requestsale",
-            "base": "",
-            "fields": [
-                {
-                    "name": "uuid",
-                    "type": "string"
-                },
-                {
-                    "name": "uuid_coffee",
-                    "type": "string"
-                },
-                {
-                    "name": "seller",
-                    "type": "name"
-                },
-                {
-                    "name": "buyer",
-                    "type": "name"
-                },
-                {
-                    "name": "quantity",
-                    "type": "uint64"
-                }
-            ]
-        },
-        {
             "name": "sale",
             "base": "",
             "fields": [
                 {
-                    "name": "key",
+                    "name": "uuid",
                     "type": "uint64"
                 },
                 {
-                    "name": "uuid",
-                    "type": "string"
-                },
-                {
                     "name": "uuid_coffee",
-                    "type": "string"
+                    "type": "uint64"
                 },
                 {
                     "name": "seller",
@@ -184,7 +154,7 @@
                 },
                 {
                     "name": "status",
-                    "type": "uint64"
+                    "type": "string"
                 }
             ]
         },
@@ -198,7 +168,7 @@
                 },
                 {
                     "name": "uuid",
-                    "type": "string"
+                    "type": "uint64"
                 },
                 {
                     "name": "hash",
@@ -254,11 +224,6 @@
     "types": [],
     "actions": [
         {
-            "name": "approvesale",
-            "type": "approvesale",
-            "ricardian_contract": ""
-        },
-        {
             "name": "delcoffee",
             "type": "delcoffee",
             "ricardian_contract": ""
@@ -289,13 +254,13 @@
             "ricardian_contract": ""
         },
         {
-            "name": "notify",
-            "type": "notify",
+            "name": "initiatesale",
+            "type": "initiatesale",
             "ricardian_contract": ""
         },
         {
-            "name": "requestsale",
-            "type": "requestsale",
+            "name": "notify",
+            "type": "notify",
             "ricardian_contract": ""
         },
         {

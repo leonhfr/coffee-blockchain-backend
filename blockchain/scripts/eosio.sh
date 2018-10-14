@@ -64,6 +64,7 @@ cd "$(pwd -P)/blockchain/data"
 
 echo ""
 echo -e "\033[0;35m+ setup wallet eosiomain\033[0m"
+echo -e "\033[0;35m+ this would not be needed to connect to the real EOS network, it is for test purposes only\033[0m"
 # create default wallet and save password to file
 cleos wallet create -n eosiomain --to-console | tail -1 | \
   sed -e 's/^"//' -e 's/"$//' > eosiomain_wallet_password.txt
@@ -75,15 +76,15 @@ echo -e "\033[0;35m+ setup wallet beancoin\033[0m"
 # wallet for beancoin and export the generated password to a file for unlocking wallet later
 cleos wallet create -n beancoin --to-console | tail -1 | \
   sed -e 's/^"//' -e 's/"$//' > beancoin_wallet_password.txt
-# Owner key for blogwallet wallet
-cleos wallet import -n beancoin \
-  --private-key 5JpWT4ehouB2FF9aCfdfnZ5AwbQbTtHBAwebRXt94FmjyhXwL4K
-# Active key for blogwallet wallet
-cleos wallet import -n beancoin \
-  --private-key 5JD9AGTuTeD5BXZwGQ5AtwBqHK21aHmYnTetHgk1B3pjj7krT8N
 # create account for beancoin with above wallet's public keys
 cleos create account eosio beancoin EOS6PUh9rs7eddJNzqgqDx1QrspSHLRxLMcRdwHZZRL4tpbtvia5B \
   EOS8BCgapgYA2L4LJfCzekzeSr3rzgSTUXRXwNi8bNRoz31D14en9
+# Owner key
+cleos wallet import -n beancoin \
+--private-key 5JpWT4ehouB2FF9aCfdfnZ5AwbQbTtHBAwebRXt94FmjyhXwL4K
+# Active key
+cleos wallet import -n beancoin \
+--private-key 5JD9AGTuTeD5BXZwGQ5AtwBqHK21aHmYnTetHgk1B3pjj7krT8N
 
 echo ""
 echo -e "\033[0;35m+ deploy the smart contract\033[0m"
@@ -103,7 +104,7 @@ mkdir -p ~/bin && curl -sSL -o ~/bin/jq \
   chmod +x ~/bin/jq && export PATH=$PATH:~/bin
 
 echo ""
-echo -e "\033[0;35m+ create mock accounts\033[0m"
+echo -e "\033[0;35m+ create mock accounts and register them\033[0m"
 jq -c '.[]' mock.data.user.json | while read i; do
   name=$(jq -r '.name' <<< "$i")
   pubkey=$(jq -r '.publicKey' <<< "$i")
@@ -129,5 +130,19 @@ jq -c '.[]' mock.data.user.json | while read i; do
     -p $name@active
 done
 
-# TODO: add some coffees
-# TODO: add some sales
+echo ""
+echo -e "\033[0;35m+ create mock coffees\033[0m"
+jq -c '.[]' mock.data.coffee.json | while read i; do
+  name=$(jq -r '.name' <<< "$i")
+  uuid=$(jq -r '.id' <<< "$i")
+  hash=$(jq -r '.hash' <<< "$i")
+  price=$(jq -r '.price' <<< "$i")
+  quantity=$(jq -r '.quantity' <<< "$i")
+
+  docker exec -t eosio_coffeechain /opt/eosio/bin/cleos \
+    --url http://127.0.0.1:7777 \
+    --wallet-url http://127.0.0.1:5555 \
+    push action beancoin upsertcoffee \
+    "[ "\""$name"\"", $uuid, "\""$hash"\"", $price, $quantity ]" \
+    -p $name@active
+done
