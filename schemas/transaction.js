@@ -14,4 +14,5 @@ const Transaction = sequelize.define('Transaction', {
 
 sequelize.models.Shipper.hasMany(Transaction, { foreignKey: 'shipperId' });
 Transaction.belongsTo(Shipper, { foreignKey: 'shipperId' });
+
 module.exports = Transaction;

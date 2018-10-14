@@ -7,7 +7,8 @@ exports.createCoffee = async coffee => {
     id: coffee.id,
     name: coffee.name,
     description: coffee.description,
-    producerId: coffee.producerId
+    producerId: coffee.producerId,
+    geo_location: coffee.geo_location
   });
   return newCoffee;
 };
@@ -32,6 +33,7 @@ exports.updateCoffee = async (id, info) => {
     updateValue.roast_appearance = info.roast_appearance;
   if (info.bean_density) updateValue.bean_density = info.bean_density;
   if (info.details) updateValue.details = info.details;
+  if (info.geo_location) updateValue.geo_location = info.geo_location;
   await Coffee.update(updateValue, {
     returning: true,
     plain: true,

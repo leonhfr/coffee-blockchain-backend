@@ -46,6 +46,8 @@ exports.updateMe = async (id, info) => {
     if (info.customer_name) updateValue.customer_name = info.customer_name;
     if (info.country) updateValue.country = info.country;
     if (info.description) updateValue.description = info.description;
+    if (info.geo_location) updateValue.geo_location = info.geo_location;
+    console.log('update value: ', updateValue);
     await Customer.update(updateValue, {
       returning: true,
       plain: true,

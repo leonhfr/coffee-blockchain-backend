@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../models/sequelize');
 const Transaction = require('./transaction');
+const Producer = require('./producer');
 
 const Coffee = sequelize.define('Coffee', {
   id: {
@@ -38,6 +39,10 @@ const Coffee = sequelize.define('Coffee', {
   details: {
     type: Sequelize.TEXT,
     defaultValue: null
+  },
+  geo_location: {
+    type: Sequelize.GEOMETRY('POINT'),
+    allowNull: true
   }
 });
 

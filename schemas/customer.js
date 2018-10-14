@@ -15,6 +15,10 @@ const Customer = sequelize.define('Customer', {
   country: {
     type: Sequelize.STRING
   },
+  geo_location: {
+    type: Sequelize.GEOMETRY('POINT'),
+    allowNull: true
+  },
   description: Sequelize.TEXT,
   email: Sequelize.STRING
 });
