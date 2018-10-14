@@ -2,11 +2,11 @@
 
 ## Prerequisites
 
-* Either **Ubuntu 18.04** or **MacOS Darwin 10.12** or higher (other operating systems may work but are untested)
+* Either **Ubuntu 18.04** or **MacOS Darwin 10.12** or higher (Other operating systems may work but are untested. Windows won't, sorry.)
 * Docker
 * Node.js
 
-With default settings, the dApp, eosio, redis and MySQL will occupy the ports 3306, 4000, 5555, 6379 and 7777. Make sure nothing else is running on these ports or change them in the `.env` file.
+With default settings, the dApp, eosio, redis and MySQL will occupy the ports 3306, 4000, 5555, 6379 and 7777. Make sure nothing else is running on these ports or change them when creating the `.env` file.
 
 ## Quick Start
 

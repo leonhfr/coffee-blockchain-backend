@@ -12,12 +12,12 @@ directory="$(pwd -P)/blockchain/contracts"
 # !!! CORS is enabled for * for developement purposes only
 docker run --rm --name eosio_coffeechain \
   --detach \
-  --publish 7777:7777 \
-  --publish 127.0.0.1:5555:5555 \
+  --publish $EOSIO_NETWORK_PORT:$EOSIO_NETWORK_PORT \
+  --publish 127.0.0.1:$EOSIO_WALLET_PORT:$EOSIO_WALLET_PORT \
   --volume "$directory:$directory" \
   eosio/eos:v1.3.2 \
   /bin/bash -c \
-  "keosd --http-server-address=0.0.0.0:5555 & exec \
+  "keosd --http-server-address=0.0.0.0:$EOSIO_WALLET_PORT & exec \
   nodeos -e -p eosio \
     --plugin eosio::producer_plugin \
     --plugin eosio::history_plugin \
@@ -26,7 +26,7 @@ docker run --rm --name eosio_coffeechain \
     --plugin eosio::http_plugin \
     -d /mnt/dev/data \
     --config-dir /mnt/dev/config \
-    --http-server-address=0.0.0.0:7777 \
+    --http-server-address=0.0.0.0:$EOSIO_NETWORK_PORT \
     --access-control-allow-origin=* \
     --http-validate-host=false \
     --contracts-console \
@@ -44,7 +44,7 @@ echo -e "\033[0;35m+ nodeos is producing blocks!\033[0m"
 # checking that the server is running and answering
 echo ""
 echo "+ you should see a JSON response with some info on the blockchain"
-curl http://localhost:7777/v1/chain/get_info
+curl http://$EOSIO_NETWORK_HOST:$EOSIO_NETWORK_PORT/v1/chain/get_info
 echo ""
 echo -e "\033[0;35m+ nodeos is answering correctly!\033[0m"
 
@@ -55,7 +55,7 @@ echo -e "\033[0;34m+++ /!\ The blockchain has started! /!\ +++\033[0m"
 # cleos = eos cli
 shopt -s expand_aliases
 alias cleos="docker exec -i eosio_coffeechain /opt/eosio/bin/cleos \
-  --url http://127.0.0.1:7777 --wallet-url http://127.0.0.1:5555"
+  --url http://127.0.0.1:$EOSIO_NETWORK_PORT --wallet-url http://127.0.0.1:$EOSIO_WALLET_PORT"
 
 # create a clean data directory to store temporary data and set it as working directory
 rm -rf "$(pwd -P)/blockchain/data"
@@ -113,18 +113,18 @@ jq -c '.[]' mock.data.user.json | while read i; do
   hash=$(jq -r '.hash' <<< "$i")
 
   docker exec -t eosio_coffeechain /opt/eosio/bin/cleos \
-    --url http://127.0.0.1:7777 \
-    --wallet-url http://127.0.0.1:5555 \
+    --url http://127.0.0.1:$EOSIO_NETWORK_PORT \
+    --wallet-url http://127.0.0.1:$EOSIO_WALLET_PORT \
     create account eosio $name $pubkey $pubkey
 
   docker exec -t eosio_coffeechain /opt/eosio/bin/cleos \
-    --url http://127.0.0.1:7777 \
-    --wallet-url http://127.0.0.1:5555 \
+    --url http://127.0.0.1:$EOSIO_NETWORK_PORT \
+    --wallet-url http://127.0.0.1:$EOSIO_WALLET_PORT \
     wallet import -n beancoin --private-key $privkey
 
   docker exec -t eosio_coffeechain /opt/eosio/bin/cleos \
-    --url http://127.0.0.1:7777 \
-    --wallet-url http://127.0.0.1:5555 \
+    --url http://127.0.0.1:$EOSIO_NETWORK_PORT \
+    --wallet-url http://127.0.0.1:$EOSIO_WALLET_PORT \
     push action beancoin upsertuser \
     "[ "\""$name"\"", "\""$role"\"", "\""$hash"\"" ]" \
     -p $name@active
@@ -140,8 +140,8 @@ jq -c '.[]' mock.data.coffee.json | while read i; do
   quantity=$(jq -r '.quantity' <<< "$i")
 
   docker exec -t eosio_coffeechain /opt/eosio/bin/cleos \
-    --url http://127.0.0.1:7777 \
-    --wallet-url http://127.0.0.1:5555 \
+    --url http://127.0.0.1:$EOSIO_NETWORK_PORT \
+    --wallet-url http://127.0.0.1:$EOSIO_WALLET_PORT \
     push action beancoin upsertcoffee \
     "[ "\""$name"\"", $uuid, "\""$hash"\"", $price, $quantity ]" \
     -p $name@active
