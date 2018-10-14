@@ -170,7 +170,7 @@ namespace CoffeeBlockchain {
         row.quantity = quantity;
         row.status = "init";
       });
-      coffees.modify(iterator, queriedCoffee.owner, [&](auto& row) {
+      coffees.modify(iterator, _self, [&](auto& row) {
         row.quantity -= quantity;
       });
       print("Initiate sale.");
@@ -209,7 +209,7 @@ namespace CoffeeBlockchain {
     auto iterator = sales.find(uuid);
     eosio_assert(iterator != sales.end(), "Sales does not exist.");
     auto queriedSale = sales.get(uuid);
-    sales.modify(iterator, queriedSale.buyer, [&](auto& row) {
+    sales.modify(iterator, _self, [&](auto& row) {
       row.status = "fulfilled";
     });
     print("Fulfill sale.");

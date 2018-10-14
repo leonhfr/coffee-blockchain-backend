@@ -13,8 +13,7 @@ cleos wallet unlock -n beancoin \
 cleos wallet unlock -n eosiomain \
   --password $(cat ../data/eosiomain_wallet_password.txt) || true
 
-echo "\033[0;34m+ creating account in case it is the first \
-  time the script is run, an error is fine otherwise\033[0m"
+echo "\033[0;34m+ creating account in case it is the first time the script is run, an error is fine otherwise\033[0m"
 cleos create account eosio testaccount \
   EOS7hmDNU2NJZtkS4EPoSw3pfXAg3MXSBv3aRw3FVZPW8M5hypfi8 \
   EOS7hmDNU2NJZtkS4EPoSw3pfXAg3MXSBv3aRw3FVZPW8M5hypfi8

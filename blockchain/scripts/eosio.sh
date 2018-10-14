@@ -76,15 +76,15 @@ echo -e "\033[0;35m+ setup wallet beancoin\033[0m"
 # wallet for beancoin and export the generated password to a file for unlocking wallet later
 cleos wallet create -n beancoin --to-console | tail -1 | \
   sed -e 's/^"//' -e 's/"$//' > beancoin_wallet_password.txt
-# Owner key for blogwallet wallet
-cleos wallet import -n beancoin \
-  --private-key 5JpWT4ehouB2FF9aCfdfnZ5AwbQbTtHBAwebRXt94FmjyhXwL4K
-# Active key for blogwallet wallet
-cleos wallet import -n beancoin \
-  --private-key 5JD9AGTuTeD5BXZwGQ5AtwBqHK21aHmYnTetHgk1B3pjj7krT8N
 # create account for beancoin with above wallet's public keys
 cleos create account eosio beancoin EOS6PUh9rs7eddJNzqgqDx1QrspSHLRxLMcRdwHZZRL4tpbtvia5B \
   EOS8BCgapgYA2L4LJfCzekzeSr3rzgSTUXRXwNi8bNRoz31D14en9
+# Owner key
+cleos wallet import -n beancoin \
+--private-key 5JpWT4ehouB2FF9aCfdfnZ5AwbQbTtHBAwebRXt94FmjyhXwL4K
+# Active key
+cleos wallet import -n beancoin \
+--private-key 5JD9AGTuTeD5BXZwGQ5AtwBqHK21aHmYnTetHgk1B3pjj7krT8N
 
 echo ""
 echo -e "\033[0;35m+ deploy the smart contract\033[0m"
