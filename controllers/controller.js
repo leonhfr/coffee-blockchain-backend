@@ -75,6 +75,7 @@ exports.getProducers = async ctx => {
 // coffee //
 
 exports.createCoffee = async ctx => {
+  console.log(ctx.request.body, ctx.request.header.authorization);
   let coffee = {
     ...ctx.request.body,
     producerId: ctx.request.header.authorization.split(' ')[1]

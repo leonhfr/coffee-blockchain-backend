@@ -35,4 +35,8 @@ Customer.hasMany(Picture, {
   onDelete: 'CASCADE'
 });
 
+Picture.belongsTo(Customer, {
+  foreignKey: 'customerId'
+});
+
 module.exports = Customer;

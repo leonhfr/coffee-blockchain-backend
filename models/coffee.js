@@ -3,6 +3,7 @@ const Producer = require('../schemas/producer');
 const Coffee = require('../schemas/coffee');
 
 exports.createCoffee = async coffee => {
+  console.log(coffee);
   let newCoffee = await Coffee.create({
     id: coffee.id,
     name: coffee.name,
