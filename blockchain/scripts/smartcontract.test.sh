@@ -18,10 +18,14 @@ echo "\033[0;34m+ creating account in case it is the first \
 cleos create account eosio testaccount \
   EOS7hmDNU2NJZtkS4EPoSw3pfXAg3MXSBv3aRw3FVZPW8M5hypfi8 \
   EOS7hmDNU2NJZtkS4EPoSw3pfXAg3MXSBv3aRw3FVZPW8M5hypfi8
-
+cleos create account eosio testaccount2 \
+  EOS5caeQU5u8BroJh3Sryxq66JBdWfoF86Yong7JyatFEv9trZoGh \
+  EOS5caeQU5u8BroJh3Sryxq66JBdWfoF86Yong7JyatFEv9trZoGh
 echo "\033[0;34m+ importing ket in beancoin's wallet, fine to see error\033[0m"
 cleos wallet import -n beancoin \
   --private-key 5JokXZ1N1b9skb6dwyTbv9jqmTuoRKsqBACS86No7cZekbA778f
+cleos wallet import -n beancoin \
+  --private-key 5KHWMV8s4PJajYarJ2yvtP97Xrc2b38hBwNuxJZ8WqZWKmBQgc9
 
 ### TESTS: USERS ###
 
@@ -31,6 +35,9 @@ echo "\033[0;34m+ should be able to insert user\033[0m"
 cleos push action beancoin upsertuser \
   "[ \"testaccount\", \"consumer\", \"testhash\" ]" \
   -p testaccount@active
+cleos push action beancoin upsertuser \
+  "[ \"testaccount2\", \"producer\", \"testhash-2\" ]" \
+  -p testaccount2@active
 
 ### GET USER
 
@@ -100,3 +107,28 @@ cleos push action beancoin delcoffee \
   -p testaccount@active
 
 ### TESTS: SALES ###
+
+### MOCK COFFEES ###
+
+echo "\033[0;34m+ inserting some mock coffees\033[0m"
+cleos push action beancoin upsertcoffee \
+  "[ \"testaccount2\", 1230787824460, \"test-coffee-hash\", 30, 50 ]" \
+  -p testaccount2@active
+cleos push action beancoin upsertcoffee \
+  "[ \"testaccount2\", 1230787824461, \"test-coffee-hash-2\", 20, 50 ]" \
+  -p testaccount2@active
+
+echo "\033[0;34m+ should be able to initiate a sale\033[0m"
+cleos push action beancoin initiatesale \
+  "[ 1230787824470, 1230787824460, \"testaccount\", 10 ]" \
+  -p testaccount@active
+
+echo "\033[0;34m+ should be able to get a sale\033[0m"
+cleos push action beancoin getsale \
+  "[ 1230787824470 ]" \
+  -p testaccount@active
+
+echo "\033[0;34m+ quantity of coffee should have been modified (40)\033[0m"
+cleos push action beancoin getcoffee \
+  "[ 1230787824460 ]" \
+  -p testaccount@active
