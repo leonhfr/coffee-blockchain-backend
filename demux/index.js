@@ -6,7 +6,7 @@ const updaters = require('./updaters');
 const effects  = require('./effects');
 
 const actionReader = new NodeosActionReader(
-  process.env.EOSIO_HTTP_URL,
+  `http://${process.env.EOSIO_NETWORK_HOST}:${process.env.EOSIO_NETWORK_PORT}`,
   parseInt(process.env.EOSIO_STARTING_BLOCK, 10)
 );
 const actionHandler = new ActionHandler(updaters, effects);
