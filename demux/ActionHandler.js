@@ -36,7 +36,13 @@ class ActionHandler extends AbstractActionHandler {
   async loadIndexState () {
     try {
       const indexState = await redis.hgetall(key);
-      // would need to return redis index state in production
+      if (indexState) {
+        return {
+          blockNumber: parseInt(indexState.blockNumber),
+          blockHash: indexState.blockHash,
+          isReplay: indexState.isReplay
+        };
+      }
       return { blockNumber: 0, blockHash: '' };
     } catch (err) {
       // eslint-disable-next-line
