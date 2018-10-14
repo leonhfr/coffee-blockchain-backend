@@ -1,8 +1,10 @@
 async function delCoffee (state, payload, blockInfo, context) {
   try {
-    // do stuff like update database
+    const { owner, uuid, hash, price, quantity } = payload.data;
     //eslint-disable-next-line
-    console.log('updater: delete coffee', payload.data, blockInfo);
+    console.log(`Delete coffee: owner: ${owner} | uuid: ${uuid} | hash: ${hash} | price: ${price} | quantity: ${quantity}`);
+    // TODO: check information with database and delete coffee
+    // and switch from pending to confirmed as appropriate
   } catch (err) {
     //eslint-disable-next-line
     console.error(err);
