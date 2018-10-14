@@ -28,15 +28,18 @@ namespace CoffeeBlockchain {
         row.role = role;
         row.hash = hash;
       });
-      print("Inserted user(", role.c_str(), ") ", user, " of hash: '", hash.c_str(), "'.");
+      print("Inserted user!");
     } else {
       users.modify(iterator, user, [&](auto& row) {
         row.username = user;
         row.role = role;
         row.hash = hash;
       });
-      print("Updated user(", role.c_str(), ") ", user, " of hash: '", hash.c_str(), "'.");
+      print("Updated user!");
     }
+    print(" | username: ", name{user});
+    print(" | role: ", role);
+    print(" | hash: ", hash);
   }
 
   void Beancoin::deluser(
@@ -48,7 +51,7 @@ namespace CoffeeBlockchain {
     // THROW AN ERROR IF THE USER IS NOT REGISTERED
     eosio_assert(iterator != users.end(), "User does not exist.");
     users.erase(iterator);
-    print("Deleted user ", user, ".");
+    print("Deleted user ", name{user}, ".");
   }
 
   void Beancoin::getuser(
@@ -60,9 +63,10 @@ namespace CoffeeBlockchain {
     // THROW AN ERROR IF THE USER IS NOT REGISTERED
     eosio_assert(iterator != users.end(), "User does not exist.");
     auto queriedUser = users.get(user);
-    string message = "User role: '" + queriedUser.role +
-      "' | User hash: '" + queriedUser.hash + "'";
-    send_data(_self, message);
+    print("Get user.");
+    print(" | username: ", name{user});
+    print(" | role: ", queriedUser.role);
+    print(" | hash: ", queriedUser.hash);
   }
 
   // COFFEE
@@ -85,13 +89,7 @@ namespace CoffeeBlockchain {
         row.price = price;
         row.quantity = quantity;
       });
-      print(
-        "Inserted coffee | Owner: ", owner,
-        " | uuid: ", uuid,
-        " | hash: ", hash.c_str(),
-        " | price: ", price,
-        " | quantity: ", quantity
-      );
+      print("Inserted coffee!");
     } else {
       auto queriedCoffee = coffees.get(uuid);
       if (queriedCoffee.owner == owner) {
@@ -102,17 +100,16 @@ namespace CoffeeBlockchain {
           row.price = price;
           row.quantity = quantity;
         });
-        print(
-          "Updated coffee | Owner: ", owner,
-          " | uuid: ", uuid,
-          " | hash: ", hash.c_str(),
-          " | price: ", price,
-          " | quantity: ", quantity
-        );
+        print("Updated coffee!");
       } else {
         print("Unauthorized coffee upsert prevented.");
       }
     }
+    print(" | uuid: ", uuid);
+    print(" | owner: ", name{owner});
+    print(" | hash: ", hash);
+    print(" | price: ", price);
+    print(" | quantity: ", quantity);
   }
 
   void Beancoin::delcoffee(
@@ -126,12 +123,11 @@ namespace CoffeeBlockchain {
     auto queriedCoffee = coffees.get(uuid);
     if (queriedCoffee.owner == owner) {
       coffees.erase(iterator);
-      print(
-        "Delete coffee | Owner: ", owner,
-        " | uuid: ", uuid
-      );
+      print("Deleted coffee!");
+      print(" | uuid: ", uuid);
+      print(" | owner: ", name{owner});
     } else {
-      print("Unauthorized coffee upsert prevented.");
+      print("Unauthorized coffee deletion prevented.");
     }
   }
 
@@ -142,8 +138,13 @@ namespace CoffeeBlockchain {
     auto iterator = coffees.find(uuid);
     eosio_assert(iterator != coffees.end(), "Coffee does not exist.");
     auto queriedCoffee = coffees.get(uuid);
-    string message = "Coffee hash: " + queriedCoffee.hash;
-    send_data(_self, message);
+    print("Get coffee.");
+    print(" | uuid: ", queriedCoffee.uuid);
+    print(" | owner: ", name{queriedCoffee.owner});
+    print(" | hash: ", queriedCoffee.hash);
+    print(" | price: ", queriedCoffee.price);
+    print(" | quantity: ", queriedCoffee.quantity);
+    send_data(_self, queriedCoffee.hash);
   }
 
   // SALE
@@ -156,19 +157,28 @@ namespace CoffeeBlockchain {
   ) {
     require_auth(buyer); // ONLY BUYERS CAN INITIATE TRANSACTIONS
     coffee_index coffees(_self, _self);
-    sale_index sales(_self, _self);
     auto iterator = coffees.find(uuid_coffee);
-    eosio_assert(iterator != coffees.end(), "Sale does not exist.");
-    auto queriedCoffee = coffees.get(uuid);
-    if (queriedCoffee.quantity <= quantity) {
+    eosio_assert(iterator != coffees.end(), "Coffee does not exist.");
+    auto queriedCoffee = coffees.get(uuid_coffee);
+    sale_index sales(_self, _self);
+    if (queriedCoffee.quantity >= quantity) {
       sales.emplace(buyer, [&](auto& row) {
         row.uuid = uuid;
         row.uuid_coffee = uuid_coffee;
         row.seller = queriedCoffee.owner;
         row.buyer = buyer;
         row.quantity = quantity;
-        row.status = "request";
+        row.status = "init";
       });
+      coffees.modify(iterator, _self, [&](auto& row) {
+        row.quantity -= quantity;
+      });
+      print("Initiate sale.");
+      print(" | uuid: ", uuid);
+      print(" | uuid_coffee: ", uuid_coffee);
+      print(" | buyer: ", name{buyer});
+      print(" | seller: ", name{queriedCoffee.owner});
+      print(" | quantity: ", quantity);
     } else {
       print("Not enough coffee stock to honor the sale.");
     }
@@ -181,8 +191,14 @@ namespace CoffeeBlockchain {
     auto iterator = sales.find(uuid);
     eosio_assert(iterator != sales.end(), "Sales does not exist.");
     auto queriedSale = sales.get(uuid);
-    string message = "Sale infos | Coffee uuid " + queriedSale.status;
-    send_data(_self, message);
+    print("Get sale.");
+    print(" | uuid: ", uuid);
+    print(" | uuid_coffee: ", queriedSale.uuid_coffee);
+    print(" | buyer: ", name{queriedSale.buyer});
+    print(" | seller: ", name{queriedSale.seller});
+    print(" | quantity: ", queriedSale.quantity);
+    print(" | status: ", queriedSale.status);
+    send_data(_self, queriedSale.status);
   }
 
   void Beancoin::fulfillsale(
@@ -193,10 +209,17 @@ namespace CoffeeBlockchain {
     auto iterator = sales.find(uuid);
     eosio_assert(iterator != sales.end(), "Sales does not exist.");
     auto queriedSale = sales.get(uuid);
-    sales.modify(iterator, queriedSale.buyer, [&](auto& row) {
-      row.status = "fulfilled!";
+    sales.modify(iterator, _self, [&](auto& row) {
+      row.status = "fulfilled";
     });
-    send_data(_self, "Sale fulfilled!");
+    print("Fulfill sale.");
+    print(" | uuid: ", uuid);
+    print(" | uuid_coffee: ", queriedSale.uuid_coffee);
+    print(" | buyer: ", name{queriedSale.buyer});
+    print(" | seller: ", name{queriedSale.seller});
+    print(" | quantity: ", queriedSale.quantity);
+    print(" | status: ", queriedSale.status);
+    send_data(_self, queriedSale.status);
   }
 
   // PRIVATE METHODS
