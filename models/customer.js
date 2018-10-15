@@ -3,7 +3,6 @@ const Transaction = require('../schemas/transaction');
 const Picture = require('../schemas/picture');
 
 exports.createCustomer = async customer => {
-  console.log(customer);
   let newCustomer = await Customer.create({
     email: customer.email,
     id: customer.id,
