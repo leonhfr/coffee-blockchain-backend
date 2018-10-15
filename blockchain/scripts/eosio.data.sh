@@ -51,3 +51,83 @@ jq -c '.[]' mock.data.coffee.json | while read i; do
     "[ "\""$name"\"", $uuid, "\""$hash"\"", $price, $quantity ]" \
     -p $name@active
 done
+
+echo ""
+echo -e "\033[0;35m+ create mock sales\033[0m"
+
+# ordered sales
+
+jq -c '.[]' mock.data.transaction.ordered.json | while read i; do
+  uuid=$(jq -r '.id' <<< "$i")
+  customer_name=$(jq -r '.customer_name' <<< "$i")
+  uuid_coffee=$(jq -r '.coffeeId' <<< "$i")
+  quantity=$(jq -r '.quantity' <<< "$i")
+  price=$(jq -r '.price' <<< "$i")
+  total=$(jq -r '.total' <<< "$i")
+
+  docker exec -t eosio_coffeechain /opt/eosio/bin/cleos \
+    --url http://127.0.0.1:$EOSIO_NETWORK_PORT \
+    --wallet-url http://127.0.0.1:$EOSIO_WALLET_PORT \
+    push action beancoin initiatesale \
+      "[ $uuid, $uuid_coffee, "\""$customer_name"\"", $quantity, $price, $total ]" \
+      -p $customer_name@active
+done
+
+# shipped sales
+
+jq -c '.[]' mock.data.transaction.shipped.json | while read i; do
+  uuid=$(jq -r '.id' <<< "$i")
+  customer_name=$(jq -r '.customer_name' <<< "$i")
+  producer_name=$(jq -r '.producer_name' <<< "$i")
+  uuid_coffee=$(jq -r '.coffeeId' <<< "$i")
+  quantity=$(jq -r '.quantity' <<< "$i")
+  price=$(jq -r '.price' <<< "$i")
+  total=$(jq -r '.total' <<< "$i")
+
+  docker exec -t eosio_coffeechain /opt/eosio/bin/cleos \
+    --url http://127.0.0.1:$EOSIO_NETWORK_PORT \
+    --wallet-url http://127.0.0.1:$EOSIO_WALLET_PORT \
+    push action beancoin initiatesale \
+      "[ $uuid, $uuid_coffee, "\""$customer_name"\"", $quantity, $price, $total ]" \
+      -p $customer_name@active
+
+  docker exec -t eosio_coffeechain /opt/eosio/bin/cleos \
+    --url http://127.0.0.1:$EOSIO_NETWORK_PORT \
+    --wallet-url http://127.0.0.1:$EOSIO_WALLET_PORT \
+    push action beancoin shipsale \
+      "[ "\""$producer_name"\"", $uuid ]" \
+      -p $producer_name@active
+done
+
+# delivered sales
+
+jq -c '.[]' mock.data.transaction.delivered.json | while read i; do
+  uuid=$(jq -r '.id' <<< "$i")
+  customer_name=$(jq -r '.customer_name' <<< "$i")
+  producer_name=$(jq -r '.producer_name' <<< "$i")
+  uuid_coffee=$(jq -r '.coffeeId' <<< "$i")
+  quantity=$(jq -r '.quantity' <<< "$i")
+  price=$(jq -r '.price' <<< "$i")
+  total=$(jq -r '.total' <<< "$i")
+
+  docker exec -t eosio_coffeechain /opt/eosio/bin/cleos \
+    --url http://127.0.0.1:$EOSIO_NETWORK_PORT \
+    --wallet-url http://127.0.0.1:$EOSIO_WALLET_PORT \
+    push action beancoin initiatesale \
+      "[ $uuid, $uuid_coffee, "\""$customer_name"\"", $quantity, $price, $total ]" \
+      -p $customer_name@active
+
+  docker exec -t eosio_coffeechain /opt/eosio/bin/cleos \
+    --url http://127.0.0.1:$EOSIO_NETWORK_PORT \
+    --wallet-url http://127.0.0.1:$EOSIO_WALLET_PORT \
+    push action beancoin shipsale \
+      "[ "\""$producer_name"\"", $uuid ]" \
+      -p $producer_name@active
+
+  docker exec -t eosio_coffeechain /opt/eosio/bin/cleos \
+    --url http://127.0.0.1:$EOSIO_NETWORK_PORT \
+    --wallet-url http://127.0.0.1:$EOSIO_WALLET_PORT \
+    push action beancoin fulfillsale \
+      "[ "\""$customer_name"\"", $uuid ]" \
+      -p $customer_name@active
+done
