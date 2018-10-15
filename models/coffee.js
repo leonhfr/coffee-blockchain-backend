@@ -43,6 +43,7 @@ exports.updateCoffee = async (id, info) => {
   if (info.details) updateValue.details = info.details;
   if (info.geo_location) updateValue.geo_location = info.geo_location;
   if (info.available) updateValue.available = info.available;
+  if (info.picture_hash) updateValue.picture_hash = info.picture_hash;
   await Coffee.update(updateValue, {
     returning: true,
     plain: true,
