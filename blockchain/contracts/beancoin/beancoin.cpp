@@ -153,7 +153,9 @@ namespace CoffeeBlockchain {
     uint64_t uuid,
     uint64_t uuid_coffee,
     account_name buyer,
-    uint64_t quantity
+    uint64_t quantity,
+    uint64_t price,
+    uint64_t total
   ) {
     require_auth(buyer); // ONLY BUYERS CAN INITIATE TRANSACTIONS
     coffee_index coffees(_self, _self);
@@ -168,10 +170,9 @@ namespace CoffeeBlockchain {
         row.seller = queriedCoffee.owner;
         row.buyer = buyer;
         row.quantity = quantity;
-        row.status = "init";
-      });
-      coffees.modify(iterator, _self, [&](auto& row) {
-        row.quantity -= quantity;
+        row.price = price;
+        row.total = total;
+        row.status = 1;
       });
       print("Initiate sale.");
       print(" | uuid: ", uuid);
@@ -179,6 +180,9 @@ namespace CoffeeBlockchain {
       print(" | buyer: ", name{buyer});
       print(" | seller: ", name{queriedCoffee.owner});
       print(" | quantity: ", quantity);
+      print(" | price: ", price);
+      print(" | total: ", total);
+      print(" | status: ", status);
     } else {
       print("Not enough coffee stock to honor the sale.");
     }
@@ -197,29 +201,42 @@ namespace CoffeeBlockchain {
     print(" | buyer: ", name{queriedSale.buyer});
     print(" | seller: ", name{queriedSale.seller});
     print(" | quantity: ", queriedSale.quantity);
+    print(" | price: ", queriedSale.price);
+    print(" | total: ", queriedSale.total);
     print(" | status: ", queriedSale.status);
     send_data(_self, queriedSale.status);
   }
 
-  void Beancoin::fulfillsale(
+  void Beancoin::shipsale(
+    account_name seller,
     uint64_t uuid
   ) {
-    require_auth(_self); // ONLY BEANCOIN :p
-    sale_index sales(_self, _self);
-    auto iterator = sales.find(uuid);
-    eosio_assert(iterator != sales.end(), "Sales does not exist.");
-    auto queriedSale = sales.get(uuid);
-    sales.modify(iterator, _self, [&](auto& row) {
-      row.status = "fulfilled";
+    // TODO
+    coffees.modify(iterator, _self, [&](auto& row) {
+      row.quantity -= quantity;
     });
-    print("Fulfill sale.");
-    print(" | uuid: ", uuid);
-    print(" | uuid_coffee: ", queriedSale.uuid_coffee);
-    print(" | buyer: ", name{queriedSale.buyer});
-    print(" | seller: ", name{queriedSale.seller});
-    print(" | quantity: ", queriedSale.quantity);
-    print(" | status: ", queriedSale.status);
-    send_data(_self, queriedSale.status);
+  }
+
+  void Beancoin::fulfillsale(
+    account_name buyer,
+    uint64_t uuid
+  ) {
+    // require_auth(_self); // ONLY BEANCOIN :p
+    // sale_index sales(_self, _self);
+    // auto iterator = sales.find(uuid);
+    // eosio_assert(iterator != sales.end(), "Sales does not exist.");
+    // auto queriedSale = sales.get(uuid);
+    // sales.modify(iterator, _self, [&](auto& row) {
+    //   row.status = "fulfilled";
+    // });
+    // print("Fulfill sale.");
+    // print(" | uuid: ", uuid);
+    // print(" | uuid_coffee: ", queriedSale.uuid_coffee);
+    // print(" | buyer: ", name{queriedSale.buyer});
+    // print(" | seller: ", name{queriedSale.seller});
+    // print(" | quantity: ", queriedSale.quantity);
+    // print(" | status: ", queriedSale.status);
+    // send_data(_self, queriedSale.status);
   }
 
   // PRIVATE METHODS
