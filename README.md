@@ -86,7 +86,7 @@ Please note that the alias will only be valid within your current terminal. To a
 ## Authors
 
 * Olga Chinina - [Github](https://github.com/chinins)
-* Marco Gallizi - [Github](https://github.com/Tezenn)
+* Marco Galizzi - [Github](https://github.com/Tezenn)
 * Leon Hollender - [Github](https://github.com/leonhfr)
 * Adria Palleja - [Github](https://github.com/adriapalleja)
 * Nathalia Rus - [Github](https://github.com/nathaliarus)
