@@ -3,7 +3,7 @@ const Sequelize = require('sequelize');
 const Picture = require('./picture');
 const Route = require('./route');
 
-const Shipper = sequelize.define('Shipper', {
+const Shipper = sequelize.define('shipper', {
   id: {
     type: Sequelize.BIGINT,
     primaryKey: true

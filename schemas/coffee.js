@@ -3,7 +3,7 @@ const sequelize = require('../models/sequelize');
 const Transaction = require('./transaction');
 const Producer = require('./producer');
 
-const Coffee = sequelize.define('Coffee', {
+const Coffee = sequelize.define('coffee', {
   id: {
     type: Sequelize.BIGINT,
     primaryKey: true
@@ -52,6 +52,6 @@ Coffee.hasMany(Transaction, {
   onDelete: 'CASCADE'
 });
 
-sequelize.models.Transaction.belongsTo(Coffee, { foreignKey: 'coffeeId' });
+sequelize.models.transaction.belongsTo(Coffee, { foreignKey: 'coffeeId' });
 
 module.exports = Coffee;

@@ -3,7 +3,7 @@ const Sequelize = require('sequelize');
 
 const Shipper = require('./shipper');
 
-const Transaction = sequelize.define('Transaction', {
+const Transaction = sequelize.define('transaction', {
   id: {
     type: Sequelize.BIGINT,
     primaryKey: true
@@ -12,7 +12,7 @@ const Transaction = sequelize.define('Transaction', {
   price: Sequelize.DECIMAL
 });
 
-sequelize.models.Shipper.hasMany(Transaction, { foreignKey: 'shipperId' });
+sequelize.models.shipper.hasMany(Transaction, { foreignKey: 'shipperId' });
 Transaction.belongsTo(Shipper, { foreignKey: 'shipperId' });
 
 module.exports = Transaction;

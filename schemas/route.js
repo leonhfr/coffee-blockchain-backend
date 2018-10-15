@@ -1,7 +1,7 @@
 const sequelize = require('../models/sequelize');
 const Sequelize = require('sequelize');
 
-const Route = sequelize.define('Route', {
+const Route = sequelize.define('route', {
   id: {
     type: Sequelize.BIGINT,
     primaryKey: true

@@ -1,7 +1,7 @@
 const sequelize = require('../models/sequelize');
 const Sequelize = require('sequelize');
 
-const Picture = sequelize.define('Picture', {
+const Picture = sequelize.define('picture', {
   id: {
     type: Sequelize.BIGINT,
     primaryKey: true

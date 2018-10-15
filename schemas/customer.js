@@ -4,7 +4,7 @@ const Sequelize = require('sequelize');
 const Transaction = require('./transaction');
 const Picture = require('./picture');
 
-const Customer = sequelize.define('Customer', {
+const Customer = sequelize.define('customer', {
   id: {
     type: Sequelize.BIGINT,
     primaryKey: true
