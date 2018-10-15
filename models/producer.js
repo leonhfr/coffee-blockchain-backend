@@ -1,8 +1,9 @@
 const Producer = require('../schemas/producer');
 const Coffee = require('../schemas/coffee');
+const Transaction = require('../schemas/transaction');
 
 exports.createProducer = async producer => {
-  let newProducer = await Producer.create({
+  const newProducer = await Producer.create({
     email: producer.email,
     id: producer.id,
     business_name: producer.business_name,
@@ -13,8 +14,8 @@ exports.createProducer = async producer => {
 };
 
 exports.getProducer = async id => {
-  let producer = await Producer.find({
-    include: [Coffee],
+  const producer = await Producer.find({
+    include: [{ model: Coffee, include: [Transaction] }],
     where: { id: id }
   });
   return producer;
@@ -24,17 +25,17 @@ exports.filterProducers = async (filter, value) => {
   let whereCause = {};
   if (filter) {
     whereCause[filter] = value;
-    let producers = await Producer.findAll({
+    const producers = await Producer.findAll({
       where: whereCause,
-      include: [Coffee]
+      include: [{ model: Coffee, include: [Transaction] }]
     });
     return producers;
   }
 };
 
 exports.getProducers = async () => {
-  let producers = await Producer.findAll({
-    include: [Coffee]
+  const producers = await Producer.findAll({
+    include: [{ model: Coffee, include: [Transaction] }]
   });
   return producers;
 };

@@ -3,13 +3,13 @@ const Customer = require('../schemas/customer');
 const Shipper = require('../schemas/shipper');
 
 exports.getMe = async id => {
-  let producer = await Producer.find({
+  const producer = await Producer.find({
     where: { id: id }
   });
-  let customer = await Customer.find({
+  const customer = await Customer.find({
     where: { id: id }
   });
-  let shipper = await Shipper.find({
+  const shipper = await Shipper.find({
     where: { id: id }
   });
 
@@ -33,7 +33,7 @@ exports.updateMe = async (id, info) => {
       plain: true,
       where: { id: id }
     });
-    let producer = await Producer.find({
+    const producer = await Producer.find({
       where: { id: id }
     });
     return producer;
@@ -47,13 +47,12 @@ exports.updateMe = async (id, info) => {
     if (info.country) updateValue.country = info.country;
     if (info.description) updateValue.description = info.description;
     if (info.geo_location) updateValue.geo_location = info.geo_location;
-    console.log('update value: ', updateValue);
     await Customer.update(updateValue, {
       returning: true,
       plain: true,
       where: { id: id }
     });
-    let customer = await Customer.find({
+    const customer = await Customer.find({
       where: { id: id }
     });
     return customer;
