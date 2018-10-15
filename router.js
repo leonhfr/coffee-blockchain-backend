@@ -30,6 +30,7 @@ router.put('/me', me.updateMe);
 router.post('/transactions/', transaction.createTransaction);
 router.get('/transactions/:id', transaction.getTransaction);
 router.get('/transactions', transaction.getAllTransactions);
+router.put('/transactions/:id', transaction.updateTransaction);
 
 router.post('/shippers', shipper.createShipper);
 router.get('/shippers', shipper.getShippers);

@@ -3,7 +3,7 @@ const Producer = require('../schemas/producer');
 const Coffee = require('../schemas/coffee');
 
 exports.createCoffee = async coffee => {
-  let newCoffee = await Coffee.create({
+  const newCoffee = await Coffee.create({
     id: coffee.id,
     name: coffee.name,
     botanical_variety: coffee.botanical_variety,
@@ -21,7 +21,7 @@ exports.createCoffee = async coffee => {
 };
 
 exports.getCoffee = async id => {
-  let coffee = await Coffee.find({
+  const coffee = await Coffee.find({
     include: [Producer, Transaction],
     where: { id: id }
   });
@@ -47,7 +47,7 @@ exports.updateCoffee = async (id, info) => {
     plain: true,
     where: { id: id }
   });
-  let coffee = await Coffee.find({
+  const coffee = await Coffee.find({
     where: { id: id }
   });
   return coffee;
@@ -57,7 +57,7 @@ exports.filterCoffees = async (filter, value) => {
   let whereCause = {};
   if (filter) {
     whereCause[filter] = value;
-    let coffees = await Coffee.findAll({
+    const coffees = await Coffee.findAll({
       where: whereCause,
       include: [Producer]
     });
@@ -66,7 +66,7 @@ exports.filterCoffees = async (filter, value) => {
 };
 
 exports.getCoffees = async () => {
-  let coffees = await Coffee.findAll({
+  const coffees = await Coffee.findAll({
     include: [Producer, Transaction]
   });
   return coffees;

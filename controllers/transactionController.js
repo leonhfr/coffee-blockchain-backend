@@ -17,3 +17,10 @@ exports.getAllTransactions = async ctx => {
   if (ctx.body) return (ctx.status = 200);
   ctx.status = 404;
 };
+
+exports.updateTransaction = async ctx => {
+  let id = ctx.params.id;
+  ctx.body = await models.transaction.updateTransaction(ctx.request.body, id);
+  if (ctx.body) return (ctx.status = 200);
+  ctx.status = 404;
+};

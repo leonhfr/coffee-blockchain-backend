@@ -2,8 +2,7 @@ const Transaction = require('../schemas/transaction');
 const Customer = require('../schemas/customer');
 
 exports.createTransaction = async transaction => {
-  console.log(transaction);
-  let res = await Transaction.create({
+  const res = await Transaction.create({
     id: transaction.id,
     quantity: transaction.quantity,
     price: transaction.price,
@@ -17,7 +16,7 @@ exports.createTransaction = async transaction => {
 };
 
 exports.getCustomerAndTransactions = async id => {
-  let res = await Customer.findAll({
+  const res = await Customer.findAll({
     include: [{ model: Transaction }],
     where: { id: id }
   });
@@ -25,6 +24,23 @@ exports.getCustomerAndTransactions = async id => {
 };
 
 exports.getAllTransactions = async () => {
-  let res = await Transaction.findAll();
+  const res = await Transaction.findAll();
   return res;
+};
+
+exports.updateTransaction = async (info, id) => {
+  let updateValue = {};
+  if (info.quantity) updateValue.quantity = info.quantity;
+  if (info.price) updateValue.price = info.price;
+  if (info.total) updateValue.total = info.total;
+  if (info.status_code) updateValue.status_code = info.status_code;
+  await Transaction.update(updateValue, {
+    returning: true,
+    plain: true,
+    where: { id: id }
+  });
+  const updatedTransaction = await Transaction.find({
+    where: { id: id }
+  });
+  return updatedTransaction;
 };
