@@ -150,12 +150,12 @@ cleos push action beancoin getcoffee \
 
 # fulfillsale
 
-# echo "\033[0;34m+ beancoin should be able to fulfill a sale\033[0m"
-# cleos push action beancoin fulfillsale \
-#   "[ 1230787824470 ]" \
-#   -p beancoin@active
-#
-# echo "\033[0;34m+ should be able to get a sale\033[0m"
-# cleos push action beancoin getsale \
-#   "[ 1230787824470 ]" \
-#   -p testaccount@active
+echo "\033[0;34m+ buyer should be able to fulfill a sale\033[0m"
+cleos push action beancoin fulfillsale \
+  "[ \"testaccount\", 1230787824470 ]" \
+  -p testaccount@active
+
+echo "\033[0;34m+ status of sale should be 3\033[0m"
+cleos push action beancoin getsale \
+  "[ 1230787824470 ]" \
+  -p testaccount@active
