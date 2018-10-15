@@ -26,14 +26,14 @@ namespace CoffeeBlockchain {
     user_index users(_self, _self);
     auto iterator = users.find(user);
     if (iterator == users.end()) {
-      users.emplace(user, [&](auto& row) {
+      users.emplace(_self, [&](auto& row) {
         row.username = user;
         row.role = role;
         row.hash = hash;
       });
       print("Inserted user!");
     } else {
-      users.modify(iterator, user, [&](auto& row) {
+      users.modify(iterator, _self, [&](auto& row) {
         row.username = user;
         row.role = role;
         row.hash = hash;
@@ -85,7 +85,7 @@ namespace CoffeeBlockchain {
     coffee_index coffees(_self, _self);
     auto iterator = coffees.find(uuid);
     if (iterator == coffees.end()) {
-      coffees.emplace(owner, [&](auto& row) {
+      coffees.emplace(_self, [&](auto& row) {
         row.uuid = uuid;
         row.owner = owner;
         row.hash = hash;
@@ -96,7 +96,7 @@ namespace CoffeeBlockchain {
     } else {
       auto queriedCoffee = coffees.get(uuid);
       if (queriedCoffee.owner == owner) {
-        coffees.modify(iterator, owner, [&](auto& row) {
+        coffees.modify(iterator, _self, [&](auto& row) {
           row.uuid = uuid;
           row.owner = owner;
           row.hash = hash;
@@ -167,7 +167,7 @@ namespace CoffeeBlockchain {
     auto queriedCoffee = coffees.get(uuid_coffee);
     sale_index sales(_self, _self);
     if (queriedCoffee.quantity >= quantity) {
-      sales.emplace(buyer, [&](auto& row) {
+      sales.emplace(_self, [&](auto& row) {
         row.uuid = uuid;
         row.uuid_coffee = uuid_coffee;
         row.seller = queriedCoffee.owner;
@@ -175,17 +175,17 @@ namespace CoffeeBlockchain {
         row.quantity = quantity;
         row.price = price;
         row.total = total;
-        row.status = 1;
+        row.status = "1";
       });
       print("Initiate sale.");
       print(" | uuid: ", uuid);
       print(" | uuid_coffee: ", uuid_coffee);
-      print(" | buyer: ", name{buyer});
       print(" | seller: ", name{queriedCoffee.owner});
+      print(" | buyer: ", name{buyer});
       print(" | quantity: ", quantity);
       print(" | price: ", price);
       print(" | total: ", total);
-      print(" | status: ", 1);
+      print(" | status: ", "1");
     } else {
       print("Not enough coffee stock to honor the sale.");
     }
@@ -207,7 +207,7 @@ namespace CoffeeBlockchain {
     print(" | price: ", queriedSale.price);
     print(" | total: ", queriedSale.total);
     print(" | status: ", queriedSale.status);
-    send_data(_self, std::to_string(queriedSale.status));
+    send_data(_self, queriedSale.status);
   }
 
   void Beancoin::shipsale(
@@ -226,11 +226,11 @@ namespace CoffeeBlockchain {
     eosio_assert(iterator_coffees != coffees.end(), "Coffee does not exist.");
     // modify coffee quantity
     coffees.modify(iterator_coffees, _self, [&](auto& row) {
-      row.quantity -= queriedSale.quantity;
+      row.quantity = row.quantity - queriedSale.quantity;
     });
     // modify sale status
     sales.modify(iterator_sales, _self, [&](auto& row) {
-      row.status = 2;
+      row.status = "2";
     });
     print("Ship sale.");
     print(" | uuid: ", uuid);
@@ -240,7 +240,7 @@ namespace CoffeeBlockchain {
     print(" | quantity: ", queriedSale.quantity);
     print(" | price: ", queriedSale.price);
     print(" | total: ", queriedSale.total);
-    print(" | status: ", 2);
+    print(" | status: ", "2");
     send_data(_self, "2");
   }
 
@@ -254,7 +254,7 @@ namespace CoffeeBlockchain {
     eosio_assert(iterator != sales.end(), "Sales does not exist.");
     auto queriedSale = sales.get(uuid);
     sales.modify(iterator, _self, [&](auto& row) {
-      row.status = 3;
+      row.status = "3";
     });
     print("Fulfill sale.");
     print(" | uuid: ", uuid);
@@ -264,7 +264,7 @@ namespace CoffeeBlockchain {
     print(" | quantity: ", queriedSale.quantity);
     print(" | price: ", queriedSale.price);
     print(" | total: ", queriedSale.total);
-    print(" | status: ", 3);
+    print(" | status: ", "3");
     send_data(_self, "3");
   }
 
