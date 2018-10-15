@@ -1,6 +1,6 @@
 [
   {
-    "id": "ecedd2e7-c913-4250-a331-932c219c8000",
+    "id": "789141301172420",
     "name": "coffeTest",
     "botanical_variety": "special variety",
     "preparation": "wet",
@@ -10,14 +10,18 @@
     "bean_density": 0.987,
     "bean_screen_size": 15.8,
     "details": "some details",
-    "producerId": "cac4eba3-a8cc-431b-8dd7-89558053000",
     "geo_location": {
       "type": "Point",
       "coordinates": [125.61511111, 10.11511111]
     }
+    "producerId": "595223592125200",
+    "producer_name": "marcogalizzi",
+    "hash": "marcogalizzi-hash1",
+    "price": 10,
+    "quantity": 200
   },
   {
-    "id": "ecedd2e7-c913-4250-a331-932c219c8001",
+    "id": "789141301172421",
     "name": "coffebob",
     "botanical_variety": "special variety",
     "preparation": "dry",
@@ -27,14 +31,18 @@
     "bean_density": 0.7,
     "bean_screen_size": 15.8,
     "details": "some details",
-    "producerId": "cac4eba3-a8cc-431b-8dd7-89558053000",
     "geo_location": {
       "type": "Point",
       "coordinates": [125.61511111, 10.11511111]
     }
+    "producerId": "595223592125200",
+    "producer_name": "marcogalizzi",
+    "hash": "marcogalizzi-hash2",
+    "price": 8,
+    "quantity": 1920
   },
   {
-    "id": "ecedd2e7-c913-4250-a331-932c219c8002",
+    "id": "789141301172422",
     "name": "coffelight",
     "botanical_variety": "special variety",
     "preparation": "wet",
@@ -44,10 +52,14 @@
     "bean_density": 0.8,
     "bean_screen_size": 15.8,
     "details": "some details",
-    "producerId": "cac4eba3-a8cc-431b-8dd7-89558053001"
+    "producerId": "595223592125201",
+    "name": "nathaliarus",
+    "hash": "nathaliarus-hash1",
+    "price": 6,
+    "quantity": 331
   },
   {
-    "id": "ecedd2e7-c913-4250-a331-932c219c8003",
+    "id": "789141301172423",
     "name": "coffeTest",
     "botanical_variety": "special variety",
     "preparation": "dry",
@@ -57,14 +69,18 @@
     "bean_density": 0.85,
     "bean_screen_size": 15.8,
     "details": "some details",
-    "producerId": "cac4eba3-a8cc-431b-8dd7-89558053001",
     "geo_location": {
       "type": "Point",
       "coordinates": [125.61511111, 10.11511111]
     }
+    "producerId": "595223592125201",
+    "producer_name": "nathaliarus",
+    "hash": "nathaliarus-hash2",
+    "price": 11,
+    "quantity": 150
   },
   {
-    "id": "ecedd2e7-c913-4250-a331-932c219c8004",
+    "id": "789141301172424",
     "name": "coffeTest",
     "botanical_variety": "special variety",
     "preparation": "wet",
@@ -74,14 +90,18 @@
     "bean_density": 0.92,
     "bean_screen_size": 15.8,
     "details": "some details",
-    "producerId": "cac4eba3-a8cc-431b-8dd7-89558053002",
     "geo_location": {
       "type": "Point",
       "coordinates": [125.61511111, 10.11511111]
     }
+    "producerId": "595223592125202",
+    "producer_name": "arolvinolas",
+    "hash": "arolvinolas-hash1",
+    "price": 10,
+    "quantity": 20
   },
   {
-    "id": "ecedd2e7-c913-4250-a331-932c219c8005",
+    "id": "789141301172425",
     "name": "coffeTest",
     "botanical_variety": "special variety",
     "preparation": "wet",
@@ -91,10 +111,15 @@
     "bean_density": 0.91,
     "bean_screen_size": 15.8,
     "details": "some details",
-    "producerId": "cac4eba3-a8cc-431b-8dd7-89558053002",
     "geo_location": {
       "type": "Point",
       "coordinates": [125.61511111, 10.11511111]
     }
+
+    "producerId": "595223592125202",
+    "producer_name": "arolvinolas",
+    "hash": "arolvinolas-hash2",
+    "price": 8,
+    "quantity": 500
   }
 ]
