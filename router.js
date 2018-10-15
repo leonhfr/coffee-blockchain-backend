@@ -18,7 +18,7 @@ router.get('/producers/:id', producer.getProducer);
 router.get('/producers/:filter/:value', producer.filterProducers);
 router.get('/producers', producer.getProducers);
 
-router.post('/coffees/:producerId', coffee.createCoffee);
+router.post('/coffees', coffee.createCoffee);
 router.get('/coffees/:coffeeId', coffee.getCoffee);
 router.put('/coffees/', coffee.updateCoffee);
 router.get('/coffees/:filter/:value', coffee.filterCoffees);
