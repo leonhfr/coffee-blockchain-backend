@@ -1,5 +1,5 @@
 {
-    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT Mon Oct 15 22:18:03 2018",
+    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT Tue Oct 16 01:05:10 2018",
     "version": "eosio::abi/1.0",
     "structs": [
         {
@@ -114,14 +114,6 @@
                 },
                 {
                     "name": "quantity",
-                    "type": "uint64"
-                },
-                {
-                    "name": "price",
-                    "type": "uint64"
-                },
-                {
-                    "name": "total",
                     "type": "uint64"
                 }
             ]

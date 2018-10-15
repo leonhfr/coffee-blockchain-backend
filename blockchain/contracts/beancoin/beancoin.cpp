@@ -156,15 +156,15 @@ namespace CoffeeBlockchain {
     uint64_t uuid,
     uint64_t uuid_coffee,
     account_name buyer,
-    uint64_t quantity,
-    uint64_t price,
-    uint64_t total
+    uint64_t quantity
   ) {
     require_auth(buyer); // ONLY BUYERS CAN INITIATE TRANSACTIONS
     coffee_index coffees(_self, _self);
     auto iterator = coffees.find(uuid_coffee);
     eosio_assert(iterator != coffees.end(), "Coffee does not exist.");
     auto queriedCoffee = coffees.get(uuid_coffee);
+    uint64_t price = queriedCoffee.price;
+    uint64_t total = price * quantity;
     sale_index sales(_self, _self);
     if (queriedCoffee.quantity >= quantity) {
       sales.emplace(_self, [&](auto& row) {

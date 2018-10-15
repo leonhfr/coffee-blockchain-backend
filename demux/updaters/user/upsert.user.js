@@ -31,8 +31,10 @@ async function upsertUser (state, payload, blockInfo, context) {
           { confirmed: true },
           { returning: true, plain: true, where: { customer_name: user } }
         );
+        //eslint-disable-next-line
         console.log('CONFIRMED');
       } else {
+        //eslint-disable-next-line
         console.log('NOT CONFIRMED: ', hash, md5(bodyToCheck));
       }
     } else if (role === 'producer') {
@@ -56,8 +58,10 @@ async function upsertUser (state, payload, blockInfo, context) {
           { confirmed: true },
           { returning: true, plain: true, where: { business_name: user } }
         );
+        //eslint-disable-next-line
         console.log('CONFIRMED');
       } else {
+        //eslint-disable-next-line
         console.log('NOT CONFIRMED: ', hash, md5(bodyToCheck));
       }
     }

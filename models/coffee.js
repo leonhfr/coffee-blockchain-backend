@@ -6,15 +6,15 @@ exports.createCoffee = async coffee => {
   const newCoffee = await Coffee.create({
     id: coffee.id,
     name: coffee.name,
-    botanical_variety: coffee.botanical_variety,
-    preparation: coffee.preparation,
-    altitude: coffee.altitude,
-    region: coffee.region,
-    roast_appearance: coffee.roast_appearance,
-    details: coffee.details,
+    botanical_variety: coffee.botanical_variety || '',
+    preparation: coffee.preparation || '',
+    altitude: coffee.altitude || 0,
+    region: coffee.region || '',
+    roast_appearance: coffee.roast_appearance || '',
+    details: coffee.details || '',
     producerId: coffee.producerId,
     geo_location: coffee.geo_location,
-    price_kg: coffee.price_kg,
+    price_kg: coffee.price_kg || 5,
     available: coffee.available,
     picture_hash: coffee.picture_hash
   });
