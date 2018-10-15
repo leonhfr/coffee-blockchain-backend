@@ -18,6 +18,7 @@
     "producer_name": "marcogalizzi",
     "hash": "d2e3eafff4d0b1d60cf5b54af1e3a862",
     "price": 10,
+    "available": 350,
     "quantity": 200
   },
   {
@@ -39,6 +40,7 @@
     "producer_name": "marcogalizzi",
     "hash": "ba4488420178df8f63ff085252c24abf",
     "price": 8,
+    "available": 35,
     "quantity": 1920
   },
   {
@@ -56,6 +58,7 @@
     "producer_name": "nathaliarus",
     "hash": "e6d9d1ee712ae06bbf1f565cef2c98c8",
     "price": 6,
+    "available": 500,
     "quantity": 331
   },
   {
@@ -77,6 +80,7 @@
     "producer_name": "nathaliarus",
     "hash": "145b25c18c32c11451ac6d59df7eaa75",
     "price": 11,
+    "available": 190,
     "quantity": 150
   },
   {
@@ -98,6 +102,7 @@
     "producer_name": "arolvinolas",
     "hash": "d2e3eafff4d0b1d60cf5b54af1e3a862",
     "price": 10,
+    "available": 350,
     "quantity": 20
   },
   {
@@ -119,6 +124,7 @@
     "producer_name": "arolvinolas",
     "hash": "d2e3eafff4d0b1d60cf5b54af1e3a862",
     "price": 8,
+    "available": 700,
     "quantity": 500
   }
 ]

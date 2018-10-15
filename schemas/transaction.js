@@ -10,6 +10,8 @@ const Transaction = sequelize.define('transaction', {
   },
   quantity: Sequelize.DECIMAL,
   price: Sequelize.DECIMAL,
+  total: Sequelize.DECIMAL,
+  status_code: Sequelize.INTEGER,
   confirmed: {
     type: Sequelize.BOOLEAN,
     defaultValue: false

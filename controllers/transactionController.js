@@ -11,3 +11,9 @@ exports.getTransaction = async ctx => {
   if (ctx.body) return (ctx.status = 200);
   ctx.status = 404;
 };
+
+exports.getAllTransactions = async ctx => {
+  ctx.body = await models.transaction.getAllTransactions();
+  if (ctx.body) return (ctx.status = 200);
+  ctx.status = 404;
+};

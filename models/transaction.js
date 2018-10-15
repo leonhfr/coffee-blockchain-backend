@@ -9,7 +9,9 @@ exports.createTransaction = async transaction => {
     price: transaction.price,
     customerId: transaction.customerId,
     shipperId: transaction.shipperId,
-    coffeeId: transaction.coffeeId
+    coffeeId: transaction.coffeeId,
+    total: transaction.total,
+    status_code: transaction.status_code
   });
   return res;
 };
@@ -19,5 +21,10 @@ exports.getCustomerAndTransactions = async id => {
     include: [{ model: Transaction }],
     where: { id: id }
   });
+  return res;
+};
+
+exports.getAllTransactions = async () => {
+  let res = await Transaction.findAll();
   return res;
 };
