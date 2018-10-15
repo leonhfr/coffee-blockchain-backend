@@ -24,49 +24,17 @@ npm install
 
 #### REDIS
 
-echo "\033[0;34m+++ pull redis image from docker hub +++\033[0m"
-docker pull redis
-
-echo ""
-echo "\033[0;34m+++ setup/reset data for container redis_coffeechain +++\033[0m"
-echo "Note: it is fine to see some errors here"
-# force remove the previous eosio container if it exists
-docker stop redis_coffeechain || true && docker rm --force redis_coffeechain || true
-
-echo ""
-echo "\033[0;34m+++ starting database: docker container redis_coffeechain +++\033[0m"
 sh -ac '. ./.env; ./blockchain/scripts/redis.sh'
 
 ### MYSQL
 
-echo "\033[0;34m+++ pull mysql image from docker hub +++\033[0m"
-docker pull mysql:5
-
-echo ""
-echo "\033[0;34m+++ setup/reset data for container mysql_coffeechain +++\033[0m"
-echo "Note: it is fine to see some errors here"
-# force remove the previous eosio container if it exists
-docker stop mysql_coffeechain || true && docker rm --force mysql_coffeechain || true
-
-echo ""
-echo "\033[0;34m+++ starting database: docker container mysql_coffeechain +++\033[0m"
 sh -ac '. ./.env; ./blockchain/scripts/mysql.sh'
 
 ### EOSIO/EOS
 
-echo ""
-echo "\033[0;34m+++ pull eosio/eos image from docker hub +++\033[0m"
-docker pull eosio/eos:v1.3.2
-
-echo ""
-echo "\033[0;34m+++ setup/reset data for container eosio_coffeechain +++\033[0m"
-echo "Note: it is fine to see some errors here"
-# force remove the previous eosio container if it exists
-docker stop eosio_coffeechain || true && docker rm --force eosio_coffeechain || true
-
-echo ""
-echo "\033[0;34m+++ starting blockchain: docker container eosio_coffeechain +++\033[0m"
-sh -ac '. ./.env; ./blockchain/scripts/eosio.sh'
+sh -ac '. ./.env; ./blockchain/scripts/eosio.start.sh'
+sh -ac '. ./.env; ./blockchain/scripts/eosio.config.sh'
+sh -ac '. ./.env; ./blockchain/scripts/eosio.data.sh'
 
 ### BACKEND SERVER/API
 
