@@ -47,6 +47,9 @@ const Coffee = sequelize.define('coffee', {
     type: Sequelize.GEOMETRY('POINT'),
     allowNull: true
   },
+  picture_hash: {
+    type: Sequelize.STRING
+  },
   confirmed: {
     type: Sequelize.BOOLEAN,
     defaultValue: false

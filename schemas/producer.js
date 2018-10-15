@@ -15,6 +15,9 @@ const Producer = sequelize.define('producer', {
   },
   email: Sequelize.STRING,
   description: Sequelize.TEXT,
+  picture_hash: {
+    type: Sequelize.STRING
+  },
   confirmed: {
     type: Sequelize.BOOLEAN,
     defaultValue: false
