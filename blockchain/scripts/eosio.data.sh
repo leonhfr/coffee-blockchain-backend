@@ -38,7 +38,7 @@ done
 echo ""
 echo -e "\033[0;35m+ create mock coffees\033[0m"
 jq -c '.[]' mock.data.coffee.json | while read i; do
-  name=$(jq -r '.name' <<< "$i")
+  name=$(jq -r '.producer_name' <<< "$i")
   uuid=$(jq -r '.id' <<< "$i")
   hash=$(jq -r '.hash' <<< "$i")
   price=$(jq -r '.price' <<< "$i")
