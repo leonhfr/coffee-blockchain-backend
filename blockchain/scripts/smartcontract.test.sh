@@ -121,7 +121,7 @@ cleos push action beancoin upsertcoffee \
 
 echo "\033[0;34m+ should be able to initiate a sale\033[0m"
 cleos push action beancoin initiatesale \
-  "[ 1230787824470, 1230787824460, \"testaccount\", 10, 30, 300 ]" \
+  "[ 1230787824470, 1230787824460, \"testaccount\", 10 ]" \
   -p testaccount@active
 
 echo "\033[0;34m+ should be able to get a sale, status 1\033[0m"

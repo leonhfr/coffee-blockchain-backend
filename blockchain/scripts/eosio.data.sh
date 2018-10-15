@@ -62,14 +62,12 @@ jq -c '.[]' mock.data.transaction.ordered.json | while read i; do
   customer_name=$(jq -r '.customer_name' <<< "$i")
   uuid_coffee=$(jq -r '.coffeeId' <<< "$i")
   quantity=$(jq -r '.quantity' <<< "$i")
-  price=$(jq -r '.price' <<< "$i")
-  total=$(jq -r '.total' <<< "$i")
 
   docker exec -t eosio_coffeechain /opt/eosio/bin/cleos \
     --url http://127.0.0.1:$EOSIO_NETWORK_PORT \
     --wallet-url http://127.0.0.1:$EOSIO_WALLET_PORT \
     push action beancoin initiatesale \
-      "[ $uuid, $uuid_coffee, "\""$customer_name"\"", $quantity, $price, $total ]" \
+      "[ $uuid, $uuid_coffee, "\""$customer_name"\"", $quantity ]" \
       -p $customer_name@active
 done
 
@@ -81,14 +79,12 @@ jq -c '.[]' mock.data.transaction.shipped.json | while read i; do
   producer_name=$(jq -r '.producer_name' <<< "$i")
   uuid_coffee=$(jq -r '.coffeeId' <<< "$i")
   quantity=$(jq -r '.quantity' <<< "$i")
-  price=$(jq -r '.price' <<< "$i")
-  total=$(jq -r '.total' <<< "$i")
 
   docker exec -t eosio_coffeechain /opt/eosio/bin/cleos \
     --url http://127.0.0.1:$EOSIO_NETWORK_PORT \
     --wallet-url http://127.0.0.1:$EOSIO_WALLET_PORT \
     push action beancoin initiatesale \
-      "[ $uuid, $uuid_coffee, "\""$customer_name"\"", $quantity, $price, $total ]" \
+      "[ $uuid, $uuid_coffee, "\""$customer_name"\"", $quantity ]" \
       -p $customer_name@active
 
   docker exec -t eosio_coffeechain /opt/eosio/bin/cleos \
@@ -107,14 +103,12 @@ jq -c '.[]' mock.data.transaction.delivered.json | while read i; do
   producer_name=$(jq -r '.producer_name' <<< "$i")
   uuid_coffee=$(jq -r '.coffeeId' <<< "$i")
   quantity=$(jq -r '.quantity' <<< "$i")
-  price=$(jq -r '.price' <<< "$i")
-  total=$(jq -r '.total' <<< "$i")
 
   docker exec -t eosio_coffeechain /opt/eosio/bin/cleos \
     --url http://127.0.0.1:$EOSIO_NETWORK_PORT \
     --wallet-url http://127.0.0.1:$EOSIO_WALLET_PORT \
     push action beancoin initiatesale \
-      "[ $uuid, $uuid_coffee, "\""$customer_name"\"", $quantity, $price, $total ]" \
+      "[ $uuid, $uuid_coffee, "\""$customer_name"\"", $quantity ]" \
       -p $customer_name@active
 
   docker exec -t eosio_coffeechain /opt/eosio/bin/cleos \
