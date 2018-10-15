@@ -19,6 +19,9 @@ const Customer = sequelize.define('customer', {
     type: Sequelize.GEOMETRY('POINT'),
     allowNull: true
   },
+  picture_hash: {
+    type: Sequelize.STRING
+  },
   description: Sequelize.TEXT,
   email: Sequelize.STRING,
   confirmed: {

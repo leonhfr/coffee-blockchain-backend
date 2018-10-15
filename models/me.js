@@ -28,6 +28,7 @@ exports.updateMe = async (id, info) => {
     if (info.producer_name) updateValue.producer_name = info.producer_name;
     if (info.country) updateValue.country = info.country;
     if (info.description) updateValue.description = info.description;
+    if (info.picture_hash) updateValue.picture_hash = info.picture_hash;
     await Producer.update(updateValue, {
       returning: true,
       plain: true,
@@ -47,6 +48,7 @@ exports.updateMe = async (id, info) => {
     if (info.country) updateValue.country = info.country;
     if (info.description) updateValue.description = info.description;
     if (info.geo_location) updateValue.geo_location = info.geo_location;
+    if (info.picture_hash) updateValue.picture_hash = info.picture_hash;
     await Customer.update(updateValue, {
       returning: true,
       plain: true,

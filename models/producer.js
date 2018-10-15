@@ -8,7 +8,8 @@ exports.createProducer = async producer => {
     id: producer.id,
     business_name: producer.business_name,
     country: producer.country,
-    description: producer.description
+    description: producer.description,
+    picture_hash: producer.picture_hash
   });
   return newProducer;
 };
