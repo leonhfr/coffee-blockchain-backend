@@ -3,18 +3,19 @@ const Transaction = require('../schemas/transaction');
 const Picture = require('../schemas/picture');
 
 exports.createCustomer = async customer => {
-  let newCustomer = await Customer.create({
+  const newCustomer = await Customer.create({
     email: customer.email,
     id: customer.id,
     country: customer.country,
     description: customer.description,
-    customer_name: customer.customer_name
+    customer_name: customer.customer_name,
+    picture_hash: customer.picture_hash
   });
   return newCustomer;
 };
 
 exports.getCustomer = async id => {
-  let customer = await Customer.find({
+  const customer = await Customer.find({
     include: [Transaction, Picture],
     where: { id: id }
   });
@@ -25,7 +26,7 @@ exports.filterCustomers = async (filter, value) => {
   let whereCause = {};
   if (filter) {
     whereCause[filter] = value;
-    let customers = await Customer.findAll({
+    const customers = await Customer.findAll({
       where: whereCause
     });
     return customers;
@@ -33,7 +34,7 @@ exports.filterCustomers = async (filter, value) => {
 };
 
 exports.getCustomers = async () => {
-  let customers = await Customer.findAll({
+  const customers = await Customer.findAll({
     include: [Transaction, Picture]
   });
   return customers;

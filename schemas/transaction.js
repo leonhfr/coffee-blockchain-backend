@@ -9,7 +9,13 @@ const Transaction = sequelize.define('transaction', {
     primaryKey: true
   },
   quantity: Sequelize.DECIMAL,
-  price: Sequelize.DECIMAL
+  price: Sequelize.DECIMAL,
+  total: Sequelize.DECIMAL,
+  status_code: Sequelize.INTEGER,
+  confirmed: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+  }
 });
 
 sequelize.models.shipper.hasMany(Transaction, { foreignKey: 'shipperId' });

@@ -40,9 +40,19 @@ const Coffee = sequelize.define('coffee', {
     type: Sequelize.DECIMAL,
     defaultValue: 0
   },
+  available: {
+    type: Sequelize.DECIMAL
+  },
   geo_location: {
     type: Sequelize.GEOMETRY('POINT'),
     allowNull: true
+  },
+  picture_hash: {
+    type: Sequelize.STRING
+  },
+  confirmed: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   }
 });
 

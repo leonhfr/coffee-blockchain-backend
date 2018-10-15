@@ -4,6 +4,7 @@ const models = require('../../models');
 const users = require('./mock.data.user.json');
 const coffees = require('./mock.data.coffee.json');
 const pictures = require('./mock.data.pictures.json');
+const transactions = require('./mock.data.transactions');
 
 async function processArray (array, handle, type) {
   const promises = array.map(handle);
@@ -25,6 +26,11 @@ async function populate () {
   );
   await processArray(pictures, models.picture.createPicture, 'picture');
   await processArray(coffees, models.coffee.createCoffee, 'coffees');
+  await processArray(
+    transactions,
+    models.transaction.createTransaction,
+    'transaction'
+  );
   //eslint-disable-next-line
   console.log('Database populated with mock data!');
 }
