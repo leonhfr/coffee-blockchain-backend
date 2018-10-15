@@ -4,5 +4,14 @@ const customer = require('./customer');
 const me = require('./me');
 const shipper = require('./shipper');
 const transaction = require('./transaction');
+const picture = require('./picture');
 
-module.exports = { coffee, producer, customer, me, shipper, transaction };
+module.exports = {
+  coffee,
+  producer,
+  customer,
+  me,
+  shipper,
+  transaction,
+  picture
+};

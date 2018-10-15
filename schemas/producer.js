@@ -2,9 +2,9 @@ const sequelize = require('../models/sequelize');
 const Sequelize = require('sequelize');
 const Coffee = require('./coffee');
 
-const Producer = sequelize.define('Producer', {
+const Producer = sequelize.define('producer', {
   id: {
-    type: Sequelize.STRING,
+    type: Sequelize.BIGINT,
     primaryKey: true
   },
   business_name: {
@@ -17,7 +17,7 @@ const Producer = sequelize.define('Producer', {
   description: Sequelize.TEXT
 });
 
-sequelize.models.Coffee.belongsTo(Producer, { foreignKey: 'producerId' });
+sequelize.models.coffee.belongsTo(Producer, { foreignKey: 'producerId' });
 
 Producer.hasMany(Coffee, {
   foreignKey: 'producerId',

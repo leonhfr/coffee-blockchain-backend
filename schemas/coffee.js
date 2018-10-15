@@ -3,9 +3,9 @@ const sequelize = require('../models/sequelize');
 const Transaction = require('./transaction');
 const Producer = require('./producer');
 
-const Coffee = sequelize.define('Coffee', {
+const Coffee = sequelize.define('coffee', {
   id: {
-    type: Sequelize.STRING,
+    type: Sequelize.BIGINT,
     primaryKey: true
   },
   name: {
@@ -22,7 +22,7 @@ const Coffee = sequelize.define('Coffee', {
   },
   altitude: {
     type: Sequelize.INTEGER,
-    defaultValue: null
+    defaultValue: 0
   },
   region: {
     type: Sequelize.STRING,
@@ -32,13 +32,13 @@ const Coffee = sequelize.define('Coffee', {
     type: Sequelize.TEXT,
     defaultValue: null
   },
-  bean_density: {
-    type: Sequelize.FLOAT,
-    defaultValue: null
-  },
   details: {
     type: Sequelize.TEXT,
     defaultValue: null
+  },
+  price_kg: {
+    type: Sequelize.DECIMAL,
+    defaultValue: 0
   },
   geo_location: {
     type: Sequelize.GEOMETRY('POINT'),
@@ -52,6 +52,6 @@ Coffee.hasMany(Transaction, {
   onDelete: 'CASCADE'
 });
 
-sequelize.models.Transaction.belongsTo(Coffee, { foreignKey: 'coffeeId' });
+sequelize.models.transaction.belongsTo(Coffee, { foreignKey: 'coffeeId' });
 
 module.exports = Coffee;

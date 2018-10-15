@@ -8,10 +8,15 @@
     "region": "Arabia",
     "roast_appearance": "dark skin",
     "bean_density": 0.987,
+    "bean_screen_size": 15.8,
     "details": "some details",
+    "geo_location": {
+      "type": "Point",
+      "coordinates": [125.61511111, 10.11511111]
+    }
     "producerId": "595223592125200",
-    "name": "marcogallizi",
-    "hash": "marcogallizi-hash1",
+    "producer_name": "marcogalizzi",
+    "hash": "marcogalizzi-hash1",
     "price": 10,
     "quantity": 200
   },
@@ -24,9 +29,14 @@
     "region": "Arabia",
     "roast_appearance": "dark skin",
     "bean_density": 0.7,
+    "bean_screen_size": 15.8,
     "details": "some details",
+    "geo_location": {
+      "type": "Point",
+      "coordinates": [125.61511111, 10.11511111]
+    }
     "producerId": "595223592125200",
-    "name": "marcogalizzi",
+    "producer_name": "marcogalizzi",
     "hash": "marcogalizzi-hash2",
     "price": 8,
     "quantity": 1920
@@ -40,6 +50,7 @@
     "region": "Arabia",
     "roast_appearance": "light skin",
     "bean_density": 0.8,
+    "bean_screen_size": 15.8,
     "details": "some details",
     "producerId": "595223592125201",
     "name": "nathaliarus",
@@ -56,9 +67,14 @@
     "region": "Arabia",
     "roast_appearance": "dark skin",
     "bean_density": 0.85,
+    "bean_screen_size": 15.8,
     "details": "some details",
+    "geo_location": {
+      "type": "Point",
+      "coordinates": [125.61511111, 10.11511111]
+    }
     "producerId": "595223592125201",
-    "name": "nathaliarus",
+    "producer_name": "nathaliarus",
     "hash": "nathaliarus-hash2",
     "price": 11,
     "quantity": 150
@@ -72,9 +88,14 @@
     "region": "Arabia",
     "roast_appearance": "dark skin",
     "bean_density": 0.92,
+    "bean_screen_size": 15.8,
     "details": "some details",
+    "geo_location": {
+      "type": "Point",
+      "coordinates": [125.61511111, 10.11511111]
+    }
     "producerId": "595223592125202",
-    "name": "arolvinolas",
+    "producer_name": "arolvinolas",
     "hash": "arolvinolas-hash1",
     "price": 10,
     "quantity": 20
@@ -88,9 +109,15 @@
     "region": "Arabia",
     "roast_appearance": "dark skin",
     "bean_density": 0.91,
+    "bean_screen_size": 15.8,
     "details": "some details",
+    "geo_location": {
+      "type": "Point",
+      "coordinates": [125.61511111, 10.11511111]
+    }
+
     "producerId": "595223592125202",
-    "name": "arolvinolas",
+    "producer_name": "arolvinolas",
     "hash": "arolvinolas-hash2",
     "price": 8,
     "quantity": 500

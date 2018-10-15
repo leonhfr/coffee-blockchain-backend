@@ -1,6 +1,7 @@
 [
   {
     "name": "leonh",
+    "customer_name": "leonh",
     "role": "consumer",
     "hash": "leonh-hash",
     "id": "191408611206290",
@@ -12,6 +13,7 @@
   },
   {
     "name": "adriapalleja",
+    "customer_name": "adriapalleja",
     "role": "consumer",
     "hash": "adriapalleja-hash",
     "id": "191408611206291",
@@ -23,6 +25,7 @@
   },
   {
     "name": "olgachinina",
+    "customer_name": "olgachinina",
     "role": "consumer",
     "hash": "olgachinina-hash",
     "id": "191408611206292",
@@ -34,6 +37,7 @@
   },
   {
     "name": "marcogalizzi",
+    "business_name": "marcogalizzi",
     "role": "producer",
     "hash": "marcogalizzi-hash",
     "id": "595223592125200",
@@ -45,6 +49,7 @@
   },
   {
     "name": "nathaliarus",
+    "business_name": "nathaliarus",
     "role": "producer",
     "hash": "nathaliarus-hash",
     "id": "595223592125201",
@@ -56,6 +61,7 @@
   },
   {
     "name": "arolvinolas",
+    "business_name": "arolvinolas",
     "role": "producer",
     "hash": "arolvinolas-hash",
     "id": "595223592125202",

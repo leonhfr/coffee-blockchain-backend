@@ -4,9 +4,9 @@ const Sequelize = require('sequelize');
 const Transaction = require('./transaction');
 const Picture = require('./picture');
 
-const Customer = sequelize.define('Customer', {
+const Customer = sequelize.define('customer', {
   id: {
-    type: Sequelize.STRING,
+    type: Sequelize.BIGINT,
     primaryKey: true
   },
   customer_name: {
@@ -33,6 +33,10 @@ Customer.hasMany(Picture, {
   foreignKey: 'customerId',
   sourceKey: 'id',
   onDelete: 'CASCADE'
+});
+
+Picture.belongsTo(Customer, {
+  foreignKey: 'customerId'
 });
 
 module.exports = Customer;

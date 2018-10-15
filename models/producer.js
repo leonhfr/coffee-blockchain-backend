@@ -4,7 +4,10 @@ const Coffee = require('../schemas/coffee');
 exports.createProducer = async producer => {
   let newProducer = await Producer.create({
     email: producer.email,
-    id: producer.id
+    id: producer.id,
+    business_name: producer.business_name,
+    country: producer.country,
+    description: producer.description
   });
   return newProducer;
 };
