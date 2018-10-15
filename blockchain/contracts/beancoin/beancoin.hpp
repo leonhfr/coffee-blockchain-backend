@@ -62,7 +62,9 @@ namespace CoffeeBlockchain {
         uint64_t uuid,
         uint64_t uuid_coffee,
         account_name buyer,
-        uint64_t quantity
+        uint64_t quantity,
+        uint64_t price,
+        uint64_t total
       );
 
       [[eosio::action]]

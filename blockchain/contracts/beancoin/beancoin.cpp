@@ -2,6 +2,9 @@
 
 namespace CoffeeBlockchain {
 
+  // COMMAND TO COMPILE THE CONTRACT
+  // eosio-cpp -o beancoin.wasm beancoin.cpp --abigen
+
   // PUBLIC METHODS
 
   void Beancoin::notify(
@@ -12,7 +15,7 @@ namespace CoffeeBlockchain {
     require_recipient(user);
   }
 
-  // USER
+  // PUBLIC: USER
 
   void Beancoin::upsertuser(
     account_name user,
@@ -69,7 +72,7 @@ namespace CoffeeBlockchain {
     print(" | hash: ", queriedUser.hash);
   }
 
-  // COFFEE
+  // PUBLIC: COFFEE
 
   void Beancoin::upsertcoffee(
     account_name owner,
@@ -147,7 +150,7 @@ namespace CoffeeBlockchain {
     send_data(_self, queriedCoffee.hash);
   }
 
-  // SALE
+  // PUBLIC: SALE
 
   void Beancoin::initiatesale(
     uint64_t uuid,
@@ -182,7 +185,7 @@ namespace CoffeeBlockchain {
       print(" | quantity: ", quantity);
       print(" | price: ", price);
       print(" | total: ", total);
-      print(" | status: ", status);
+      print(" | status: ", 1);
     } else {
       print("Not enough coffee stock to honor the sale.");
     }
@@ -193,7 +196,7 @@ namespace CoffeeBlockchain {
   ) {
     sale_index sales(_self, _self);
     auto iterator = sales.find(uuid);
-    eosio_assert(iterator != sales.end(), "Sales does not exist.");
+    eosio_assert(iterator != sales.end(), "Sale does not exist.");
     auto queriedSale = sales.get(uuid);
     print("Get sale.");
     print(" | uuid: ", uuid);
@@ -204,24 +207,48 @@ namespace CoffeeBlockchain {
     print(" | price: ", queriedSale.price);
     print(" | total: ", queriedSale.total);
     print(" | status: ", queriedSale.status);
-    send_data(_self, queriedSale.status);
+    send_data(_self, std::to_string(queriedSale.status));
   }
 
   void Beancoin::shipsale(
     account_name seller,
     uint64_t uuid
   ) {
-    // TODO
-    coffees.modify(iterator, _self, [&](auto& row) {
-      row.quantity -= quantity;
+    require_auth(seller); // ONLY SELLER CAN MARK SALE AS SHIPPED
+    // get sale and check
+    sale_index sales(_self, _self);
+    auto iterator_sales = sales.find(uuid);
+    eosio_assert(iterator_sales != sales.end(), "Sale does not exist.");
+    auto queriedSale = sales.get(uuid);
+    // get coffee and check
+    coffee_index coffees(_self, _self);
+    auto iterator_coffees = coffees.find(queriedSale.uuid_coffee);
+    eosio_assert(iterator_coffees != coffees.end(), "Coffee does not exist.");
+    // modify coffee quantity
+    coffees.modify(iterator_coffees, _self, [&](auto& row) {
+      row.quantity -= queriedSale.quantity;
     });
+    // modify sale status
+    sales.modify(iterator_sales, _self, [&](auto& row) {
+      row.status = 2;
+    });
+    print("Ship sale.");
+    print(" | uuid: ", uuid);
+    print(" | uuid_coffee: ", queriedSale.uuid_coffee);
+    print(" | buyer: ", name{queriedSale.buyer});
+    print(" | seller: ", name{queriedSale.seller});
+    print(" | quantity: ", queriedSale.quantity);
+    print(" | price: ", queriedSale.price);
+    print(" | total: ", queriedSale.total);
+    print(" | status: ", 2);
+    send_data(_self, "2");
   }
 
   void Beancoin::fulfillsale(
     account_name buyer,
     uint64_t uuid
   ) {
-    require_auth(byer); // ONLY BUYER CAN RELEASE PAYMENT
+    require_auth(buyer); // ONLY BUYER CAN RELEASE PAYMENT
     sale_index sales(_self, _self);
     auto iterator = sales.find(uuid);
     eosio_assert(iterator != sales.end(), "Sales does not exist.");
@@ -237,8 +264,8 @@ namespace CoffeeBlockchain {
     print(" | quantity: ", queriedSale.quantity);
     print(" | price: ", queriedSale.price);
     print(" | total: ", queriedSale.total);
-    print(" | status: ", queriedSale.status);
-    send_data(_self, queriedSale.status);
+    print(" | status: ", 3);
+    send_data(_self, "3");
   }
 
   // PRIVATE METHODS
