@@ -32,8 +32,11 @@ The above script will:
 * Check that you have Docker and Node.js installed
 * Install backend dependencies (`npm install`)
 * Pull a redis image and start it
-* Pull a MySQL image, start it and populate it with mock data
-* Pull a eosio/eos image, configure it, start it and populate it with mock data
+* Pull a MySQL image and start it
+* Pull a eosio/eos image, configure it and start it
+* Start a private EOS blockchain and configure it
+* Deploy the `beancoin` smart contract
+* Populate the database and the blockchain with mock data
 * Start the backend API server (`npm start`)
 
 ### Troubleshooting
@@ -72,3 +75,21 @@ alias cleos='docker exec -it eosio_coffeechain /opt/eosio/bin/cleos --url http:/
 Please note that the aliases will only be valid within your current terminal. To save them permanently add them to your `~/.bash_profile`.
 
 For interacting with **cleos**, the `blockchain.sh` script saves the password of the `eosiomain` and `beancoin` wallets to the folder `/blockchain/data`, you may need them to unlock the wallets. You should also take a look at the mock keys in `/blockchain/scripts/mock.data.user.json`.
+
+## Tech Stack
+
+* [EOS](https://eos.io/)
+* [Koa](https://koajs.com/)
+* [MySQL](https://www.mysql.com/)
+* [Sequelize](http://docs.sequelizejs.com/)
+* [Redis](https://redis.io/)
+* [Demux](https://github.com/EOSIO/demux-js)
+* [Stripe](https://stripe.com/)
+
+## Authors
+
+* Olga Chinina - [Github](https://github.com/chinins)
+* Marco Galizzi - [Github](https://github.com/Tezenn)
+* Leon Hollender - [Github](https://github.com/leonhfr)
+* Adria Palleja - [Github](https://github.com/adriapalleja)
+* Nathalia Rus - [Github](https://github.com/nathaliarus)
