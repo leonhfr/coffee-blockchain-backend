@@ -997,7 +997,7 @@ EOSIO_ABI( addressbook, (upsert)(erase) )
 
 ```shell
 # compiling
-eosio-cpp -o addressbook.wasm addressbook.cpp --abigen
+    eosio-cpp -o addressbook.wasm addressbook.cpp --abigen
 # new account
 cleos create account eosio addressbook EOS6njG7NDRDxifGNhgMWvk2wnicC3tY4einedypq7TUsioDB8w4n -p eosio@active
 # deploying the contract

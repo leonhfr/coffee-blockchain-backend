@@ -3,7 +3,6 @@ const redis = require('../models/redis');
 const key = `${process.env.REDIS_PREFIX_EOSIO}-index-state`;
 
 class ActionHandler extends AbstractActionHandler {
-
   constructor (updaters, effects) {
     super(updaters, effects);
   }
@@ -36,7 +35,13 @@ class ActionHandler extends AbstractActionHandler {
   async loadIndexState () {
     try {
       const indexState = await redis.hgetall(key);
-      // would need to return redis index state in production
+      if (indexState.blockNumber && indexState.blockHash) {
+        return {
+          blockNumber: parseInt(indexState.blockNumber),
+          blockHash: indexState.blockHash,
+          isReplay: indexState.isReplay
+        };
+      }
       return { blockNumber: 0, blockHash: '' };
     } catch (err) {
       // eslint-disable-next-line
