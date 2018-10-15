@@ -20,7 +20,11 @@ const Customer = sequelize.define('customer', {
     allowNull: true
   },
   description: Sequelize.TEXT,
-  email: Sequelize.STRING
+  email: Sequelize.STRING,
+  confirmed: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+  }
 });
 
 Customer.hasMany(Transaction, {

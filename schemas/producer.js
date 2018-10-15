@@ -14,7 +14,11 @@ const Producer = sequelize.define('producer', {
     type: Sequelize.STRING
   },
   email: Sequelize.STRING,
-  description: Sequelize.TEXT
+  description: Sequelize.TEXT,
+  confirmed: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+  }
 });
 
 sequelize.models.coffee.belongsTo(Producer, { foreignKey: 'producerId' });

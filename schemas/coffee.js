@@ -43,6 +43,10 @@ const Coffee = sequelize.define('coffee', {
   geo_location: {
     type: Sequelize.GEOMETRY('POINT'),
     allowNull: true
+  },
+  confirmed: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   }
 });
 
