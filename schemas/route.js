@@ -3,7 +3,7 @@ const Sequelize = require('sequelize');
 
 const Route = sequelize.define('Route', {
   id: {
-    type: Sequelize.STRING,
+    type: Sequelize.BIGINT,
     primaryKey: true
   },
   origin: {

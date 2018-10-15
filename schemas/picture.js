@@ -3,7 +3,7 @@ const Sequelize = require('sequelize');
 
 const Picture = sequelize.define('Picture', {
   id: {
-    type: Sequelize.STRING,
+    type: Sequelize.BIGINT,
     primaryKey: true
   },
   url: {

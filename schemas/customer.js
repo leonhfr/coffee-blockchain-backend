@@ -6,7 +6,7 @@ const Picture = require('./picture');
 
 const Customer = sequelize.define('Customer', {
   id: {
-    type: Sequelize.STRING,
+    type: Sequelize.BIGINT,
     primaryKey: true
   },
   customer_name: {

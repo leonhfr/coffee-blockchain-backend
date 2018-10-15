@@ -5,7 +5,7 @@ const Shipper = require('./shipper');
 
 const Transaction = sequelize.define('Transaction', {
   id: {
-    type: Sequelize.STRING,
+    type: Sequelize.BIGINT,
     primaryKey: true
   },
   quantity: Sequelize.DECIMAL,

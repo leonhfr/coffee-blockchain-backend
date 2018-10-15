@@ -5,7 +5,7 @@ const Route = require('./route');
 
 const Shipper = sequelize.define('Shipper', {
   id: {
-    type: Sequelize.STRING,
+    type: Sequelize.BIGINT,
     primaryKey: true
   },
   shipper_name: {
