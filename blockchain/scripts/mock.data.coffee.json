@@ -16,7 +16,7 @@
     },
     "producerId": "595223592125200",
     "producer_name": "marcogalizzi",
-    "hash": "marcogalizzi-hash1",
+    "hash": "d2e3eafff4d0b1d60cf5b54af1e3a862",
     "price": 10,
     "quantity": 200
   },
@@ -37,7 +37,7 @@
     },
     "producerId": "595223592125200",
     "producer_name": "marcogalizzi",
-    "hash": "marcogalizzi-hash2",
+    "hash": "ba4488420178df8f63ff085252c24abf",
     "price": 8,
     "quantity": 1920
   },
@@ -54,7 +54,7 @@
     "details": "some details",
     "producerId": "595223592125201",
     "producer_name": "nathaliarus",
-    "hash": "nathaliarus-hash1",
+    "hash": "e6d9d1ee712ae06bbf1f565cef2c98c8",
     "price": 6,
     "quantity": 331
   },
@@ -75,7 +75,7 @@
     },
     "producerId": "595223592125201",
     "producer_name": "nathaliarus",
-    "hash": "nathaliarus-hash2",
+    "hash": "145b25c18c32c11451ac6d59df7eaa75",
     "price": 11,
     "quantity": 150
   },
@@ -96,7 +96,7 @@
     },
     "producerId": "595223592125202",
     "producer_name": "arolvinolas",
-    "hash": "arolvinolas-hash1",
+    "hash": "d2e3eafff4d0b1d60cf5b54af1e3a862",
     "price": 10,
     "quantity": 20
   },
@@ -117,7 +117,7 @@
     },
     "producerId": "595223592125202",
     "producer_name": "arolvinolas",
-    "hash": "arolvinolas-hash2",
+    "hash": "d2e3eafff4d0b1d60cf5b54af1e3a862",
     "price": 8,
     "quantity": 500
   }
