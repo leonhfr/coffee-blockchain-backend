@@ -8,8 +8,6 @@ async function upsertCoffee (state, payload, blockInfo, context) {
     console.log(
       `Upsert coffee: owner: ${owner} | uuid: ${uuid} | hash: ${hash} | price: ${price} | quantity: ${quantity}`
     );
-    // TODO: check information with database and update/insert coffee
-    // and switch from pending to confirmed as appropriate
     const foundCoffee = await Coffee.find({
       where: { id: uuid }
     });

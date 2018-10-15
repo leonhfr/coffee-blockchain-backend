@@ -8,8 +8,6 @@ async function upsertUser (state, payload, blockInfo, context) {
     let foundUser;
     //eslint-disable-next-line
     console.log(`Upsert user: user: ${user} | role: ${role} | hash: ${hash}`);
-    // TODO: check information with database and update/insert user
-    // and switch from pending to confirmed as appropriate
     if (role === 'consumer') {
       foundUser = await Customer.find({
         where: { customer_name: user }
