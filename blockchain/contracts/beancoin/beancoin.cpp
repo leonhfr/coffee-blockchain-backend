@@ -157,10 +157,13 @@ namespace CoffeeBlockchain {
     auto queriedCoffee = coffees.get(uuid);
 
     // TODO: some more data for coffee maybe
-    print("{\"action\":\"upsertuser\",");
-    print("\"owner\":\"", name{queriedCoffee.owner});
+    print("{\"action\":\"getcoffee\",");
+    print("\"uuid\":", queriedCoffee.uuid);
+    print(",\"owner\":\"", name{queriedCoffee.owner});
     print("\",\"hash\":\"", queriedCoffee.hash);
-    print("\"}");
+    print("\",\"price\":", queriedCoffee.price);
+    print(",\"quantity\":", queriedCoffee.quantity);
+    print("}");
     // {"action":"","user":"","role":"","hash":""}
     send_data(_self, queriedCoffee.hash);
   }
@@ -261,8 +264,8 @@ namespace CoffeeBlockchain {
     print("\",\"quantity\":", queriedSale.quantity);
     print(",\"price\":", queriedSale.price);
     print(",\"total\":", queriedSale.total);
-    print(",\"status\":\"", "2");
-    print("\"}");
+    print(",\"status\":\"", 2);
+    print("}");
     // {"action":"","user":"","role":"","hash":""}
     send_data(_self, "2");
   }
@@ -288,8 +291,8 @@ namespace CoffeeBlockchain {
     print("\",\"quantity\":\"", queriedSale.quantity);
     print("\",\"price\":\"", queriedSale.price);
     print("\",\"total\":\"", queriedSale.total);
-    print("\",\"status\":\"", "3");
-    print("\"}");
+    print("\",\"status\":\"", 3);
+    print("}");
     // {"action":"","user":"","role":"","hash":""}
     send_data(_self, "3");
   }
