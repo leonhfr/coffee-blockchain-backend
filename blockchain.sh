@@ -3,14 +3,16 @@
 # exit shell if something fails
 set -o errexit
 
+OS="$(uname -s)"
+
 # make sure the OS is supported
-if [[ "$OSTYPE" == "linux-gnu" ]]; then
+if [ "$OS" = "Linux" ]; then
   echo "Linux detected."
-elif [[ "$OSTYPE" == "darwin"* ]]; then
+elif [ "$OS" = "Darwin" ]; then
   echo "MacOS detected."
 else
   echo ""
-  echo -e "\033[0;31mYour OS is not supported.\033[0m"
+  echo "\033[0;31mYour OS is not supported.\033[0m"
   echo ""
   exit
 fi
@@ -19,7 +21,7 @@ fi
 if [ ! -x "$(command -v docker)" ] ||
    [ ! -x "$(command -v node)" ]; then
      echo ""
-     echo -e "\033[0;31m[Error with Exception]\033[0m"
+     echo "\033[0;31m[Error with Exception]\033[0m"
      echo "Make sure Docker and Node.js are installed"
      echo ""
      exit
@@ -29,7 +31,7 @@ fi
 if [ ! -f "./.env" ]
 then
   echo ""
-  echo -e "\033[0;31mThe .env file has not been set up!\033[0m"
+  echo "\033[0;31mThe .env file has not been set up!\033[0m"
   echo "Make sure to copy the contents of the .env.example to .env"
   echo ""
   exit

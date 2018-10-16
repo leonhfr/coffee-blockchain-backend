@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 set -o errexit
 
+OS="$(uname -s)"
 jqUrl=""
 
-if [[ "$OSTYPE" == "linux-gnu" ]]; then
+if [ "$OS" = "Linux" ]; then
   jqUrl="https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64"
-elif [[ "$OSTYPE" == "darwin"* ]]; then
+elif [ "$OS" = "Darwin" ]; then
   jqUrl="https://github.com/stedolan/jq/releases/download/jq-1.5/jq-osx-amd64"
 else
   echo ""
