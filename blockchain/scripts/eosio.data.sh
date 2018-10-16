@@ -41,14 +41,14 @@ jq -c '.[]' mock.data.coffee.json | while read i; do
   name=$(jq -r '.producer_name' <<< "$i")
   uuid=$(jq -r '.id' <<< "$i")
   hash=$(jq -r '.hash' <<< "$i")
-  price=$(jq -r '.price' <<< "$i")
-  quantity=$(jq -r '.quantity' <<< "$i")
+  price_kg=$(jq -r '.price_kg' <<< "$i")
+  available=$(jq -r '.available' <<< "$i")
 
   docker exec -t eosio_coffeechain /opt/eosio/bin/cleos \
     --url http://127.0.0.1:$EOSIO_NETWORK_PORT \
     --wallet-url http://127.0.0.1:$EOSIO_WALLET_PORT \
     push action beancoin upsertcoffee \
-    "[ "\""$name"\"", $uuid, "\""$hash"\"", $price, $quantity ]" \
+    "[ "\""$name"\"", $uuid, "\""$hash"\"", $price_kg, $available ]" \
     -p $name@active
 done
 
