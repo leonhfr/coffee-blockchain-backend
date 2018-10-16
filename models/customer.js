@@ -9,7 +9,8 @@ exports.createCustomer = async customer => {
     country: customer.country,
     description: customer.description,
     customer_name: customer.customer_name,
-    picture_hash: customer.picture_hash
+    picture_hash: customer.picture_hash,
+    geo_location: customer.geo_location
   });
   return newCustomer;
 };

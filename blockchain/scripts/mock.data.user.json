@@ -6,6 +6,10 @@
     "hash": "188d3b57eb0547f1efe6d724a9b9f547",
     "id": "191408611206290",
     "country": "France",
+    "geo_location": {
+      "coordinates": [48.85341, 2.3488],
+      "type": "Point"
+    },
     "description": "I like blockchain. Not C++.",
     "email": "leon@gmail.com",
     "privateKey": "5K7mtrinTFrVTduSxizUc5hjXJEtTjVTsqSHeBHes1Viep86FP5",
@@ -18,6 +22,10 @@
     "hash": "13269cca6c72cd794330749241945b5f",
     "id": "191408611206291",
     "country": "Spain",
+    "geo_location": {
+      "coordinates": [41.1188827, 1.2444909],
+      "type": "Point"
+    },
     "description": "Human towers and stuff.",
     "email": "adria@gmail.com",
     "privateKey": "5KLqT1UFxVnKRWkjvhFur4sECrPhciuUqsYRihc1p9rxhXQMZBg",
@@ -30,6 +38,10 @@
     "hash": "48da00987558c89b68578f923ceea49d",
     "id": "191408611206292",
     "country": "France",
+    "geo_location": {
+      "coordinates": [40.1188827, 1.4444909],
+      "type": "Point"
+    },
     "description": "I'm Russian. Statement.",
     "email": "olga@gmail.com",
     "privateKey": "5K2jun7wohStgiCDSDYjk3eteRH1KaxUQsZTEmTGPH4GS9vVFb7",
