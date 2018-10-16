@@ -2,7 +2,7 @@
   {
     "name": "leonh",
     "customer_name": "leonh",
-    "role": "consumer",
+    "role": "customer",
     "hash": "188d3b57eb0547f1efe6d724a9b9f547",
     "id": "191408611206290",
     "country": "France",
@@ -14,7 +14,7 @@
   {
     "name": "adriapalleja",
     "customer_name": "adriapalleja",
-    "role": "consumer",
+    "role": "customer",
     "hash": "13269cca6c72cd794330749241945b5f",
     "id": "191408611206291",
     "country": "Spain",
@@ -26,7 +26,7 @@
   {
     "name": "olgachinina",
     "customer_name": "olgachinina",
-    "role": "consumer",
+    "role": "customer",
     "hash": "48da00987558c89b68578f923ceea49d",
     "id": "191408611206292",
     "country": "France",

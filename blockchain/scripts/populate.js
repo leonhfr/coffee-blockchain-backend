@@ -17,9 +17,9 @@ async function processArray (array, handle, type) {
 
 async function populate () {
   await processArray(
-    users.filter(el => el.role === 'consumer'),
+    users.filter(el => el.role === 'customer'),
     models.customer.createCustomer,
-    'users'
+    'customers'
   );
   await processArray(
     users.filter(el => el.role === 'producer'),

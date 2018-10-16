@@ -72,10 +72,6 @@ namespace CoffeeBlockchain {
     // THROW AN ERROR IF THE USER IS NOT REGISTERED
     eosio_assert(iterator != users.end(), "User does not exist.");
     auto queriedUser = users.get(user);
-    print("Get user.");
-    print(" | username: ", name{user});
-    print(" | role: ", queriedUser.role);
-    print(" | hash: ", queriedUser.hash);
 
     print("{\"action\":\"getuser\",");
     print("\"user\":\"", name{user});
@@ -228,7 +224,7 @@ namespace CoffeeBlockchain {
     print("\",\"quantity\":", queriedSale.quantity);
     print(",\"price\":", queriedSale.price);
     print(",\"total\":", queriedSale.total);
-    print(",\"hash\":", queriedSale.status);
+    print(",\"status\":", queriedSale.status);
     print("}");
     // {"action":"","user":"","role":"","hash":""}
     send_data(_self, queriedSale.status);
