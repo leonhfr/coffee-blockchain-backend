@@ -31,18 +31,19 @@ namespace CoffeeBlockchain {
         row.role = role;
         row.hash = hash;
       });
-      print("Inserted user!");
     } else {
       users.modify(iterator, _self, [&](auto& row) {
         row.username = user;
         row.role = role;
         row.hash = hash;
       });
-      print("Updated user!");
     }
-    print(" | username: ", name{user});
-    print(" | role: ", role);
-    print(" | hash: ", hash);
+    print("{\"action\":\"upsertuser\",");
+    print("\"user\":\"", name{user});
+    print("\",\"role\":\"", role);
+    print("\",\"hash\":\"", hash);
+    print("\"}");
+    // {"action":"","user":"","role":"","hash":""}
   }
 
   void Beancoin::deluser(
@@ -55,6 +56,11 @@ namespace CoffeeBlockchain {
     eosio_assert(iterator != users.end(), "User does not exist.");
     users.erase(iterator);
     print("Deleted user ", name{user}, ".");
+
+    print("{\"action\":\"deluser\",");
+    print("\"user\":\"", name{user});
+    print("\"}");
+    // {"action":"","user":"","role":"","hash":""}
   }
 
   void Beancoin::getuser(
@@ -70,6 +76,13 @@ namespace CoffeeBlockchain {
     print(" | username: ", name{user});
     print(" | role: ", queriedUser.role);
     print(" | hash: ", queriedUser.hash);
+
+    print("{\"action\":\"getuser\",");
+    print("\"user\":\"", name{user});
+    print("\",\"role\":\"", queriedUser.role);
+    print("\",\"hash\":\"", queriedUser.hash);
+    print("\"}");
+    // {"action":"","user":"","role":"","hash":""}
   }
 
   // PUBLIC: COFFEE
@@ -92,7 +105,6 @@ namespace CoffeeBlockchain {
         row.price = price;
         row.quantity = quantity;
       });
-      print("Inserted coffee!");
     } else {
       auto queriedCoffee = coffees.get(uuid);
       if (queriedCoffee.owner == owner) {
@@ -103,16 +115,19 @@ namespace CoffeeBlockchain {
           row.price = price;
           row.quantity = quantity;
         });
-        print("Updated coffee!");
       } else {
         print("Unauthorized coffee upsert prevented.");
       }
     }
-    print(" | uuid: ", uuid);
-    print(" | owner: ", name{owner});
-    print(" | hash: ", hash);
-    print(" | price: ", price);
-    print(" | quantity: ", quantity);
+
+    print("{\"action\":\"getcoffee\",");
+    print("\"uuid\":", uuid);
+    print(",\"owner\":\"", name{owner});
+    print("\",\"hash\":\"", hash);
+    print("\",\"price\":", price);
+    print(",\"quantity\":", quantity);
+    print("}");
+    // {"action":"","user":"","role":"","hash":""}
   }
 
   void Beancoin::delcoffee(
@@ -126,9 +141,12 @@ namespace CoffeeBlockchain {
     auto queriedCoffee = coffees.get(uuid);
     if (queriedCoffee.owner == owner) {
       coffees.erase(iterator);
-      print("Deleted coffee!");
-      print(" | uuid: ", uuid);
-      print(" | owner: ", name{owner});
+
+      print("{\"action\":\"delcoffee\",");
+      print("\"owner\":\"", name{owner});
+      print("\",\"uuid\":", uuid);
+      print("}");
+      // {"action":"","user":"","role":"","hash":""}
     } else {
       print("Unauthorized coffee deletion prevented.");
     }
@@ -141,12 +159,13 @@ namespace CoffeeBlockchain {
     auto iterator = coffees.find(uuid);
     eosio_assert(iterator != coffees.end(), "Coffee does not exist.");
     auto queriedCoffee = coffees.get(uuid);
-    print("Get coffee.");
-    print(" | uuid: ", queriedCoffee.uuid);
-    print(" | owner: ", name{queriedCoffee.owner});
-    print(" | hash: ", queriedCoffee.hash);
-    print(" | price: ", queriedCoffee.price);
-    print(" | quantity: ", queriedCoffee.quantity);
+
+    // TODO: some more data for coffee maybe
+    print("{\"action\":\"upsertuser\",");
+    print("\"owner\":\"", name{queriedCoffee.owner});
+    print("\",\"hash\":\"", queriedCoffee.hash);
+    print("\"}");
+    // {"action":"","user":"","role":"","hash":""}
     send_data(_self, queriedCoffee.hash);
   }
 
@@ -177,15 +196,17 @@ namespace CoffeeBlockchain {
         row.total = total;
         row.status = "1";
       });
-      print("Initiate sale.");
-      print(" | uuid: ", uuid);
-      print(" | uuid_coffee: ", uuid_coffee);
-      print(" | seller: ", name{queriedCoffee.owner});
-      print(" | buyer: ", name{buyer});
-      print(" | quantity: ", quantity);
-      print(" | price: ", price);
-      print(" | total: ", total);
-      print(" | status: ", "1");
+      print("{\"action\":\"initiatesale\",");
+      print("\"uuid\":", uuid);
+      print(",\"role\":", uuid_coffee);
+      print(",\"seller\":\"", name{queriedCoffee.owner});
+      print("\",\"buyer\":\"", name{buyer});
+      print("\",\"quantity\":", quantity);
+      print(",\"price\":", price);
+      print(",\"total\":", total);
+      print(",\"status\":", 1);
+      print("}");
+      // {"action":"","user":"","role":"","hash":""}
     } else {
       print("Not enough coffee stock to honor the sale.");
     }
@@ -198,15 +219,18 @@ namespace CoffeeBlockchain {
     auto iterator = sales.find(uuid);
     eosio_assert(iterator != sales.end(), "Sale does not exist.");
     auto queriedSale = sales.get(uuid);
-    print("Get sale.");
-    print(" | uuid: ", uuid);
-    print(" | uuid_coffee: ", queriedSale.uuid_coffee);
-    print(" | buyer: ", name{queriedSale.buyer});
-    print(" | seller: ", name{queriedSale.seller});
-    print(" | quantity: ", queriedSale.quantity);
-    print(" | price: ", queriedSale.price);
-    print(" | total: ", queriedSale.total);
-    print(" | status: ", queriedSale.status);
+
+    print("{\"action\":\"getsale\",");
+    print("\"uuid\":", uuid);
+    print(",\"role\":", queriedSale.uuid_coffee);
+    print(",\"buyer\":\"", name{queriedSale.buyer});
+    print("\",\"seller\":\"", name{queriedSale.seller});
+    print("\",\"quantity\":", queriedSale.quantity);
+    print(",\"price\":", queriedSale.price);
+    print(",\"total\":", queriedSale.total);
+    print(",\"hash\":", queriedSale.status);
+    print("}");
+    // {"action":"","user":"","role":"","hash":""}
     send_data(_self, queriedSale.status);
   }
 
@@ -232,15 +256,18 @@ namespace CoffeeBlockchain {
     sales.modify(iterator_sales, _self, [&](auto& row) {
       row.status = "2";
     });
-    print("Ship sale.");
-    print(" | uuid: ", uuid);
-    print(" | uuid_coffee: ", queriedSale.uuid_coffee);
-    print(" | buyer: ", name{queriedSale.buyer});
-    print(" | seller: ", name{queriedSale.seller});
-    print(" | quantity: ", queriedSale.quantity);
-    print(" | price: ", queriedSale.price);
-    print(" | total: ", queriedSale.total);
-    print(" | status: ", "2");
+
+    print("{\"action\":\"shipsale\",");
+    print("\"uuid\":", uuid);
+    print(",\"uuid_coffee\":", queriedSale.uuid_coffee);
+    print(",\"buyer\":\"", name{queriedSale.buyer});
+    print("\",\"seller\":\"", name{queriedSale.seller});
+    print("\",\"quantity\":", queriedSale.quantity);
+    print(",\"price\":", queriedSale.price);
+    print(",\"total\":", queriedSale.total);
+    print(",\"status\":\"", "2");
+    print("\"}");
+    // {"action":"","user":"","role":"","hash":""}
     send_data(_self, "2");
   }
 
@@ -256,15 +283,18 @@ namespace CoffeeBlockchain {
     sales.modify(iterator, _self, [&](auto& row) {
       row.status = "3";
     });
-    print("Fulfill sale.");
-    print(" | uuid: ", uuid);
-    print(" | uuid_coffee: ", queriedSale.uuid_coffee);
-    print(" | buyer: ", name{queriedSale.buyer});
-    print(" | seller: ", name{queriedSale.seller});
-    print(" | quantity: ", queriedSale.quantity);
-    print(" | price: ", queriedSale.price);
-    print(" | total: ", queriedSale.total);
-    print(" | status: ", "3");
+
+    print("{\"action\":\"fulfillsale\",");
+    print("\"uuid\":\"", uuid);
+    print("\",\"uuid_coffee\":\"", queriedSale.uuid_coffee);
+    print("\",\"buyer\":\"", name{queriedSale.buyer});
+    print("\",\"seller\":\"", name{queriedSale.seller});
+    print("\",\"quantity\":\"", queriedSale.quantity);
+    print("\",\"price\":\"", queriedSale.price);
+    print("\",\"total\":\"", queriedSale.total);
+    print("\",\"status\":\"", "3");
+    print("\"}");
+    // {"action":"","user":"","role":"","hash":""}
     send_data(_self, "3");
   }
 
