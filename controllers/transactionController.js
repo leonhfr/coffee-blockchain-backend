@@ -6,7 +6,7 @@ exports.createTransaction = async ctx => {
   ctx.status = 403;
 };
 
-exports.getTransaction = async ctx => {
+exports.getTransactions = async ctx => {
   const id = ctx.request.header.authorization.split(' ')[1];
   ctx.body = await models.transaction.getCustomerAndTransactions(id);
   if (ctx.body) return (ctx.status = 200);
