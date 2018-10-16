@@ -16,5 +16,3 @@ docker run --rm --name redis_coffeechain \
   --detach \
   --publish 127.0.0.1:$REDIS_PORT:6379 \
   redis
-
-# $ docker run -it --link some-redis:redis --rm redis redis-cli -h redis -p 6379

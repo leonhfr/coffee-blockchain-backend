@@ -3,17 +3,41 @@
 # exit shell if something fails
 set -o errexit
 
-echo "\033[0;34m+++ starting blockchain and backend +++\033[0m"
+OS="$(uname -s)"
+
+# make sure the OS is supported
+if [ "$OS" = "Linux" ]; then
+  echo "Linux detected."
+elif [ "$OS" = "Darwin" ]; then
+  echo "MacOS detected."
+else
+  echo ""
+  echo "\033[0;31mYour OS is not supported.\033[0m"
+  echo ""
+  exit
+fi
 
 # make sure Docker and Node.js are installed
 if [ ! -x "$(command -v docker)" ] ||
    [ ! -x "$(command -v node)" ]; then
      echo ""
-     echo -e "\033[0;31m[Error with Exception]\033[0m"
+     echo "\033[0;31m[Error with Exception]\033[0m"
      echo "Make sure Docker and Node.js are installed"
      echo ""
      exit
 fi
+
+# make sure the .env file has been set up
+if [ ! -f "./.env" ]
+then
+  echo ""
+  echo "\033[0;31mThe .env file has not been set up!\033[0m"
+  echo "Make sure to copy the contents of the .env.example to .env"
+  echo ""
+  exit
+fi
+
+echo "\033[0;34m+++ starting blockchain and backend +++\033[0m"
 
 ### NPM INSTALL
 
