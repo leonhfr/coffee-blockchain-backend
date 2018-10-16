@@ -14,7 +14,7 @@ exports.createCoffee = async coffee => {
     details: coffee.details || '',
     producerId: coffee.producerId,
     geo_location: coffee.geo_location,
-    price_kg: coffee.price_kg || 5,
+    price_kg: coffee.price_kg || 0,
     available: coffee.available,
     picture_hash: coffee.picture_hash
   });
