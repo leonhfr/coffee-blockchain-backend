@@ -37,6 +37,16 @@ then
   exit
 fi
 
+### if parameter "stop", stop the docker containers
+if [ "$1" = "stop" ]; then
+  echo "\033[0;34m+++ stopping docker containers +++\033[0m"
+  docker stop eosio_coffeechain || true
+  docker stop redis_coffeechain || true
+  docker stop mysql_coffeechain || true
+  echo "\033[0;34m+++ docker containers stopped +++\033[0m"
+  exit
+fi
+
 echo "\033[0;34m+++ starting blockchain and backend +++\033[0m"
 
 ### NPM INSTALL
