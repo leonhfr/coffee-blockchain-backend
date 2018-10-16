@@ -57,9 +57,7 @@ In the terminal, press `ctrl+c` on your keyboard.
 
 Then execute:
 ```shell
-docker stop eosio_coffeechain && \
-  docker stop redis_coffeechain && \
-  docker stop mysql_coffeechain
+sh blockchain.sh stop
 ```
 You can check with `docker ps` whether some containers are still running.
 
