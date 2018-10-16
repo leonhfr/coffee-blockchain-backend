@@ -28,8 +28,7 @@ router.get('/me', me.getMe);
 router.put('/me', me.updateMe);
 
 router.post('/transactions/', transaction.createTransaction);
-router.get('/transactions/:id', transaction.getTransaction);
-router.get('/transactions', transaction.getAllTransactions);
+router.get('/transactions', transaction.getTransactions);
 router.put('/transactions/:id', transaction.updateTransaction);
 
 router.post('/shippers', shipper.createShipper);
