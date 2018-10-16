@@ -1,5 +1,6 @@
 #include <eosiolib/eosio.hpp>
 #include <eosiolib/print.hpp>
+#include <boost/lexical_cast.hpp>
 #include <string>
 
 namespace CoffeeBlockchain {
@@ -71,7 +72,14 @@ namespace CoffeeBlockchain {
       );
 
       [[eosio::action]]
+      void shipsale(
+        account_name seller,
+        uint64_t uuid
+      );
+
+      [[eosio::action]]
       void fulfillsale(
+        account_name buyer,
         uint64_t uuid
       );
 
@@ -108,12 +116,14 @@ namespace CoffeeBlockchain {
         account_name seller;
         account_name buyer;
         uint64_t quantity;
+        uint64_t price;
+        uint64_t total;
         string status;
         uint64_t primary_key() const { return uuid; }
-        EOSLIB_SERIALIZE(sale, (uuid)(uuid_coffee)(seller)(buyer)(quantity)(status))
+        EOSLIB_SERIALIZE(sale, (uuid)(uuid_coffee)(seller)(buyer)(quantity)(price)(total)(status))
       };
       typedef eosio::multi_index<N(sale), sale> sale_index;
   };
 
-  EOSIO_ABI(Beancoin, (notify)(upsertuser)(deluser)(getuser)(upsertcoffee)(delcoffee)(getcoffee)(initiatesale)(getsale)(fulfillsale))
+  EOSIO_ABI(Beancoin, (notify)(upsertuser)(deluser)(getuser)(upsertcoffee)(delcoffee)(getcoffee)(initiatesale)(getsale)(shipsale)(fulfillsale))
 }

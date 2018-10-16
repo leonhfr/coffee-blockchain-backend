@@ -59,21 +59,21 @@ cleos push action beancoin upsertuser \
 
 ### DELETE USER
 
-echo "\033[0;34m+ should not be able to delete another user's data\033[0m"
+echo "\033[0;34m+ should not be able to delete another user's data (error expected)\033[0m"
 cleos push action beancoin deluser \
   "[ \"leonh\" ]" \
   -p testaccount@active
 
 echo "\033[0;34m+ should be able to delete user's own data (one assertion error expected)\033[0m"
-cleos push action beancoin deluser \
-  "[ \"testaccount\" ]" \
-  -p testaccount@active
-cleos push action beancoin getuser \
-  "[ \"testaccount\" ]" \
-  -p testaccount@active
-cleos push action beancoin upsertuser \
-  "[ \"testaccount\", \"consumer\", \"testhash\" ]" \
-  -p testaccount@active
+# cleos push action beancoin deluser \
+#   "[ \"testaccount\" ]" \
+#   -p testaccount@active
+# cleos push action beancoin getuser \
+#   "[ \"testaccount\" ]" \
+#   -p testaccount@active
+# cleos push action beancoin upsertuser \
+#   "[ \"testaccount\", \"consumer\", \"testhash\" ]" \
+#   -p testaccount@active
 
 ### TESTS: COFFEES ###
 
@@ -107,7 +107,7 @@ cleos push action beancoin delcoffee \
 
 ### TESTS: SALES ###
 
-### MOCK COFFEES ###
+# mock coffees
 
 echo "\033[0;34m+ inserting some mock coffees\033[0m"
 cleos push action beancoin upsertcoffee \
@@ -117,27 +117,45 @@ cleos push action beancoin upsertcoffee \
   "[ \"testaccount2\", 1230787824461, \"test-coffee-hash-2\", 20, 50 ]" \
   -p testaccount2@active
 
+# initiatesale + getsale
+
 echo "\033[0;34m+ should be able to initiate a sale\033[0m"
 cleos push action beancoin initiatesale \
   "[ 1230787824470, 1230787824460, \"testaccount\", 10 ]" \
   -p testaccount@active
 
-echo "\033[0;34m+ should be able to get a sale\033[0m"
+echo "\033[0;34m+ should be able to get a sale, status 1\033[0m"
 cleos push action beancoin getsale \
   "[ 1230787824470 ]" \
   -p testaccount@active
 
+# shipsale
+
+echo "\033[0;34m+ should be able to ship a sale\033[0m"
+cleos push action beancoin shipsale \
+  "[ \"testaccount2\", 1230787824470 ]" \
+  -p testaccount2@active
+
+sleep 1s
+
+echo "\033[0;34m+ status of sale should be 2\033[0m"
+cleos push action beancoin getsale \
+  "[ 1230787824470 ]" \
+  -p testaccount2@active
+
 echo "\033[0;34m+ quantity of coffee should have been modified (40)\033[0m"
 cleos push action beancoin getcoffee \
   "[ 1230787824460 ]" \
+  -p testaccount2@active
+
+# fulfillsale
+
+echo "\033[0;34m+ buyer should be able to fulfill a sale\033[0m"
+cleos push action beancoin fulfillsale \
+  "[ \"testaccount\", 1230787824470 ]" \
   -p testaccount@active
 
-echo "\033[0;34m+ beancoin should be able to fulfill a sale\033[0m"
-cleos push action beancoin fulfillsale \
-  "[ 1230787824470 ]" \
-  -p beancoin@active
-
-echo "\033[0;34m+ should be able to get a sale\033[0m"
+echo "\033[0;34m+ status of sale should be 3\033[0m"
 cleos push action beancoin getsale \
   "[ 1230787824470 ]" \
   -p testaccount@active

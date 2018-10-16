@@ -16,10 +16,9 @@
     },
     "producerId": "595223592125200",
     "producer_name": "marcogalizzi",
-    "hash": "d2e3eafff4d0b1d60cf5b54af1e3a862",
-    "price": 10,
-    "available": 350,
-    "quantity": 200
+    "hash": "1c8408957cd486304ecba05ee7b63733",
+    "price_kg": 3,
+    "available": 350
   },
   {
     "id": "789141301172421",
@@ -38,10 +37,9 @@
     },
     "producerId": "595223592125200",
     "producer_name": "marcogalizzi",
-    "hash": "ba4488420178df8f63ff085252c24abf",
-    "price": 8,
-    "available": 35,
-    "quantity": 1920
+    "hash": "01cbf9581c54dbd2e7f44274684afc2d",
+    "price_kg": 4,
+    "available": 1920
   },
   {
     "id": "789141301172422",
@@ -56,10 +54,9 @@
     "details": "some details",
     "producerId": "595223592125201",
     "producer_name": "nathaliarus",
-    "hash": "e6d9d1ee712ae06bbf1f565cef2c98c8",
-    "price": 6,
-    "available": 500,
-    "quantity": 331
+    "hash": "7671930b8da37d9b98d881b56aa0fe18",
+    "price_kg": 6,
+    "available": 331
   },
   {
     "id": "789141301172423",
@@ -78,10 +75,9 @@
     },
     "producerId": "595223592125201",
     "producer_name": "nathaliarus",
-    "hash": "145b25c18c32c11451ac6d59df7eaa75",
-    "price": 11,
-    "available": 190,
-    "quantity": 150
+    "hash": "1dff878f21f4548b6a25dd1e724ed16c",
+    "price_kg": 5,
+    "available": 590
   },
   {
     "id": "789141301172424",
@@ -100,10 +96,9 @@
     },
     "producerId": "595223592125202",
     "producer_name": "arolvinolas",
-    "hash": "d2e3eafff4d0b1d60cf5b54af1e3a862",
-    "price": 10,
-    "available": 350,
-    "quantity": 20
+    "hash": "047a293cf16d04e7c2665129f24b872f",
+    "price_kg": 5,
+    "available": 350
   },
   {
     "id": "789141301172425",
@@ -122,9 +117,8 @@
     },
     "producerId": "595223592125202",
     "producer_name": "arolvinolas",
-    "hash": "d2e3eafff4d0b1d60cf5b54af1e3a862",
-    "price": 8,
-    "available": 700,
-    "quantity": 500
+    "hash": "047a293cf16d04e7c2665129f24b872f",
+    "price_kg": 5,
+    "available": 700
   }
 ]

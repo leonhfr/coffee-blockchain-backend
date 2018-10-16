@@ -38,8 +38,10 @@ async function upsertCoffee (state, payload, blockInfo, context) {
         { confirmed: true },
         { returning: true, plain: true, where: { id: uuid } }
       );
+      //eslint-disable-next-line
       console.log('CONFIRMED');
     } else {
+      //eslint-disable-next-line
       console.log('NOT CONFIRMED: ', hash, md5(bodyToCheck));
     }
   } catch (err) {
