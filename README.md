@@ -2,9 +2,9 @@
 
 ## Prerequisites
 
-* Either **Ubuntu 18.04** or **MacOS Darwin 10.12** or higher (Other operating systems may work but are untested. Windows won't, sorry.)
-* Docker
-* Node.js
+* Either **Ubuntu 18.04** or **MacOS Darwin** or higher. Other operating systems **WILL NOT** work, sorry.
+* [Docker](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
+* [Node.js](https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions)
 
 With default settings, the dApp, eosio, redis and MySQL will occupy the ports 3306, 4000, 5555, 6379 and 7777. Make sure nothing else is running on these ports or change them when creating the `.env` file.
 
@@ -46,7 +46,9 @@ The above script will:
 chmod +x blockchain.sh && \
   chmod +x ./blockchain/scripts/redis.sh && \
   chmod +x ./blockchain/scripts/mysql.sh && \
-  chmod +x ./blockchain/scripts/eosio.sh
+  chmod +x ./blockchain/scripts/eosio.config.sh && \
+  chmod +x ./blockchain/scripts/eosio.data.sh && \
+  chmod +x ./blockchain/scripts/eosio.start.sh
 ```
 
 ### Stop the dApp

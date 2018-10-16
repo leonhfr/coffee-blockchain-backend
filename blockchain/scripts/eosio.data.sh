@@ -1,12 +1,24 @@
 #!/usr/bin/env bash
 set -o errexit
 
+jqUrl=""
+
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+  jqUrl="https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64"
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+  jqUrl="https://github.com/stedolan/jq/releases/download/jq-1.5/jq-osx-amd64"
+else
+  echo ""
+  echo -e "\033[0;31mYour OS is not supported.\033[0m"
+  echo ""
+  exit
+fi
+
 echo ""
 echo -e "\033[0;35m+ downloading jq (json reader) to create mock data\033[0m"
 cd "$(pwd -P)/blockchain/scripts"
 mkdir -p ~/bin && curl -sSL -o ~/bin/jq \
-  https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64 && \
-  chmod +x ~/bin/jq && export PATH=$PATH:~/bin
+  $jqUrl && chmod +x ~/bin/jq && export PATH=$PATH:~/bin
 
 echo ""
 echo -e "\033[0;35m+ create mock accounts and register them\033[0m"
