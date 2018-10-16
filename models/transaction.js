@@ -4,8 +4,8 @@ const coffee = require('./coffee');
 
 exports.createTransaction = async transaction => {
   let res;
-  let coffeToUpdate = await coffee.getCoffee(transaction.coffeeId);
-  let remainingCoffee = coffeToUpdate.available - transaction.quantity;
+  const coffeToUpdate = await coffee.getCoffee(transaction.coffeeId);
+  const remainingCoffee = coffeToUpdate.available - transaction.quantity;
   if (remainingCoffee > 0) {
     await coffee.updateCoffee(transaction.coffeeId, {
       available: remainingCoffee
