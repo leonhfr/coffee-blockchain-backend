@@ -14,8 +14,15 @@ exports.getTransactions = async ctx => {
 };
 
 exports.updateTransaction = async ctx => {
-  let id = ctx.params.id;
+  const id = ctx.params.id;
   ctx.body = await models.transaction.updateTransaction(ctx.request.body, id);
+  if (ctx.body) return (ctx.status = 200);
+  ctx.status = 404;
+};
+
+exports.getSpecificTransaction = async ctx => {
+  const id = ctx.params.id;
+  ctx.body = await models.transaction.getSpecificTransaction(id);
   if (ctx.body) return (ctx.status = 200);
   ctx.status = 404;
 };
