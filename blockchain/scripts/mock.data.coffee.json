@@ -12,7 +12,7 @@
     "details": "some details",
     "geo_location": {
       "type": "Point",
-      "coordinates": [125.61511111, 10.11511111]
+      "coordinates": [9.005401, 38.763611]
     },
     "producerId": "595223592125200",
     "producer_name": "marcogalizzi",
@@ -33,7 +33,7 @@
     "details": "some details",
     "geo_location": {
       "type": "Point",
-      "coordinates": [125.61511111, 10.11511111]
+      "coordinates": [0.1768696, 37.9083264]
     },
     "producerId": "595223592125200",
     "producer_name": "marcogalizzi",
@@ -71,7 +71,7 @@
     "details": "some details",
     "geo_location": {
       "type": "Point",
-      "coordinates": [125.61511111, 10.11511111]
+      "coordinates": [-11.409874, -41.280857]
     },
     "producerId": "595223592125201",
     "producer_name": "nathaliarus",
@@ -92,7 +92,7 @@
     "details": "some details",
     "geo_location": {
       "type": "Point",
-      "coordinates": [125.61511111, 10.11511111]
+      "coordinates": [14.315424, 108.339537]
     },
     "producerId": "595223592125202",
     "producer_name": "arolvinolas",
@@ -113,7 +113,7 @@
     "details": "some details",
     "geo_location": {
       "type": "Point",
-      "coordinates": [125.61511111, 10.11511111]
+      "coordinates": [3.900749, -73.073215]
     },
     "producerId": "595223592125202",
     "producer_name": "arolvinolas",
