@@ -2,7 +2,7 @@ const Transaction = require('../schemas/transaction');
 const Customer = require('../schemas/customer');
 const coffee = require('./coffee');
 
-exports.createTransaction = async transaction => {
+exports.createTransaction = async (transaction, customerId) => {
   let res;
   const coffeToUpdate = await coffee.getCoffee(transaction.coffeeId);
   const remainingCoffee = coffeToUpdate.available - transaction.quantity;
@@ -38,6 +38,13 @@ exports.getAllTransactions = async () => {
   //for development only :)
   const res = await Transaction.findAll();
   return res;
+};
+
+exports.getSpecificTransaction = async id => {
+  const transaction = await Transaction.find({
+    where: { id: id }
+  });
+  return transaction;
 };
 
 exports.updateTransaction = async (info, id) => {
