@@ -1,15 +1,15 @@
 [
   {
     "id": "789141301172420",
-    "name": "coffeTest",
-    "botanical_variety": "special variety",
-    "preparation": "wet",
-    "altitude": 1090,
+    "name": "Akmel Nuri",
+    "botanical_variety": "Heirloom",
+    "preparation": "Dry",
+    "altitude": 1650,
     "region": "Arabia",
-    "roast_appearance": "dark skin",
+    "roast_appearance": "Lightly roasted",
     "bean_density": 0.987,
     "bean_screen_size": 15.8,
-    "details": "some details",
+    "details": "Full bodied and creamy. Syrupy sweetness. Cantaloupe, dried fruits and French nougat. Organic",
     "geo_location": {
       "type": "Point",
       "coordinates": [9.005401, 38.763611]
@@ -18,19 +18,20 @@
     "producer_name": "marcogalizzi",
     "hash": "1c8408957cd486304ecba05ee7b63733",
     "price_kg": 3,
-    "available": 350
+    "available": 350,
+    "picture_hash": "QmbfDYDpWshHTBZb4Zh3cBCjuYVtrrUYJ78QgFWdyoxVXt"
   },
   {
     "id": "789141301172421",
-    "name": "coffebob",
-    "botanical_variety": "special variety",
-    "preparation": "dry",
-    "altitude": 1090,
+    "name": "Finca Vista Hermosa",
+    "botanical_variety": "Red and Yellow Bourbon, Caturra and Pache",
+    "preparation": "Wet",
+    "altitude": 1600,
     "region": "Arabia",
-    "roast_appearance": "dark skin",
+    "roast_appearance": "Medium degree",
     "bean_density": 0.7,
     "bean_screen_size": 15.8,
-    "details": "some details",
+    "details": "Clean and balanced coffee flavour with a light acidity. Aroma of pecan nuts, plums and nougat.",
     "geo_location": {
       "type": "Point",
       "coordinates": [0.1768696, 37.9083264]
@@ -39,36 +40,42 @@
     "producer_name": "marcogalizzi",
     "hash": "01cbf9581c54dbd2e7f44274684afc2d",
     "price_kg": 4,
-    "available": 1920
+    "available": 1920,
+    "picture_hash": "QmU8zT66XBiVxeMXLXHZzxgij3j3E9ii8N82JdJwWczsZd"
   },
   {
     "id": "789141301172422",
-    "name": "coffelight",
-    "botanical_variety": "special variety",
-    "preparation": "wet",
-    "altitude": 1090,
+    "name": "Halo Beriti (Washed)",
+    "botanical_variety": "A varity of natural Ethiopian heirloom",
+    "preparation": "Wet",
+    "altitude": 1900,
     "region": "Arabia",
-    "roast_appearance": "light skin",
+    "roast_appearance": "Roasted light",
     "bean_density": 0.8,
     "bean_screen_size": 15.8,
-    "details": "some details",
+    "details": "Very complex coffee with a light, delicate acidity. Aromas of peach, rose hip and lilac. Organic.",
+    "geo_location": {
+      "type": "Point",
+      "coordinates": [9.934739, -84.087502]
+    },
     "producerId": "595223592125201",
     "producer_name": "nathaliarus",
     "hash": "7671930b8da37d9b98d881b56aa0fe18",
     "price_kg": 6,
-    "available": 331
+    "available": 331,
+    "picture_hash": "QmUVEUAcvoGAxaTiXYa2XiSHnjpdCqofzkP2KdxGds8H9f"
   },
   {
     "id": "789141301172423",
-    "name": "coffeTest",
-    "botanical_variety": "special variety",
-    "preparation": "dry",
-    "altitude": 1090,
+    "name": "Halo Beriti (Natural)",
+    "botanical_variety": "A varity of natural Ethiopian heirloom",
+    "preparation": "Dry",
+    "altitude": 1900,
     "region": "Arabia",
-    "roast_appearance": "dark skin",
+    "roast_appearance": "Roasted light.",
     "bean_density": 0.85,
     "bean_screen_size": 15.8,
-    "details": "some details",
+    "details": "Complex, sweet and creamy coffee with medium acidity. Aromas of peach, bergamot, strawberry and pineapple. Organic.",
     "geo_location": {
       "type": "Point",
       "coordinates": [-11.409874, -41.280857]
@@ -77,19 +84,20 @@
     "producer_name": "nathaliarus",
     "hash": "1dff878f21f4548b6a25dd1e724ed16c",
     "price_kg": 5,
-    "available": 590
+    "available": 590,
+    "picture_hash": "QmfYd3akdgeAxfwgHTuGTVPZj1hDabnoZLQakGDXjoEcXi"
   },
   {
     "id": "789141301172424",
-    "name": "coffeTest",
-    "botanical_variety": "special variety",
-    "preparation": "wet",
-    "altitude": 1090,
+    "name": "Kieni",
+    "botanical_variety": "SL28 and SL34",
+    "preparation": "Wet",
+    "altitude": 2400,
     "region": "Arabia",
-    "roast_appearance": "dark skin",
+    "roast_appearance": "Dark skin",
     "bean_density": 0.92,
     "bean_screen_size": 15.8,
-    "details": "some details",
+    "details": "Intense sweetness and juicy acidity. Rich and mouthwatering with a complex aroma of blackberry, rhubarb and vanilla. ",
     "geo_location": {
       "type": "Point",
       "coordinates": [14.315424, 108.339537]
@@ -98,19 +106,20 @@
     "producer_name": "arolvinolas",
     "hash": "047a293cf16d04e7c2665129f24b872f",
     "price_kg": 5,
-    "available": 450
+    "available": 450,
+    "picture_hash": "QmezP1j4Tu9NXWLLCnfuFqvgNH6brxPur1M7DPqLAyMFpS"
   },
   {
     "id": "789141301172425",
-    "name": "coffeTest",
-    "botanical_variety": "special variety",
-    "preparation": "wet",
-    "altitude": 1090,
+    "name": "Chingchong",
+    "botanical_variety": "Special variety.",
+    "preparation": "Wet",
+    "altitude": 2300,
     "region": "Arabia",
-    "roast_appearance": "dark skin",
+    "roast_appearance": "Magic",
     "bean_density": 0.91,
     "bean_screen_size": 15.8,
-    "details": "some details",
+    "details": "Just right",
     "geo_location": {
       "type": "Point",
       "coordinates": [3.900749, -73.073215]
@@ -119,6 +128,7 @@
     "producer_name": "arolvinolas",
     "hash": "047a293cf16d04e7c2665129f24b872f",
     "price_kg": 5,
-    "available": 700
+    "available": 700,
+    "picture_hash": "QmWoS6fnTqFRL5Xv6Rp2UB52RmDv1W2UbyA8Zd8LPyDTvD"
   }
 ]

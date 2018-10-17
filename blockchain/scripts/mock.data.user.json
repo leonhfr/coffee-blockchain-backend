@@ -13,7 +13,8 @@
     "description": "I like blockchain. Not C++.",
     "email": "leon@gmail.com",
     "privateKey": "5K7mtrinTFrVTduSxizUc5hjXJEtTjVTsqSHeBHes1Viep86FP5",
-    "publicKey": "EOS6kYgMTCh1iqpq9XGNQbEi8Q6k5GujefN9DSs55dcjVyFAq7B6b"
+    "publicKey": "EOS6kYgMTCh1iqpq9XGNQbEi8Q6k5GujefN9DSs55dcjVyFAq7B6b",
+    "picture_hash": "QmaWMPXA3HkBfzmykE25w8MSEP135Sd41fALp8LXBi1Jko"
   },
   {
     "name": "adriapalleja",
@@ -29,7 +30,8 @@
     "description": "Human towers and stuff.",
     "email": "adria@gmail.com",
     "privateKey": "5KLqT1UFxVnKRWkjvhFur4sECrPhciuUqsYRihc1p9rxhXQMZBg",
-    "publicKey": "EOS78RuuHNgtmDv9jwAzhxZ9LmC6F295snyQ9eUDQ5YtVHJ1udE6p"
+    "publicKey": "EOS78RuuHNgtmDv9jwAzhxZ9LmC6F295snyQ9eUDQ5YtVHJ1udE6p",
+    "picture_hash": "QmeUv1KFgMfKrMk3YUqtsnKpNeGL1WoMtHG7KQytVjv3bJ"
   },
   {
     "name": "olgachinina",
@@ -39,13 +41,31 @@
     "id": "191408611206292",
     "country": "France",
     "geo_location": {
-      "coordinates": [40.1188827, 1.4444909],
+      "coordinates": [41.3825, 2.17694],
       "type": "Point"
     },
     "description": "I'm Russian. Statement.",
     "email": "olga@gmail.com",
     "privateKey": "5K2jun7wohStgiCDSDYjk3eteRH1KaxUQsZTEmTGPH4GS9vVFb7",
-    "publicKey": "EOS5yd9aufDv7MqMquGcQdD6Bfmv6umqSuh9ru3kheDBqbi6vtJ58"
+    "publicKey": "EOS5yd9aufDv7MqMquGcQdD6Bfmv6umqSuh9ru3kheDBqbi6vtJ58",
+    "picture_hash": "QmQBLmCErekckj5noNPBdr34jBZ9nJdEkAEBuaGHAarmpY"
+  },
+  {
+    "name": "mphelps",
+    "business_name": "mphelps",
+    "role": "customer",
+    "hash": "e7cb14fc9aec81e8dcf1df807af09e9f",
+    "id": "59522125203",
+    "country": "America",
+    "geo_location": {
+      "coordinates": [40.730610, -73.935242],
+      "type": "Point"
+    },
+    "description": "I swim and win.",
+    "email": "michael@phelps.com",
+    "privateKey": "5K1HvCwCszMz58r59WLfyQQAPAyh6WhrkFoHDRwS22JN73Csh8c",
+    "publicKey": "EOS8THtX8SgGBijCgwZAGdRiXTsMmjq8r6eJ4SQ8nqDt5a45uZEzu",
+    "picture_hash": "QmeVunCp94WMsQESKifDUUKfh3Mo6J2A23YKZtQ1Mgp5VE"
   },
   {
     "name": "marcogalizzi",
@@ -57,7 +77,8 @@
     "description": "An amazing guy.",
     "email": "marco@gmail.com",
     "privateKey": "5KNm1BgaopP9n5NqJDo9rbr49zJFWJTMJheLoLM5b7gjdhqAwCx",
-    "publicKey": "EOS8LoJJUU3dhiFyJ5HmsMiAuNLGc6HMkxF4Etx6pxLRG7FU89x6X"
+    "publicKey": "EOS8LoJJUU3dhiFyJ5HmsMiAuNLGc6HMkxF4Etx6pxLRG7FU89x6X",
+    "picture_hash": "QmQQEaH2rprbB6ttErvBThhsJMZKoSETSq9FJPJ8cjSQ1f"
   },
   {
     "name": "nathaliarus",
@@ -69,7 +90,8 @@
     "description": "Yeah Girls Code",
     "email": "nathalia@gmail.com",
     "privateKey": "5KE2UNPCZX5QepKcLpLXVCLdAw7dBfJFJnuCHhXUf61hPRMtUZg",
-    "publicKey": "EOS7XPiPuL3jbgpfS3FFmjtXK62Th9n2WZdvJb6XLygAghfx1W7Nb"
+    "publicKey": "EOS7XPiPuL3jbgpfS3FFmjtXK62Th9n2WZdvJb6XLygAghfx1W7Nb",
+    "picture_hash": "Qmc4wvH8o4howXbLGPNUrKxv2PJZ5EjT4GTpMpfMPAzq3e"
   },
   {
     "name": "arolvinolas",
@@ -81,6 +103,7 @@
     "description": "Motorbikes <3",
     "email": "arol@gmail.com",
     "privateKey": "5KaqYiQzKsXXXxVvrG8Q3ECZdQAj2hNcvCgGEubRvvq7CU3LySK",
-    "publicKey": "EOS5btzHW33f9zbhkwjJTYsoyRzXUNstx1Da9X2nTzk8BQztxoP3H"
+    "publicKey": "EOS5btzHW33f9zbhkwjJTYsoyRzXUNstx1Da9X2nTzk8BQztxoP3H",
+    "picture_hash": "QmP8JPUoPfP36nptLf7TvwtKzcda1oNyvyGvDjRGAJnGky"
   }
 ]
