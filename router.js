@@ -7,6 +7,7 @@ const producer = require('./controllers/producerController');
 const coffee = require('./controllers/coffeeController');
 const transaction = require('./controllers/transactionController');
 const shipper = require('./controllers/shipperController');
+const stripe = require('./controllers/stripeController');
 
 router.post('/customers', customer.createCustomer);
 router.get('/customers/:id', customer.getCustomer);
@@ -33,5 +34,7 @@ router.put('/transactions/:id', transaction.updateTransaction);
 
 router.post('/shippers', shipper.createShipper);
 router.get('/shippers', shipper.getShippers);
+
+router.post('/chargePayment', stripe.charge);
 
 module.exports = router;

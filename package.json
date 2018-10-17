@@ -48,6 +48,7 @@
     "md5": "^2.2.1",
     "mysql2": "^1.6.1",
     "sequelize": "^4.39.0",
-    "sql-template-strings": "^2.2.2"
+    "sql-template-strings": "^2.2.2",
+    "stripe": "^6.12.1"
   }
 }
