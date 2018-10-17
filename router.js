@@ -35,6 +35,6 @@ router.put('/transactions/:id', transaction.updateTransaction);
 router.post('/shippers', shipper.createShipper);
 router.get('/shippers', shipper.getShippers);
 
-router.post('/chargePayment', stripe.charge);
+router.post('/charge', stripe.charge);
 
 module.exports = router;
