@@ -14,7 +14,7 @@
     "email": "leon@gmail.com",
     "privateKey": "5K7mtrinTFrVTduSxizUc5hjXJEtTjVTsqSHeBHes1Viep86FP5",
     "publicKey": "EOS6kYgMTCh1iqpq9XGNQbEi8Q6k5GujefN9DSs55dcjVyFAq7B6b",
-    "picture_hash": "QmaWMPXA3HkBfzmykE25w8MSEP135Sd41fALp8LXBi1Jko"
+    "picture_hash": "QmV2poCq2JFTAtee1rnBu7Pxxtg3UoP9sUASRzEP8nc7Tz"
   },
   {
     "name": "adriapalleja",
@@ -52,7 +52,7 @@
   },
   {
     "name": "mphelps",
-    "business_name": "mphelps",
+    "customer_name": "mphelps",
     "role": "customer",
     "hash": "e7cb14fc9aec81e8dcf1df807af09e9f",
     "id": "59522125203",
