@@ -1,7 +1,11 @@
 const models = require('../models');
 
 exports.createTransaction = async ctx => {
-  ctx.body = await models.transaction.createTransaction(ctx.request.body);
+  const customerId = ctx.request.header.authorization.split(' ')[1];
+  ctx.body = await models.transaction.createTransaction(
+    ctx.request.body,
+    customerId
+  );
   if (!ctx.body.error) return (ctx.status = 201);
   ctx.status = 403;
 };

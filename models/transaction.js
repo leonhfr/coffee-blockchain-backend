@@ -14,7 +14,7 @@ exports.createTransaction = async (transaction, customerId) => {
       id: transaction.id,
       quantity: transaction.quantity,
       price: transaction.price,
-      customerId: transaction.customerId,
+      customerId: customerId,
       shipperId: transaction.shipperId,
       coffeeId: transaction.coffeeId,
       total: transaction.total,
