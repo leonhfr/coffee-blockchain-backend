@@ -1,49 +1,5 @@
 [
   {
-    "id": "789141301172420",
-    "name": "Akmel Nuri",
-    "botanical_variety": "Heirloom",
-    "preparation": "Dry",
-    "altitude": 1650,
-    "region": "Arabia",
-    "roast_appearance": "Lightly roasted",
-    "bean_density": 0.987,
-    "bean_screen_size": 15.8,
-    "details": "Full bodied and creamy. Syrupy sweetness. Cantaloupe, dried fruits and French nougat. Organic",
-    "geo_location": {
-      "type": "Point",
-      "coordinates": [9.005401, 38.763611]
-    },
-    "producerId": "595223592125200",
-    "producer_name": "marcogalizzi",
-    "hash": "1c8408957cd486304ecba05ee7b63733",
-    "price_kg": 3,
-    "available": 350,
-    "picture_hash": "Qmc4wvH8o4howXbLGPNUrKxv2PJZ5EjT4GTpMpfMPAzq3e"
-  },
-  {
-    "id": "789141301172421",
-    "name": "Finca Vista Hermosa",
-    "botanical_variety": "Red and Yellow Bourbon, Caturra and Pache",
-    "preparation": "Wet",
-    "altitude": 1600,
-    "region": "Arabia",
-    "roast_appearance": "Medium degree",
-    "bean_density": 0.7,
-    "bean_screen_size": 15.8,
-    "details": "Clean and balanced coffee flavour with a light acidity. Aroma of pecan nuts, plums and nougat.",
-    "geo_location": {
-      "type": "Point",
-      "coordinates": [0.1768696, 37.9083264]
-    },
-    "producerId": "595223592125200",
-    "producer_name": "marcogalizzi",
-    "hash": "01cbf9581c54dbd2e7f44274684afc2d",
-    "price_kg": 4,
-    "available": 1920,
-    "picture_hash": "QmP8JPUoPfP36nptLf7TvwtKzcda1oNyvyGvDjRGAJnGky"
-  },
-  {
     "id": "789141301172422",
     "name": "Halo Beriti (Washed)",
     "botanical_variety": "A varity of natural Ethiopian heirloom",
