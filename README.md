@@ -1,6 +1,23 @@
 # Coffeechain
 
+## Contents
+
+* [What is it?](https://github.com/leonhfr/coffee-blockchain-backend#what-is-it)
+* [Tech stack](https://github.com/leonhfr/coffee-blockchain-backend#tech-stack)
+* [How does it work?](https://github.com/leonhfr/coffee-blockchain-backend#how-does-it-work)
+* [Screenshots and details](https://github.com/leonhfr/coffee-blockchain-backend#screenshots-and-details)
+* [Getting started](https://github.com/leonhfr/coffee-blockchain-backend#getting-started)
+  * [Prerequisites](https://github.com/leonhfr/coffee-blockchain-backend#prerequisites)
+  * [Run the dApp](https://github.com/leonhfr/coffee-blockchain-backend#run-the-dapp)
+  * [Troubleshooting](https://github.com/leonhfr/coffee-blockchain-backend#troubleshooting)
+  * [Stop the dApp](https://github.com/leonhfr/coffee-blockchain-backend#stop-the-dapp)
+  * [Useful stuff](https://github.com/leonhfr/coffee-blockchain-backend#useful-stuff)
+* [Future features](https://github.com/leonhfr/coffee-blockchain-backend#future-features)
+* [Authors](https://github.com/leonhfr/coffee-blockchain-backend#authors)
+
 ## What is it?
+
+
 
 TODO
 
@@ -33,27 +50,32 @@ Front-end:
 <p align="center">
   <img style="max-width:600px;" src="./docs/diagram.png" />
 </p>
+In this project, the blockchain is used as the **single source of truth**.
 
-TODO
+We are building on EOS. EOS is a blockchain that acts like a decentralized operating system. It specializes in smart contracts and allows very high performance and throughput of several millions of transactions per second with no transaction fees.
+
+We are deploying a smart contract called **beancoin**. The smart contract acts like a normal contract but does not need any third party. It is autonomous and self-enforcing. Beancoin oversees the interactions between producers and customers. It is public, so that everyone knows by which rules to abide.
+
+The state of the smart contracts is stored in the blockchain: users, the coffees available and the sales that have been made and their status. The problem is that blockchain is good for trustless decentralized systems, but that it is expensive to store data in it and hard to query like you would with a traditional API.
+
+In this project, when a user sends data, it is stored in the database. A md5 hash of the data is sent to the blockchain. If the hash of the data stored in the blockchain matches the hash of the data sent to the database, we know that the query is trustworthy and that the user authorized it. The data is then served back to the user via a traditional API that allows complex queries. Conversely, the user can also query the blockchain to verify that the hashes match the data it received from the database.
+
 
 ## Screenshots and details
 
 <p align="center">
   <img style="max-width:600px;" src="./docs/add-coffee.png" />
 </p>
-
 ---
 
 <p align="center">
   <img style="max-width:600px;" src="./docs/coffee-shops.png" />
 </p>
-
 ---
 
 <p align="center">
   <img style="max-width:600px;" src="./docs/coffees.png" />
 </p>
-
 ---
 
 <p align="center">
