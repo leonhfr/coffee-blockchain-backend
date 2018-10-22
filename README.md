@@ -17,13 +17,9 @@
 
 ## What is it?
 
+> When I speak about it in the West, people say they trust Google, Facebook, or their banks. But the rest of the world doesn't trust organizations and corporations that much — I mean Africa, India, the Eastern Europe, or Russia. It’s not about the places where people are really rich. Blockchain's opportunities are the highest in the countries that haven’t reached that level yet. - Vitalik Buterin, inventor of Ethereum
 
-
-TODO
-
-Connecting specialty coffee producers and coffee shops in a decentralized app
-
-To create a decentralised market place for coffee by providing a trustless system via blockchain. To connect coffee shop owners and coffee producers all around the world. To remove intermediaries between them and support fair trade. To learn blockchain, to code, to have fun.
+Coffeechain aims to connect specialty coffee producers and coffee shops and support direct and fair trade. It is a decentralized market place providing a trustless system with blockchain. Intermediaries are removed and no third party is involved.
 
 ## Tech Stack
 
@@ -50,6 +46,7 @@ Front-end:
 <p align="center">
   <img style="max-width:600px;" src="./docs/diagram.png" />
 </p>
+
 In this project, the blockchain is used as the **single source of truth**.
 
 We are building on EOS. EOS is a blockchain that acts like a decentralized operating system. It specializes in smart contracts and allows very high performance and throughput of several millions of transactions per second with no transaction fees.
@@ -63,26 +60,27 @@ In this project, when a user sends data, it is stored in the database. A md5 has
 
 ## Screenshots and details
 
-<p align="center">
-  <img style="max-width:600px;" src="./docs/add-coffee.png" />
-</p>
----
-
-<p align="center">
-  <img style="max-width:600px;" src="./docs/coffee-shops.png" />
-</p>
----
+#### All available coffees
 
 <p align="center">
   <img style="max-width:600px;" src="./docs/coffees.png" />
 </p>
+
 ---
+
+#### Coffee shops
+
+<p align="center">
+  <img style="max-width:600px;" src="./docs/coffee-shops.png" />
+</p>
+
+---
+
+#### My orders
 
 <p align="center">
   <img style="max-width:600px;" src="./docs/my-orders.png" />
 </p>
-
-TODO
 
 ## Getting started
 
