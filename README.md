@@ -39,7 +39,7 @@ Coffeechain aims to connect specialty coffee producers and coffee shops and supp
 * [Docker](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
 * [Node.js](https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions)
 * [Stripe](https://stripe.com/) API keys
-* You will also need the [Coffeechain client](https://github.com/chinins/coffee-chain-frontend) if you want any sort of useful interaction with the application.
+* You will also need the [Coffeechain client](https://github.com/chinins/coffeechain-frontend) if you want any sort of useful interaction with the application.
 
 ### Run the app
 
@@ -47,8 +47,8 @@ With default settings, the app, eosio, redis and MySQL will occupy the ports 330
 
 1. First, clone the repository and create a `.env` file as shown in `.env.example`:
 ```shell
-git clone https://github.com/leonhfr/coffee-blockchain-backend
-cd coffee-blockchain-backend
+git clone https://github.com/leonhfr/coffeechain-backend.git
+cd coffeechain-backend
 cp .env.example .env
 # Atom or your favorite editor:
 atom .env
