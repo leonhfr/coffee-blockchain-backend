@@ -119,7 +119,7 @@ The above script will:
 * Start the backend API server (`npm start`)
 
 ### Troubleshooting
-* Docker needs to be able to run [without `sudo`](https://docs.docker.com/install/linux/linux-postinstall/).
+* Docker needs to be able to run [without sudo](https://docs.docker.com/install/linux/linux-postinstall/).
 * You may need to make the scripts executable. Run this command from the `coffee-blockchain-backend` directory:
 ```sh
 chmod +x blockchain.sh \
