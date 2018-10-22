@@ -10,11 +10,14 @@ exports.createTransaction = async (transaction, customerId) => {
     await coffee.updateCoffee(transaction.coffeeId, {
       available: remainingCoffee
     });
+    let customId;
+    if (transaction.customerId) customId = transaction.customerId;
+    else customId = customerId;
     res = await Transaction.create({
       id: transaction.id,
       quantity: transaction.quantity,
       price: transaction.price,
-      customerId: transaction.customerId,
+      customerId: customId,
       shipperId: transaction.shipperId,
       coffeeId: transaction.coffeeId,
       total: transaction.total,
