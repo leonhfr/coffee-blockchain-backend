@@ -65,6 +65,7 @@ In this project, when a user sends data, it is stored in the database. A md5 has
 <p align="center">
   <img style="max-width:600px;" src="./docs/coffees.png" />
 </p>
+
 ---
 
 #### Coffee shops
@@ -72,6 +73,7 @@ In this project, when a user sends data, it is stored in the database. A md5 has
 <p align="center">
   <img style="max-width:600px;" src="./docs/coffee-shops.png" />
 </p>
+
 ---
 
 #### My orders
