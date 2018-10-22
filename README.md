@@ -65,7 +65,6 @@ In this project, when a user sends data, it is stored in the database. A md5 has
 <p align="center">
   <img style="max-width:600px;" src="./docs/coffees.png" />
 </p>
-
 ---
 
 #### Coffee shops
@@ -73,7 +72,6 @@ In this project, when a user sends data, it is stored in the database. A md5 has
 <p align="center">
   <img style="max-width:600px;" src="./docs/coffee-shops.png" />
 </p>
-
 ---
 
 #### My orders
@@ -89,6 +87,7 @@ In this project, when a user sends data, it is stored in the database. A md5 has
 * Either **Ubuntu 18.04** or **MacOS Darwin** or higher. Other operating systems will **not** work, sorry.
 * [Docker](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
 * [Node.js](https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions)
+* [Stripe](https://stripe.com/) API keys
 * You will also need the [Coffeechain client](https://github.com/chinins/coffee-chain-frontend) if you want any sort of useful interaction with the application.
 
 ### Run the dApp
@@ -102,7 +101,7 @@ cd coffee-blockchain-backend
 cp .env.example .env
 # Atom or your favorite editor:
 atom .env
-# Adjust variables.
+# Adjust variables, add Stripe keys.
 # Save the file.
 ```
 2. Then, run the script `blockchain.sh`: `sh blockchain.sh`
